@@ -5,4 +5,8 @@ public class Methods {
     // Request-related methods
     // Room-related methods
     // User-related methods
+
+    private Methods() {
+
+    }
 }
