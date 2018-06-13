@@ -2,7 +2,8 @@ package com.webapp.booking.entities;
 
 import com.webapp.booking.enums.RoomType;
 
-public class Room extends AbstractEntity {
+public class RoomEntity {
+    private Integer roomID;
     private Integer number;
     private Integer guestAmount;
     private RoomType roomType;

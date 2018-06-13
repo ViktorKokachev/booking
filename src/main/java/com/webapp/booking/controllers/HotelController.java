@@ -23,7 +23,7 @@ public class HotelController {
     }
 
     @PostMapping()
-    public String editHotel() {
+    public String updateHotel() {
         return null;
     }
 

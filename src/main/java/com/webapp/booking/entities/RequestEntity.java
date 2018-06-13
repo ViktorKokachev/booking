@@ -4,7 +4,8 @@ import com.webapp.booking.enums.RequestStatus;
 
 import java.time.LocalDateTime;
 
-public class Request extends AbstractEntity {
+public class RequestEntity {
+    private Integer RequestID;
     private LocalDateTime checkInDate;
     private LocalDateTime checkOutDate;
     private RequestStatus requestStatus;

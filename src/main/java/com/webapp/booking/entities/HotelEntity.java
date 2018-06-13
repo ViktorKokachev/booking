@@ -1,6 +1,7 @@
 package com.webapp.booking.entities;
 
-public class Hotel extends AbstractEntity {
+public class HotelEntity {
+    private Integer hotelID;
     private String name;
     private String address;
     private Integer rating;
