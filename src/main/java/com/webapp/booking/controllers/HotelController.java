@@ -1,9 +1,11 @@
 package com.webapp.booking.controllers;
 
 import com.webapp.booking.common.Paths;
+import com.webapp.booking.entities.HotelEntity;
 import com.webapp.booking.services.HotelService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +21,9 @@ public class HotelController {
     private final HotelService hotelService;
 
     @GetMapping()
-    public String getAllHotels() {
-        return null;
+    public String getAllHotels(Model model) {
+        model.addAttribute("allHotels", hotelService.getAllHotels());
+        return "allHotels";
     }
 
     @PutMapping()
