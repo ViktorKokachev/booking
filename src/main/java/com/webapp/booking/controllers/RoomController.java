@@ -20,18 +20,13 @@ public class RoomController {
         return "greeting";
     }
 
-    @GetMapping()
+    @GetMapping("/withFilter")
     public String getAllRoomsWithFilter() {
         return "withFilters";
     }
 
-    @PostMapping()
+    @PostMapping("/book")
     public String bookRoom() {
-        return null;
-    }
-
-    @GetMapping()
-    public String getAllRooms() {
         return null;
     }
 
@@ -41,7 +36,7 @@ public class RoomController {
     }
 
     @PostMapping()
-    public String editRoom() {
+    public String updateRoom() {
         return null;
     }
 
@@ -50,12 +45,12 @@ public class RoomController {
         return null;
     }
 
-    @PostMapping()
+    @PostMapping("/addDiscount")
     public String addDiscount() {
         return null;
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/removeDiscount")
     public String deleteDiscount() {
         return null;
     }

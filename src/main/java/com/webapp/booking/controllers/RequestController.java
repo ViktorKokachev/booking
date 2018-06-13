@@ -1,11 +1,7 @@
 package com.webapp.booking.controllers;
 
 import com.webapp.booking.common.Paths;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping(Paths.REQUESTS)
 @RestController
@@ -16,7 +12,7 @@ public class RequestController {
         return null;
     }
 
-    @GetMapping()
+    @GetMapping("/getByID")
     public String getAllRequestsByID() {
         return null;
     }
@@ -31,7 +27,7 @@ public class RequestController {
         return null;
     }
 
-    @PostMapping()
+    @DeleteMapping()
     public String declineRequest() {
         return null;
     }
