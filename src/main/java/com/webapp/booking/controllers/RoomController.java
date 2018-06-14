@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping(Paths.ROOMS)
+@RequestMapping("/rooms")
 @Controller
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RoomController {
