@@ -1,8 +1,15 @@
 package com.webapp.booking.entities;
 
 import com.webapp.booking.enums.RoomType;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+@AllArgsConstructor
+@Getter
+@Setter
 public class RoomEntity {
+
     private Integer roomID;
     private Integer number;
     private Integer guestAmount;
