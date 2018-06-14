@@ -1,6 +1,7 @@
 package com.webapp.booking.services;
 
 import com.webapp.booking.entities.RoomEntity;
+import com.webapp.booking.enums.RoomType;
 import com.webapp.booking.requests.room.AddDiscountArguments;
 import com.webapp.booking.requests.room.CreateRoomArguments;
 import com.webapp.booking.requests.room.GetAllRoomsWithFilterArguments;
@@ -9,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,7 +22,12 @@ public class RoomService {
     }
 
     public List<RoomEntity> getAllRooms() {
-        return null;
+        List<RoomEntity> rooms = new ArrayList<>();
+        rooms.add(new RoomEntity(1, 2, 3, RoomType.STANDART, 1200.0, 1000.0,
+                "dsadsa", 3));
+        rooms.add(new RoomEntity(2, 3, 1, RoomType.STANDART, 1200.0, 1000.0,
+                "dsadsa", 3));
+        return rooms;
     }
 
     /*public void bookRoom() {
