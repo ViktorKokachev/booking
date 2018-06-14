@@ -1,6 +1,6 @@
 package com.webapp.booking.controllers;
 
-import com.webapp.booking.common.Paths;
+
 import com.webapp.booking.services.RoomService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
