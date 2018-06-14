@@ -15,10 +15,18 @@ public class UserService {
         return null;
     }
 
+    public UserEntity getUserByID(int userID) {
+        return null;
+    }
+
+    public void updateUser() {
+
+    }
+
     public void createUser() {
     }
 
-    public void deleteUser() {
+    public void deleteUser(int userID) {
 
     }
 }

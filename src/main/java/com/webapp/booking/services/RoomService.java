@@ -23,6 +23,10 @@ public class RoomService {
 
     }
 
+    public RoomEntity getRoomByID(int roomID) {
+        return null;
+    }
+
     public void createRoom() {
 
     }
@@ -39,7 +43,7 @@ public class RoomService {
 
     }
 
-    public void deleteDiscount() {
+    public void deleteDiscount(int roomID) {
 
     }
 }

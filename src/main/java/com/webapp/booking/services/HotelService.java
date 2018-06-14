@@ -15,6 +15,14 @@ public class HotelService {
         return null;
     }
 
+    public List<HotelEntity> getAllHotelsByOwnerID(int ownerID) {
+        return null;
+    }
+
+    public HotelEntity getHotelByID(int hotelID) {
+        return null;
+    }
+
     public void createHotel() {
 
     }
@@ -23,8 +31,7 @@ public class HotelService {
 
     }
 
-    public void deleteHotel() {
+    public void deleteHotel(final int hotelID) {
 
     }
-
 }

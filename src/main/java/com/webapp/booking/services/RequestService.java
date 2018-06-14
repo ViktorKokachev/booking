@@ -14,7 +14,11 @@ public class RequestService {
         return null;
     }
 
-    public List<RequestEntity> getAllRequestsByID() {
+    public List<RequestEntity> getAllRequestsByUserID(int userID) {
+        return null;
+    }
+
+    public RequestEntity getRequestByID(int requestID) {
         return null;
     }
 
@@ -26,7 +30,7 @@ public class RequestService {
 
     }
 
-    public void declineRequest() {
+    public void declineRequest(int requestID) {
 
     }
 }

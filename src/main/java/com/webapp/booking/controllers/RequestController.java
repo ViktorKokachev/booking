@@ -1,37 +1,52 @@
 package com.webapp.booking.controllers;
 
-import com.webapp.booking.common.Paths;
+
+import com.webapp.booking.services.RequestService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping(Paths.REQUESTS)
+@RequestMapping("/requests")
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RequestController {
 
-    @GetMapping()
-    public String getAllRequests() {
-        return null;
+    private final RequestService requestService;
+
+    @GetMapping
+    public String getAllRequests(Model model) {
+        model.addAttribute("allRequests", requestService.getAllRequests());
+        return "allRequests";
     }
 
-    @GetMapping("/getByID")
-    public String getAllRequestsByID() {
-        return null;
+    @GetMapping("/{userID}")
+    public String getAllRequestsByUserID(@PathVariable int userID, Model model) {
+        model.addAttribute("allRequestsByUserID", requestService.getAllRequestsByUserID(userID));
+        return "allRequestsByUserID";
     }
 
-    @PutMapping
+    @GetMapping("/{requestID}")
+    public String getRequestByID(@PathVariable int requestID, Model model) {
+        model.addAttribute("requestByID", requestService.getRequestByID(requestID));
+        return "requestByID";
+    }
+
+    // add arguments
+    @PostMapping
     public String createRequest() {
         return null;
     }
 
-    @PostMapping()
+    // add arguments
+    @PutMapping
     public String payRequest() {
         return null;
     }
 
-    @DeleteMapping()
-    public String declineRequest() {
+    @DeleteMapping("/{requestID}")
+    public String declineRequest(@PathVariable int requestID) {
+        requestService.declineRequest(requestID);
         return null;
     }
 }
