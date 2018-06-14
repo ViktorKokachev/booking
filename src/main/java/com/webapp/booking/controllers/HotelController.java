@@ -28,14 +28,14 @@ public class HotelController {
     }
 
     @GetMapping("/{ownerID}")
-    public String getAllHotelsByOwnerID(@RequestParam int ownerID, Model model) {
+    public String getAllHotelsByOwnerID(@PathVariable int ownerID, Model model) {
         model.addAttribute("allHotelsByOwnerID", hotelService.getAllHotelsByOwnerID(ownerID));
         return "hotelByOwnerID";
     }
 
 
     @GetMapping("/{hotelID}")
-    public String getHotelByID(@RequestParam int hotelID, Model model) {
+    public String getHotelByID(@PathVariable int hotelID, Model model) {
         model.addAttribute("hotelByID", hotelService.getHotelByID(hotelID));
         return "hotelByID";
     }

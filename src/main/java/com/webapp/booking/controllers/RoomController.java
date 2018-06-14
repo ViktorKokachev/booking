@@ -25,7 +25,7 @@ public class RoomController {
         return "allRooms";
     }
 
-    @GetMapping("/withFilter")
+    @PostMapping("/withFilter")
     public String getAllRoomsWithFilter(
             @RequestBody GetAllRoomsWithFilterArguments allRoomsWithFilterArguments,
             Model model) {
@@ -34,13 +34,13 @@ public class RoomController {
         return "allRoomsWithFilter";
     }
 
-    @PutMapping()
+    @PostMapping()
     public String createRoom(@RequestBody CreateRoomArguments createRoomArguments) {
         roomService.createRoom(createRoomArguments);
         return null;
     }
 
-    @PostMapping()
+    @PutMapping()
     public String updateRoom(@RequestBody UpdateRoomArguments updateRoomArguments) {
         roomService.updateRoom(updateRoomArguments);
         return null;
@@ -52,7 +52,7 @@ public class RoomController {
         return null;
     }
 
-    @PostMapping("/addDiscount")
+    @PutMapping("/addDiscount")
     public String addDiscount(@RequestBody AddDiscountArguments addDiscountArguments) {
         roomService.addDiscount(addDiscountArguments);
         return null;
