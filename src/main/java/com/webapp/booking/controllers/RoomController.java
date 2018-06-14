@@ -1,6 +1,10 @@
 package com.webapp.booking.controllers;
 
 
+import com.webapp.booking.requests.room.AddDiscountArguments;
+import com.webapp.booking.requests.room.CreateRoomArguments;
+import com.webapp.booking.requests.room.GetAllRoomsWithFilterArguments;
+import com.webapp.booking.requests.room.UpdateRoomArguments;
 import com.webapp.booking.services.RoomService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,32 +26,35 @@ public class RoomController {
     }
 
     @GetMapping("/withFilter")
-    public String getAllRoomsWithFilter() {
-        return "withFilters";
-    }
-
-    @PostMapping("/book")
-    public String bookRoom() {
-        return null;
+    public String getAllRoomsWithFilter(
+            @RequestBody GetAllRoomsWithFilterArguments allRoomsWithFilterArguments,
+            Model model) {
+        model.addAttribute("allRoomsWithFilter",
+                roomService.getAllRoomsWithFilter(allRoomsWithFilterArguments));
+        return "allRoomsWithFilter";
     }
 
     @PutMapping()
-    public String createRoom() {
+    public String createRoom(@RequestBody CreateRoomArguments createRoomArguments) {
+        roomService.createRoom(createRoomArguments);
         return null;
     }
 
     @PostMapping()
-    public String updateRoom() {
+    public String updateRoom(@RequestBody UpdateRoomArguments updateRoomArguments) {
+        roomService.updateRoom(updateRoomArguments);
         return null;
     }
 
-    @DeleteMapping()
-    public String deleteRoom() {
+    @DeleteMapping("/{roomID}")
+    public String deleteRoom(@PathVariable int roomID) {
+        roomService.deleteRoom(roomID);
         return null;
     }
 
     @PostMapping("/addDiscount")
-    public String addDiscount() {
+    public String addDiscount(@RequestBody AddDiscountArguments addDiscountArguments) {
+        roomService.addDiscount(addDiscountArguments);
         return null;
     }
 
