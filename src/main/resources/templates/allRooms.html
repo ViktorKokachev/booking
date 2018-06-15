@@ -10,44 +10,44 @@
 
 <div id="header">Hello,</div>
 <div id="sidebar">
-    <form action="withFilter.html">
+    <form action="#" th:action="@{/withFilter}" th:object="${GetAllRoomsWithFilterArguments}" method="post">
+        <!--<div>-->
+            <!--<select name="roomType" th:field="*{roomType}">-->
+                <!--<option selected>not selected</option>-->
+                <!--<option name="standart">standart</option>-->
+                <!--<option name="luxury">luxury</option>-->
+                <!--<option name="family">family</option>-->
+            <!--</select>-->
+        <!--</div>-->
+
+
+        <br/>
+        <!--<div>-->
+            <!--<select name="guestAmount" th:field="*{guestAmount}">-->
+                <!--<option selected>not selected</option>-->
+                <!--<option name="1">1</option>-->
+                <!--<option name="2">2</option>-->
+                <!--<option name="3">3</option>-->
+                <!--<option name="4">4</option>-->
+            <!--</select>-->
+        <!--</div>-->
+        <!--<br/>-->
+
+        <!--<div>Check in:<br/><input type="date" th:field="*{checkInDate}"></div>  <br/>-->
+        <!--<div>Check out: <br/><input type="date" th:field="*{checkOutDate}"></div>-->
+        <!--<br/>-->
+
         <div>
-            <select name="roomType">
-                <option selected>not selected</option>
-                <option name="standart">standart</option>
-                <option name="luxury">luxury</option>
-                <option name="family">family</option>
-            </select>
+            Minimum price:<input type="text" name="minPrice" th:field="*{minPrice}">
         </div>
-
-
-        <br/>
-        <div>
-            <select name="guestAmount">
-                <option selected>not selected</option>
-                <option name="1">1</option>
-                <option name="2">2</option>
-                <option name="3">3</option>
-                <option name="4">4</option>
-            </select>
-        </div>
-        <br/>
-
-        <div>Check in:<br/><input type="date" name="checkInDate"></div>  <br/>
-        <div>Check out: <br/><input type="date" name="checkOutDater"></div>
         <br/>
 
         <div>
-            Minimum price:<input type="text" name="minPrice">
-        </div>
-        <br/>
-
-        <div>
-            Maximum price:<input type="text" name="maxPrice" >
+            Maximum price:<input type="text" name="maxPrice" th:field="*{maxPrice}">
         </div>
         <br/>
         <input type="button" value="Search">
-        <input type="reset">
+        <input type="reset" value="Reset">
     </form>
 </div>
 
