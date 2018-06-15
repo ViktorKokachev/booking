@@ -10,48 +10,44 @@
 
 <div id="header">Hello,</div>
 <div id="sidebar">
-    <form action="#" th:action="@{rooms/withFilter}" th:object="${greeting}" method="get">
-        <p>Id: <input type="text" th:field="*{guestAmount}"/></p>
-
-        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
-
-        <!--<div>-->
-            <!--<select name="roomType" th:field="*{roomType}">-->
-                <!--<option selected>not selected</option>-->
-                <!--<option name="standart">standart</option>-->
-                <!--<option name="luxury">luxury</option>-->
-                <!--<option name="family">family</option>-->
-            <!--</select>-->
-        <!--</div>-->
+    <form action="#" th:action="@{/rooms/withFilter}" th:object="${getAllRoomsWithFilterArguments}" method="post">
+        <div>
+            <select name="roomType" th:field="*{roomType}">
+                <option selected value="0">not selected</option>
+                <option value="standart">standart</option>
+                <option value="luxury">luxury</option>
+                <option value="family">family</option>
+            </select>
+        </div>
 
 
-        <!--<br/>-->
-        <!--<div>-->
-            <!--<select name="guestAmount" th:field="*{guestAmount}">-->
-                <!--<option selected>not selected</option>-->
-                <!--<option name="1">1</option>-->
-                <!--<option name="2">2</option>-->
-                <!--<option name="3">3</option>-->
-                <!--<option name="4">4</option>-->
-            <!--</select>-->
-        <!--</div>-->
-        <!--<br/>-->
+        <br/>
+        <div>
+            <select name="guestAmount" th:field="*{guestAmount}">
+                <option selected value="0">not selected</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+        <br/>
 
-        <!--<div>Check in:<br/><input type="date" th:field="*{checkInDate}"></div>  <br/>-->
-        <!--<div>Check out: <br/><input type="date" th:field="*{checkOutDate}"></div>-->
-        <!--<br/>-->
+        <div>Check in:<br/><input type="date" th:field="*{checkInDate}"></div>  <br/>
+        <div>Check out: <br/><input type="date" th:field="*{checkOutDate}"></div>
+        <br/>
 
-        <!--<div>-->
-            <!--Minimum price:<input type="text" name="minPrice" th:field="*{minPrice}">-->
-        <!--</div>-->
-        <!--<br/>-->
+        <div>
+            Minimum price:<input type="text" name="minPrice" th:field="*{minPrice}">
+        </div>
+        <br/>
 
-        <!--<div>-->
-            <!--Maximum price:<input type="text" name="maxPrice" th:field="*{maxPrice}">-->
-        <!--</div>-->
-        <!--<br/>-->
-        <!--<input type="button" value="Search">-->
-        <!--<input type="reset" value="Reset">-->
+        <div>
+            Maximum price:<input type="text" name="maxPrice" th:field="*{maxPrice}">
+        </div>
+        <br/>
+        <input type="submit" value="Search">
+        <input type="reset" value="Reset">
     </form>
 </div>
 

@@ -22,15 +22,16 @@ public class RoomController {
     @GetMapping()
     public String getAllRooms(Model model) {
         model.addAttribute("allRooms", roomService.getAllRooms());
+        model.addAttribute("getAllRoomsWithFilterArguments", new GetAllRoomsWithFilterArguments());
         return "allRooms";
     }
 
     @PostMapping("/withFilter")
     public String getAllRoomsWithFilter(
-            @RequestBody GetAllRoomsWithFilterArguments allRoomsWithFilterArguments,
+            @RequestBody GetAllRoomsWithFilterArguments getAllRoomsWithFilterArguments,
             Model model) {
         model.addAttribute("allRoomsWithFilter",
-                roomService.getAllRoomsWithFilter(allRoomsWithFilterArguments));
+                roomService.getAllRoomsWithFilter(getAllRoomsWithFilterArguments));
         return "allRoomsWithFilter";
     }
 
