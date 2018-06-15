@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/request.css}"/>
+</head>
+<body>
+<div id="header">Hello,</div>
+<br/>
+<div><form action="#" th:action="@{requests/allRequests}" method="get">
+    <input type="submit" value="Clients" class="button"/>
+</div>
+<div><form action="#" th:action="@{reqests/}" method="get">
+    <input type="submit" value="Owners" class="button"/>
+</div>
+</body>
+</html>

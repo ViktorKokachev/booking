@@ -10,7 +10,11 @@
 
 <div id="header">Hello,</div>
 <div id="sidebar">
-    <form action="#" th:action="@{/withFilter}" th:object="${GetAllRoomsWithFilterArguments}" method="post">
+    <form action="#" th:action="@{rooms/withFilter}" th:object="${greeting}" method="get">
+        <p>Id: <input type="text" th:field="*{guestAmount}"/></p>
+
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+
         <!--<div>-->
             <!--<select name="roomType" th:field="*{roomType}">-->
                 <!--<option selected>not selected</option>-->
@@ -21,7 +25,7 @@
         <!--</div>-->
 
 
-        <br/>
+        <!--<br/>-->
         <!--<div>-->
             <!--<select name="guestAmount" th:field="*{guestAmount}">-->
                 <!--<option selected>not selected</option>-->
@@ -37,17 +41,17 @@
         <!--<div>Check out: <br/><input type="date" th:field="*{checkOutDate}"></div>-->
         <!--<br/>-->
 
-        <div>
-            Minimum price:<input type="text" name="minPrice" th:field="*{minPrice}">
-        </div>
-        <br/>
+        <!--<div>-->
+            <!--Minimum price:<input type="text" name="minPrice" th:field="*{minPrice}">-->
+        <!--</div>-->
+        <!--<br/>-->
 
-        <div>
-            Maximum price:<input type="text" name="maxPrice" th:field="*{maxPrice}">
-        </div>
-        <br/>
-        <input type="button" value="Search">
-        <input type="reset" value="Reset">
+        <!--<div>-->
+            <!--Maximum price:<input type="text" name="maxPrice" th:field="*{maxPrice}">-->
+        <!--</div>-->
+        <!--<br/>-->
+        <!--<input type="button" value="Search">-->
+        <!--<input type="reset" value="Reset">-->
     </form>
 </div>
 
