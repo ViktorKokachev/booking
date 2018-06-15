@@ -17,11 +17,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             throws Exception {
             auth
                 .inMemoryAuthentication()
-                .withUser("client").password(passwordEncoder().encode("password")).roles("CLIENT")
+                .withUser("client").password(passwordEncoder().encode("123")).roles("CLIENT")
                 .and()
-                .withUser("admin").password(passwordEncoder().encode("password")).roles("ADMIN")
+                .withUser("admin").password(passwordEncoder().encode("123")).roles("ADMIN")
                 .and()
-                .withUser("owner").password(passwordEncoder().encode("password")).roles("OWNER");
+                .withUser("owner").password(passwordEncoder().encode("123")).roles("OWNER");
     }
 
     @Bean
