@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -13,10 +12,10 @@ import java.util.Date;
 public class GetAllRoomsWithFilterArguments {
     private Integer guestAmount;
     private RoomType roomType;
-    private Double minPrice;
-    private Double maxPrice;
-    @DateTimeFormat(pattern = "MM-dd-yyyy")
+    private Integer minPrice;
+    private Integer maxPrice;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date checkInDate;
-    @DateTimeFormat(pattern = "MM-dd-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date checkOutDate;
 }
