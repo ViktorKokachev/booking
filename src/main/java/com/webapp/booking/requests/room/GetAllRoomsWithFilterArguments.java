@@ -3,8 +3,10 @@ package com.webapp.booking.requests.room;
 import com.webapp.booking.enums.RoomType;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -13,6 +15,8 @@ public class GetAllRoomsWithFilterArguments {
     private RoomType roomType;
     private Double minPrice;
     private Double maxPrice;
-    private LocalDateTime checkInDate;
-    private LocalDateTime checkOutDate;
+    @DateTimeFormat(pattern = "MM-dd-yyyy")
+    private Date checkInDate;
+    @DateTimeFormat(pattern = "MM-dd-yyyy")
+    private Date checkOutDate;
 }
