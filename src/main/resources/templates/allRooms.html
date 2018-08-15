@@ -11,7 +11,7 @@
 <div id="header">Hello,</div>
 <div id="sidebar">
     <form action="#" th:action="@{/rooms/withFilter}" th:object="${getAllRoomsWithFilterArguments}" method="post">
-        <div>
+        <div>Room type:<br/>
             <select name="roomType" th:field="*{roomType}">
                 <option selected value="0">not selected</option>
                 <option value="standart">standart</option>
@@ -22,7 +22,7 @@
 
 
         <br/>
-        <div>
+        <div>Guest amount:<br/>
             <select name="guestAmount" th:field="*{guestAmount}">
                 <option selected value="0">not selected</option>
                 <option value="1">1</option>

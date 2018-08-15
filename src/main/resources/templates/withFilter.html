@@ -1,10 +1,93 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Rooms</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/room.css}"/>
+    <!--<style>@import "room.css";</style>-->
 </head>
 <body>
-<p th:text="'Hello!'" />
+
+<div id="header">Hello,</div>
+<div id="sidebar">
+    <form action="#" th:action="@{/rooms/withFilter}" th:object="${getAllRoomsWithFilterArguments}" method="post">
+        <div>Room type:<br/>
+            <select name="roomType" th:field="*{roomType}">
+                <option selected value="0">not selected</option>
+                <option value="standart">standart</option>
+                <option value="luxury">luxury</option>
+                <option value="family">family</option>
+            </select>
+        </div>
+
+
+        <br/>
+        <div>Guest amount:<br/>
+            <select name="guestAmount" th:field="*{guestAmount}">
+                <option selected value="0">not selected</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+        <br/>
+
+        <div>Check in:<br/><input type="date" th:field="*{checkInDate}"></div>  <br/>
+        <div>Check out: <br/><input type="date" th:field="*{checkOutDate}"></div>
+        <br/>
+
+        <div>
+            Minimum price:<input type="text" name="minPrice" th:field="*{minPrice}">
+        </div>
+        <br/>
+
+        <div>
+            Maximum price:<input type="text" name="maxPrice" th:field="*{maxPrice}">
+        </div>
+        <br/>
+        <input type="submit" value="Search">
+        <input type="reset" value="Reset">
+    </form>
+</div>
+
+
+<div id="content">
+    <div th:each="room : ${allRooms}">
+        <table>
+            <tr>
+                <td>Hotel: </td>
+                <td th:text="${room.getHotelID()}">number</td>
+            </tr>
+            <tr>
+                <td>Guests: </td>
+                <td th:text="${room.getGuestAmount()}"></td>
+            </tr>
+            <tr>
+                <td>Room type: </td>
+                <td th:text="${room.getRoomType()}"></td>
+            </tr>
+            <tr>
+                <td>Price: </td>
+                <td th:text="${room.getPrice()}"></td>
+            </tr>
+            <tr>
+                <td>Description: </td>
+                <td th:text="${room.getDescription()}"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td id="book">
+                    <form action="" method="get">
+                        <input type="button" value="book">
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <br/>
+    </div>
+</div>
+
+
 </body>
 </html>
