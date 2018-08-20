@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RoomController {
 
+    @Autowired
     private RoomService roomService;
 
     @GetMapping()
     public String getAllRooms(Model model) {
         model.addAttribute("allRooms", roomService.getAllRooms());
-        model.addAttribute("getAllRoomsWithFilterArguments", new GetAllRoomsWithFilterArguments());
+        //model.addAttribute("getAllRoomsWithFilterArguments", new GetAllRoomsWithFilterArguments());
         return "allRooms";
     }
 

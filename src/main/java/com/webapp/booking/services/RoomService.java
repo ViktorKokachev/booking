@@ -1,5 +1,6 @@
 package com.webapp.booking.services;
 
+import com.webapp.booking.dao.RoomRepo;
 import com.webapp.booking.entities.RoomEntity;
 import com.webapp.booking.enums.RoomType;
 import com.webapp.booking.requests.room.AddDiscountArguments;
@@ -17,6 +18,9 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RoomService {
 
+    @Autowired
+    private RoomRepo roomRepo;
+
     public List<RoomEntity> getAllRoomsWithFilter(GetAllRoomsWithFilterArguments getAllRoomsWithFilterArguments) {
             List<RoomEntity> rooms = new ArrayList<>();
             rooms.add(new RoomEntity(105, 2, 3, RoomType.STANDARD, 1200.0, 1000.0,
@@ -29,12 +33,13 @@ public class RoomService {
 
 
     public List<RoomEntity> getAllRooms() {
-        List<RoomEntity> rooms = new ArrayList<>();
+/*        List<RoomEntity> rooms = new ArrayList<>();
         rooms.add(new RoomEntity(1, 2, 3, RoomType.STANDARD, 1200.0, 1000.0,
                 "dsadsa", 3));
         rooms.add(new RoomEntity(2, 3, 1, RoomType.STANDARD, 1200.0, 1000.0,
                 "dsadsa", 3));
-        return rooms;
+        return rooms;*/
+        return roomRepo.getAllRooms();
     }
 
     /*public void bookRoom() {
