@@ -65,7 +65,8 @@ public class RoomService {
     }
 
     public List<RoomEntity> getDiscountRooms() {
-        int amount = 10;
-        return RoomRepo.getDiscountRooms(amount);
+        //todo: fix magic number
+        int amount = 5;
+        return roomRepo.getDiscountRooms(amount);
     }
 }
