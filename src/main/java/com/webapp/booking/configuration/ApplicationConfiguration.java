@@ -15,11 +15,11 @@ public class ApplicationConfiguration {
 
     @Value("${driverClassName}")
     private String driverClassName;
-    @Value("${url}")
+    @Value("${db_url}")
     private String url;
-    @Value("${username}")
+    @Value("${db_username}")
     private String username;
-    @Value("${password}")
+    @Value("${db_password}")
     private String password;
 
     @Bean
