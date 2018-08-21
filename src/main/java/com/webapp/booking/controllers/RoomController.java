@@ -23,7 +23,7 @@ public class RoomController {
     @GetMapping()
     public String getAllRooms(Model model) {
         model.addAttribute("allRooms", roomService.getAllRooms());
-        //model.addAttribute("getAllRoomsWithFilterArguments", new GetAllRoomsWithFilterArguments());
+        model.addAttribute("getAllRoomsWithFilterArguments", new GetAllRoomsWithFilterArguments());
         return "allRooms";
     }
 
