@@ -17,6 +17,7 @@ public class RoomEntityRowMapper implements RowMapper<RoomEntity> {
         Double discount = rs.getDouble("discount");
         String description = rs.getString("description");
         String roomType = rs.getString("room_type");
+        Double price = rs.getDouble("price");
 
         RoomEntity roomEntity = new RoomEntity();
 
@@ -27,6 +28,7 @@ public class RoomEntityRowMapper implements RowMapper<RoomEntity> {
         roomEntity.setDiscount(discount);
         roomEntity.setDescription(description);
         roomEntity.setRoomType(RoomType.valueOf(roomType));
+        roomEntity.setPrice(price);
 
         return roomEntity;
     }

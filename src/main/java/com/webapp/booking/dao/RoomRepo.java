@@ -22,8 +22,14 @@ public class RoomRepo {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public List<RoomEntity> getDiscountRooms(int amount) {
+        String sql = "select room_id, number, guest_amount, room_type, price, description, hotel_id, discount from room "
+                + "where discount is not null order by rand() limit " + amount;
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
     public List<RoomEntity> getAllRooms() {
-        String sql = "select room_id, number, guest_amount, room_type, description, hotel_id, discount from room";
+        String sql = "select room_id, number, guest_amount, room_type, price, description, hotel_id, discount from room";
         return jdbcTemplate.query(sql, rowMapper);
     }
 }

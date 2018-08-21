@@ -33,12 +33,6 @@ public class RoomService {
 
 
     public List<RoomEntity> getAllRooms() {
-/*        List<RoomEntity> rooms = new ArrayList<>();
-        rooms.add(new RoomEntity(1, 2, 3, RoomType.STANDARD, 1200.0, 1000.0,
-                "dsadsa", 3));
-        rooms.add(new RoomEntity(2, 3, 1, RoomType.STANDARD, 1200.0, 1000.0,
-                "dsadsa", 3));
-        return rooms;*/
         return roomRepo.getAllRooms();
     }
 
@@ -68,5 +62,10 @@ public class RoomService {
 
     public void deleteDiscount(int roomID) {
 
+    }
+
+    public List<RoomEntity> getDiscountRooms() {
+        int amount = 10;
+        return RoomRepo.getDiscountRooms(amount);
     }
 }
