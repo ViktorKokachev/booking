@@ -1,6 +1,7 @@
 package com.webapp.booking.controllers;
 
 
+import com.webapp.booking.requests.other.ExtendedRequestArguments;
 import com.webapp.booking.requests.room.AddDiscountArguments;
 import com.webapp.booking.requests.room.CreateRoomArguments;
 import com.webapp.booking.requests.room.GetAllRoomsWithFilterArguments;
@@ -21,10 +22,11 @@ public class RoomController {
     private RoomService roomService;
 
     @GetMapping()
-    public String getAllRooms(Model model) {
-        model.addAttribute("allRooms", roomService.getAllRooms());
+    public String getDiscountRooms(Model model) {
+        model.addAttribute("allRooms", roomService.getDiscountRooms());
         model.addAttribute("getAllRoomsWithFilterArguments", new GetAllRoomsWithFilterArguments());
-        return "allRooms";
+        model.addAttribute("extendedRequestArguments", new ExtendedRequestArguments());
+        return "discountRooms";
     }
 
     @PostMapping("/withFilter")
