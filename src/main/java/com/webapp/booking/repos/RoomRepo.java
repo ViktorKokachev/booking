@@ -19,10 +19,10 @@ public class RoomRepo {
     @Autowired
     private RoomEntityRowMapper rowMapper;
 
-    @Autowired
+    /*@Autowired
     public RoomRepo(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-    }
+    }*/
 
     public List<RoomEntity> getDiscountRooms(int amount) {
         String sql = "select room_id, number, guest_amount, room_type, price, description, hotel_id, discount from room "
@@ -40,5 +40,36 @@ public class RoomRepo {
                 + "join hotel h on r.hotel_id = h.hotel_id "
                 + "where h.rating  =  AND r.room_type = AND r.guest_amount = AND r.check_in = AND r.checkout AND price";
         return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    public List<RoomEntity> getRoomByID(Integer roomID) {
+        String sql = "select room_id, number, guest_amount, room_type, price, description, hotel_id, discount from room"
+                + "where room_id = " + roomID;
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    public void createRoom(RoomEntity roomEntity) {
+        String sql = "INSERT INTO room (number, guest_amount, room_type, price, description, hotel_id, discount) VALUES ('"
+                + roomEntity.getNumber() + "', '"
+                + roomEntity.getGuestAmount() + "', '"
+                + roomEntity.getRoomType() + "', '"
+                + roomEntity.getPrice() + "', '"
+                + roomEntity.getDescription() + "', '"
+                + roomEntity.getHotelID() + "', '"
+                + roomEntity.getDiscount() + "')";
+        jdbcTemplate.execute(sql);
+    }
+
+    public void updateRoom(RoomEntity roomEntity) {
+        String sql = "UPDATE room  SET "
+                + "number = '" + roomEntity.getNumber()
+                + "', guest_amount = '" + roomEntity.getGuestAmount()
+                + "', room_type = '" + roomEntity.getRoomType()
+                + "', price = '" + roomEntity.getPrice()
+                + "', description = '" + roomEntity.getDescription()
+                + "', hotel_id = '" + roomEntity.getHotelID()
+                + "', discount = '" + roomEntity.getDiscount()
+                + "' WHERE room_id = " + roomEntity.getRoomID();
+        jdbcTemplate.execute(sql);
     }
 }
