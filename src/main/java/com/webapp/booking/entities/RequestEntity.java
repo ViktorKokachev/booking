@@ -15,4 +15,5 @@ public class RequestEntity {
     private RequestStatus requestStatus;
     private Integer roomID;
     private LocalDateTime requestDate;
+    private Integer userID;
 }
