@@ -1,12 +1,15 @@
-package com.webapp.booking.dao.util;
+package com.webapp.booking.repos.util;
 
 import com.webapp.booking.entities.RoomEntity;
 import com.webapp.booking.enums.RoomType;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component
 public class RoomEntityRowMapper implements RowMapper<RoomEntity> {
 
     public RoomEntity mapRow(ResultSet rs, int rowNum) throws SQLException {

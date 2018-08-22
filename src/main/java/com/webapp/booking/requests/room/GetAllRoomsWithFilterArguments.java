@@ -18,4 +18,6 @@ public class GetAllRoomsWithFilterArguments {
     private Date checkInDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date checkOutDate;
+
+    private Integer hotelRating;
 }

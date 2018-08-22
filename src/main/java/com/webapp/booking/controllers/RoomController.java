@@ -26,16 +26,17 @@ public class RoomController {
         model.addAttribute("allRooms", roomService.getDiscountRooms());
         model.addAttribute("getAllRoomsWithFilterArguments", new GetAllRoomsWithFilterArguments());
         model.addAttribute("extendedRequestArguments", new ExtendedRequestArguments());
-        return "discountRooms";
+        return "client/discountRooms";
     }
 
     @PostMapping("/withFilter")
-    public String getAllRoomsWithFilter(
-            @ModelAttribute GetAllRoomsWithFilterArguments getAllRoomsWithFilterArguments,
-            Model model) {
-        model.addAttribute("allRoomsWithFilter",
-                roomService.getAllRoomsWithFilter(getAllRoomsWithFilterArguments));
-        return "allRoomsWithFilter";
+    public String getAllRoomsWithFilter(@ModelAttribute GetAllRoomsWithFilterArguments getAllRoomsWithFilterArguments,
+                                        Model model) {
+            model.addAttribute("allRoomsWithFilter", roomService.getAllRoomsWithFilter(getAllRoomsWithFilterArguments));
+
+            // ONLY LIST OF ROOMS EXCEPT OTHER ARGS
+
+        return "client/allRoomsWithFilter";
     }
 
     @PostMapping()

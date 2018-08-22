@@ -11,6 +11,19 @@
 <div id="header">Hello,</div>
 <div id="sidebar">
     <form action="#" th:action="@{/rooms/withFilter}" th:object="${getAllRoomsWithFilterArguments}" method="post">
+        <br/>
+        <div>Hotel Rating:<br/>
+            <select name="hotelRating" type="text" th:field="*{hotelRating}">
+                <option selected value="0">not selected</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <br/>
+
         <div>Room type:<br/>
             <select name="roomType" type="text" th:field="*{roomType}">
                 <option selected value="0">not selected</option>
