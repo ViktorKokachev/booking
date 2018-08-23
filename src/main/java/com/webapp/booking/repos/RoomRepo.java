@@ -72,4 +72,9 @@ public class RoomRepo {
                 + "' WHERE room_id = " + roomEntity.getRoomID();
         jdbcTemplate.execute(sql);
     }
+
+    public void deleteRoom(Integer roomID) {
+        String sql = "DELETE FROM room WHERE room_id = " + roomID ;
+        jdbcTemplate.execute(sql);
+    }
 }

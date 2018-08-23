@@ -63,8 +63,8 @@ public class RoomService {
         roomRepo.updateRoom(roomEntity);
     }
 
-    public void deleteRoom(int roomID) {
-
+    public void deleteRoom(Integer roomID) {
+        roomRepo.deleteRoom(roomID);
     }
 
     public void addDiscount(AddDiscountArguments addDiscountArguments) {
