@@ -61,7 +61,7 @@ public class RoomRepo {
     }
 
     public void updateRoom(RoomEntity roomEntity) {
-        String sql = "UPDATE room  SET "
+        String sql = "UPDATE room SET "
                 + "number = '" + roomEntity.getNumber()
                 + "', guest_amount = '" + roomEntity.getGuestAmount()
                 + "', room_type = '" + roomEntity.getRoomType()
