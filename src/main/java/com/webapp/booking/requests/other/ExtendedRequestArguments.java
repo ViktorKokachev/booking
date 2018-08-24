@@ -10,6 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class ExtendedRequestArguments {
+    private Integer roomID;
     private Integer guestAmount;
     private RoomType roomType;
     private Double price;
