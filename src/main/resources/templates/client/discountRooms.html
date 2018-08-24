@@ -95,8 +95,8 @@
             <tr>
                 <td></td>
                 <td id="book">
-                    <form action="" method="get">
-                        <input type="button" value="book">
+                    <form action="#" th:action="@{/rooms/book}" th:object="${}" method="post">
+                        <input type="submit" value="Book">
                     </form>
                 </td>
             </tr>
