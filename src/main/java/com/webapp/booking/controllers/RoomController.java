@@ -39,6 +39,12 @@ public class RoomController {
         return "client/allRoomsWithFilter";
     }
 
+    @PostMapping("/book/{roomID}")
+    public String getBookingRoom(Model model, @PathVariable Integer roomID) {
+        model.addAttribute("bookingRoom", roomService.getRoomByID(roomID));
+        return "client/bookRoom";
+    }
+
     @PostMapping()
     public String createRoom(@RequestBody CreateRoomArguments createRoomArguments) {
         roomService.createRoom(createRoomArguments);
