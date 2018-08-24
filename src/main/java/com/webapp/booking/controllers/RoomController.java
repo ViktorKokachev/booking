@@ -23,7 +23,7 @@ public class RoomController {
 
     @GetMapping()
     public String getDiscountRooms(Model model) {
-        model.addAttribute("allRooms", roomService.getDiscountRooms());
+        model.addAttribute("discountRooms", roomService.getDiscountRooms());
         model.addAttribute("getAllRoomsWithFilterArguments", new GetAllRoomsWithFilterArguments());
         model.addAttribute("extendedRequestArguments", new ExtendedRequestArguments());
         return "client/discountRooms";
