@@ -13,19 +13,19 @@
         <table>
             <tr>
                 <td>Hotel: </td>
-                <td th:text="${bookingHotel.getName()}">Hotel name</td>
+                <td th:text="${bookingRoom.getHotel().getName()}">Hotel name</td>
             </tr>
             <tr>
                 <td>Address: </td>
-                <td th:text="${bookingHotel.getAddress()}">Hotel address</td>
+                <td th:text="${bookingRoom.getHotel().getAddress()}">Hotel address</td>
             </tr>
             <tr>
                 <td>Rating: </td>
-                <td th:text="${bookingHotel.getRating()}">Hotel rating</td>
+                <td th:text="${bookingRoom.getHotel().getRating()}">Hotel rating</td>
             </tr>
             <tr>
                 <td>Description: </td>
-                <td th:text="${bookingHotel.getDescription()}">Hotel description</td>
+                <td th:text="${bookingRoom.getHotel().getDescription()}">Hotel description</td>
             </tr>
             <tr>
                 <td>Guests: </td>
@@ -36,13 +36,12 @@
                 <td th:text="${bookingRoom.getRoomType()}"></td>
             </tr>
             <tr>
-                <td>Price: </td>
+                <td>Price for one night: </td>
                 <td th:text="${bookingRoom.getPrice()}"></td>
             </tr>
-            <tr>
+            <tr th:if="${bookingRoom.getDiscount() != null}">
                 <td>Discount: </td>
                 <td th:text="${bookingRoom.getDiscount()}"></td>
-                <!--<td th:if="${bookingRoom.getDiscount} != ''" th:text="${room.getDiscount()}"></td>-->
             </tr>
             <tr>
                 <td>Room description: </td>

@@ -30,6 +30,8 @@ td:nth-child(1) {
 #header { /* Верхний блок */
     background: #0080c0; /* Цвет фона */
     padding: 10px; /* Поля вокруг текста */
+    font-size: 18px;
+
 }
 
 #sidebar { /* Левая колонка */

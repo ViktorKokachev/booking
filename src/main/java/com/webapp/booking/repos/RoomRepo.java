@@ -20,16 +20,16 @@ public class RoomRepo {
     private RoomEntityRowMapper rowMapper;
 
     public List<RoomEntity> getDiscountRooms(int amount) {
-        String sql = "SELECT room_id, number, guest_amount, room_type, price, room.description, hotel_id, discount, "
-                + "hotel_id, name, address, rating, hotel.description, owner_id, is_approved "
+        String sql = "SELECT room_id, number, guest_amount, room_type, price, room.description, discount, "
+                + "room.hotel_id, name, address, rating, hotel.description, owner_id, is_approved "
                 + "FROM room JOIN hotel ON room.hotel_id = hotel.hotel_id "
                 + "WHERE discount IS NOT NULL ORDER BY rand() LIMIT " + amount;
         return jdbcTemplate.query(sql, rowMapper);
     }
 
     public List<RoomEntity> getAllRooms() {
-        String sql = "select room_id, number, guest_amount, room_type, price, room.description, hotel_id, discount, "
-                + "hotel_id, name, address, rating, hotel.description, owner_id, is_approved "
+        String sql = "select room_id, number, guest_amount, room_type, price, room.description, discount, "
+                + "room.hotel_id, name, address, rating, hotel.description, owner_id, is_approved "
                 + "FROM room JOIN hotel ON room.hotel_id = hotel.hotel_id";
         return jdbcTemplate.query(sql, rowMapper);
     }
@@ -42,8 +42,8 @@ public class RoomRepo {
     }
 
     public List<RoomEntity> getRoomByID(Integer roomID) {
-        String sql = "select room_id, number, guest_amount, room_type, price, room.description, hotel_id, discount, "
-                + "hotel_id, name, address, rating, hotel.description, owner_id, is_approved "
+        String sql = "select room_id, number, guest_amount, room_type, price, room.description, discount, "
+                + "room.hotel_id, name, address, rating, hotel.description, owner_id, is_approved "
                 + "FROM room JOIN hotel ON room.hotel_id = hotel.hotel_id "
                 + "where room_id = " + roomID;
         return jdbcTemplate.query(sql, rowMapper);

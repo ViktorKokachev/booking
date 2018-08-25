@@ -70,7 +70,7 @@
         <table>
             <tr>
                 <td>Hotel: </td>
-                <td th:text="${room.getHotelID()}">number</td>
+                <td th:text="${room.getHotel().getName()}"></td>
             </tr>
             <tr>
                 <td>Guests: </td>
@@ -81,7 +81,7 @@
                 <td th:text="${room.getRoomType()}"></td>
             </tr>
             <tr>
-                <td>Price: </td>
+                <td>Price for one night: </td>
                 <td th:text="${room.getPrice()}"></td>
             </tr>
             <tr>

@@ -46,9 +46,7 @@ public class RoomController {
 
     @PostMapping("/book/{roomID}")
     public String getBookingRoom(Model model, @PathVariable Integer roomID) {
-        RoomEntity roomByID = roomService.getRoomByID(roomID);
-        model.addAttribute("bookingRoom", roomByID);
-        model.addAttribute("bookingHotel", hotelService.getHotelByID(roomByID.getHotelID()));
+        model.addAttribute("bookingRoom", roomService.getRoomByID(roomID));
         model.addAttribute("createRequestArguments", new CreateRequestArguments());
         return "client/bookRoom";
     }
