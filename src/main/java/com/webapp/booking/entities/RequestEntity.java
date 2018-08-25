@@ -16,8 +16,9 @@ public class RequestEntity {
     private Date checkInDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date checkOutDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date requestDate;
     private RequestStatus requestStatus;
     private Integer roomID;
-    private LocalDateTime requestDate;
     private Integer userID;
 }
