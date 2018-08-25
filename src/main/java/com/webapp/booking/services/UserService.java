@@ -1,7 +1,10 @@
 package com.webapp.booking.services;
 
+import com.webapp.booking.entities.RoomEntity;
 import com.webapp.booking.entities.UserEntity;
 import com.webapp.booking.repos.UserRepo;
+import com.webapp.booking.requests.user.CreateUserArguments;
+import com.webapp.booking.requests.user.UpdateUserArguments;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,14 +33,43 @@ public class UserService {
         }
     }
 
-    public void updateUser() {
+    public void updateUser(UpdateUserArguments updateUserArguments) {
+        UserEntity userEntity = getUserByID(updateUserArguments.getUserID());
+
+        mergeWhenUpdate(userEntity, updateUserArguments);
+
+        userRepo.updateUser(userEntity);
+    }
+
+    private void mergeWhenUpdate(UserEntity toUpdate, UpdateUserArguments updateUserArguments) {
+        if (updateUserArguments.getLogin() != null) {
+            toUpdate.setLogin(updateUserArguments.getLogin());
+        }
+        if (updateUserArguments.getName() != null) {
+            toUpdate.setName(updateUserArguments.getName());
+        }
+        if (updateUserArguments.getPassword() != null) {
+            toUpdate.setPassword(updateUserArguments.getPassword());
+        }
+        if (updateUserArguments.getUserRole() != null) {
+            toUpdate.setUserRole(updateUserArguments.getUserRole());
+        }
 
     }
 
-    public void createUser() {
+    public void createUser(CreateUserArguments createUserArguments) {
+
+        UserEntity userEntity = new UserEntity();
+
+        userEntity.setLogin(createUserArguments.getLogin());
+        userEntity.setName(createUserArguments.getName());
+        userEntity.setPassword(createUserArguments.getPassword());
+        userEntity.setUserRole(createUserArguments.getUserRole());
+
+        userRepo.createUser(userEntity);
     }
 
-    public void deleteUser(int userID) {
-
+    public void deleteUser(Integer userID) {
+        userRepo.deleteUser(userID);
     }
 }

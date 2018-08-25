@@ -26,4 +26,28 @@ public class UserRepo {
         String sql = "SELECT user_id, login, password, name, role FROM user WHERE user_id = " + userID;
         return jdbcTemplate.query(sql, userEntityRowMapper);
     }
+
+    public void deleteUser(Integer userID) {
+        String sql = "DELETE FROM user WHERE user_id = " + userID;
+        jdbcTemplate.execute(sql);
+    }
+
+    public void createUser(UserEntity userEntity) {
+        String sql = "INSERT INTO room (login, password, name, role) VALUES ('"
+                + userEntity.getLogin() + "', '"
+                + userEntity.getPassword() + "', '"
+                + userEntity.getName() + "', '"
+                + userEntity.getUserRole() + "')";
+        jdbcTemplate.execute(sql);
+    }
+
+    public void updateUser(UserEntity userEntity) {
+        String sql = "UPDATE room SET "
+                + "login = '" + userEntity.getLogin()
+                + "', password = '" + userEntity.getPassword()
+                + "', name = '" + userEntity.getName()
+                + "', role = '" + userEntity.getUserRole()
+                + "' WHERE user_id = " + userEntity.getUserID();
+        jdbcTemplate.execute(sql);
+    }
 }
