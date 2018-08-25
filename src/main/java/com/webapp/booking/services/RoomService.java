@@ -58,7 +58,7 @@ public class RoomService {
     public void updateRoom(UpdateRoomArguments updateRoomArguments) {
         RoomEntity roomEntity = getRoomByID(updateRoomArguments.getRoomID());
 
-        roomEntity = mergeWhenUpdate(roomEntity, updateRoomArguments);
+        mergeWhenUpdate(roomEntity, updateRoomArguments);
 
         roomRepo.updateRoom(roomEntity);
     }
@@ -81,7 +81,7 @@ public class RoomService {
         return roomRepo.getDiscountRooms(amount);
     }
 
-    private RoomEntity mergeWhenUpdate(RoomEntity toUpdate, UpdateRoomArguments updateRoomArguments) {
+    private void mergeWhenUpdate(RoomEntity toUpdate, UpdateRoomArguments updateRoomArguments) {
         if (updateRoomArguments.getDescription() != null) {
             toUpdate.setDescription(updateRoomArguments.getDescription());
         }
@@ -100,7 +100,5 @@ public class RoomService {
         if (updateRoomArguments.getRoomType() != null) {
             toUpdate.setRoomType(updateRoomArguments.getRoomType());
         }
-
-        return toUpdate;
     }
 }
