@@ -3,15 +3,19 @@ package com.webapp.booking.entities;
 import com.webapp.booking.enums.RequestStatus;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
 public class RequestEntity {
     private Integer requestID;
-    private LocalDateTime checkInDate;
-    private LocalDateTime checkOutDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date checkInDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date checkOutDate;
     private RequestStatus requestStatus;
     private Integer roomID;
     private LocalDateTime requestDate;
