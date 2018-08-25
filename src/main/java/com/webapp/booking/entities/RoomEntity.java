@@ -16,5 +16,5 @@ public class RoomEntity {
     private Double price;
     private Double discount;
     private String description;
-    private Integer hotelID;
+    private HotelEntity hotel;
 }

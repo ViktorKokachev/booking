@@ -1,5 +1,6 @@
 package com.webapp.booking.services;
 
+import com.webapp.booking.entities.HotelEntity;
 import com.webapp.booking.repos.RoomRepo;
 import com.webapp.booking.entities.RoomEntity;
 import com.webapp.booking.requests.room.AddDiscountArguments;
@@ -43,13 +44,15 @@ public class RoomService {
     public void createRoom(CreateRoomArguments createRoomArguments) {
 
         RoomEntity roomEntity = new RoomEntity();
+        roomEntity.setHotel(new HotelEntity());
+
 
         roomEntity.setRoomType(createRoomArguments.getRoomType());
         roomEntity.setDescription(createRoomArguments.getDescription());
         roomEntity.setDiscount(createRoomArguments.getDiscount());
         roomEntity.setNumber(createRoomArguments.getNumber());
         roomEntity.setGuestAmount(createRoomArguments.getGuestAmount());
-        roomEntity.setHotelID(createRoomArguments.getHotelID());
+        roomEntity.getHotel().setHotelID(createRoomArguments.getHotelID());
         roomEntity.setPrice(createRoomArguments.getPrice());
 
         roomRepo.createRoom(roomEntity);
@@ -89,7 +92,7 @@ public class RoomService {
             toUpdate.setGuestAmount(updateRoomArguments.getGuestAmount());
         }
         if (updateRoomArguments.getHotelID() != null) {
-            toUpdate.setHotelID(updateRoomArguments.getHotelID());
+            toUpdate.getHotel().setHotelID(updateRoomArguments.getHotelID());
         }
         if (updateRoomArguments.getNumber() != null) {
             toUpdate.setNumber(updateRoomArguments.getNumber());

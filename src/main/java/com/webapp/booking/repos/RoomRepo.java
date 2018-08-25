@@ -19,19 +19,18 @@ public class RoomRepo {
     @Autowired
     private RoomEntityRowMapper rowMapper;
 
-    /*@Autowired
-    public RoomRepo(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }*/
-
     public List<RoomEntity> getDiscountRooms(int amount) {
-        String sql = "select room_id, number, guest_amount, room_type, price, description, hotel_id, discount from room "
-                + "where discount is not null order by rand() limit " + amount;
+        String sql = "SELECT room_id, number, guest_amount, room_type, price, room.description, hotel_id, discount, "
+                + "hotel_id, name, address, rating, hotel.description, owner_id, is_approved "
+                + "FROM room JOIN hotel ON room.hotel_id = hotel.hotel_id "
+                + "WHERE discount IS NOT NULL ORDER BY rand() LIMIT " + amount;
         return jdbcTemplate.query(sql, rowMapper);
     }
 
     public List<RoomEntity> getAllRooms() {
-        String sql = "select room_id, number, guest_amount, room_type, price, description, hotel_id, discount from room";
+        String sql = "select room_id, number, guest_amount, room_type, price, room.description, hotel_id, discount, "
+                + "hotel_id, name, address, rating, hotel.description, owner_id, is_approved "
+                + "FROM room JOIN hotel ON room.hotel_id = hotel.hotel_id";
         return jdbcTemplate.query(sql, rowMapper);
     }
 
@@ -43,7 +42,9 @@ public class RoomRepo {
     }
 
     public List<RoomEntity> getRoomByID(Integer roomID) {
-        String sql = "select room_id, number, guest_amount, room_type, price, description, hotel_id, discount from room "
+        String sql = "select room_id, number, guest_amount, room_type, price, room.description, hotel_id, discount, "
+                + "hotel_id, name, address, rating, hotel.description, owner_id, is_approved "
+                + "FROM room JOIN hotel ON room.hotel_id = hotel.hotel_id "
                 + "where room_id = " + roomID;
         return jdbcTemplate.query(sql, rowMapper);
     }
@@ -55,7 +56,7 @@ public class RoomRepo {
                 + roomEntity.getRoomType() + "', '"
                 + roomEntity.getPrice() + "', '"
                 + roomEntity.getDescription() + "', '"
-                + roomEntity.getHotelID() + "', '"
+                + roomEntity.getHotel().getHotelID() + "', '"
                 + roomEntity.getDiscount() + "')";
         jdbcTemplate.execute(sql);
     }
@@ -67,7 +68,7 @@ public class RoomRepo {
                 + "', room_type = '" + roomEntity.getRoomType()
                 + "', price = '" + roomEntity.getPrice()
                 + "', description = '" + roomEntity.getDescription()
-                + "', hotel_id = '" + roomEntity.getHotelID()
+                + "', hotel_id = '" + roomEntity.getHotel().getHotelID()
                 + "', discount = '" + roomEntity.getDiscount()
                 + "' WHERE room_id = " + roomEntity.getRoomID();
         jdbcTemplate.execute(sql);

@@ -40,6 +40,10 @@ public class RequestService {
 
     public void createRequest(CreateRequestArguments createRequestArguments) {
 
+
+        // check dates for availability, return price by
+
+
         RequestEntity requestEntity = new RequestEntity();
 
         //TODO: fix hardcoded userID
