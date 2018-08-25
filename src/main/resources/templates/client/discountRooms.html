@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Rooms</title>
+    <title>Room booking</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/room.css}"/>
     <!--<style>@import "room.css";</style>-->
@@ -11,8 +11,8 @@
 <div id="header">Hello,</div>
 <div id="sidebar">
     <form action="#" th:action="@{/rooms/withFilter}" th:object="${getAllRoomsWithFilterArguments}" method="post">
-        <br/>
-        <div>Hotel Rating:<br/>
+
+        <div>Hotel rating:<br/>
             <select name="hotelRating" type="text" th:field="*{hotelRating}">
                 <option selected value="0">not selected</option>
                 <option value="1">1</option>
@@ -70,7 +70,7 @@
         <table>
             <tr>
                 <td>Hotel: </td>
-                <td th:text="${room.getHotelID()}">number</td>
+                <td th:text="${room.getHotelID()}"></td>
             </tr>
             <tr>
                 <td>Guests: </td>
@@ -95,7 +95,7 @@
             <tr>
                 <td></td>
                 <td id="book">
-                    <form action="#" th:action="@{/rooms/book}" th:object="${}" method="post">
+                    <form action="#" th:action="@{|/rooms/book/${room.getRoomID()}|}" method="post">
                         <input type="submit" value="Book">
                     </form>
                 </td>

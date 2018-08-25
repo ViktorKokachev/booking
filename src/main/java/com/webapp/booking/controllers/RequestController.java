@@ -1,6 +1,7 @@
 package com.webapp.booking.controllers;
 
 
+import com.webapp.booking.requests.request.CreateRequestArguments;
 import com.webapp.booking.services.RequestService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,10 @@ public class RequestController {
     }
 
     // add arguments
-    @PostMapping
-    public String createRequest() {
-        return null;
+    @PostMapping("/create")
+    public String createRequest(Model model, @ModelAttribute CreateRequestArguments createRequestArguments) {
+        System.out.println(createRequestArguments);
+        return "client/discountRooms";
     }
 
     // add arguments

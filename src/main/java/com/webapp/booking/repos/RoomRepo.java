@@ -36,14 +36,14 @@ public class RoomRepo {
     }
 
     public List<RoomEntity> getAllRoomsWithFilters(GetAllRoomsWithFilterArguments getAllRoomsWithFilterArguments) {
-        String sql = "select room_id, number, guest_amount, room_type, price, description, hotel_id, discount from room r"
+        String sql = "select room_id, number, guest_amount, room_type, price, description, hotel_id, discount from room r "
                 + "join hotel h on r.hotel_id = h.hotel_id "
                 + "where h.rating  =  AND r.room_type = AND r.guest_amount = AND r.check_in = AND r.checkout AND price";
         return jdbcTemplate.query(sql, rowMapper);
     }
 
     public List<RoomEntity> getRoomByID(Integer roomID) {
-        String sql = "select room_id, number, guest_amount, room_type, price, description, hotel_id, discount from room"
+        String sql = "select room_id, number, guest_amount, room_type, price, description, hotel_id, discount from room "
                 + "where room_id = " + roomID;
         return jdbcTemplate.query(sql, rowMapper);
     }

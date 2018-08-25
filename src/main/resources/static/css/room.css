@@ -23,6 +23,9 @@ td:nth-child(1) {
 #book {
     text-align: right;
 }
+#book-booking {
+    text-align: center;
+}
 
 #header { /* Верхний блок */
     background: #0080c0; /* Цвет фона */
@@ -39,6 +42,13 @@ td:nth-child(1) {
 
 #content { /* Правая колонка */
     margin: 10px 105px 20px 25%; /* Значения отступов */
+    padding: 5px; /* Поля вокруг текста */
+    border: 1px solid #333; /* Параметры рамки */
+}
+
+#content-booking { /* Правая колонка booking*/
+
+    margin: 10px 205px 20px 205px; /* Значения отступов */
     padding: 5px; /* Поля вокруг текста */
     border: 1px solid #333; /* Параметры рамки */
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Rooms</title>
+    <title>Room booking</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/room.css}"/>
     <!--<style>@import "room.css";</style>-->
@@ -12,7 +12,7 @@
 <div id="sidebar">
     <form action="#" th:action="@{/rooms/withFilter}" th:object="${getAllRoomsWithFilterArguments}" method="post">
         <br/>
-        <div>Hotel Rating:<br/>
+        <div>Hotel rating:<br/>
             <select name="hotelRating" type="text" th:field="*{hotelRating}">
                 <option selected value="0">not selected</option>
                 <option value="1">1</option>
@@ -91,7 +91,7 @@
             <tr>
                 <td></td>
                 <td id="book">
-                    <form action="#" th:action="@{/rooms/book}" th:object="${}" method="post">
+                    <form action="#" th:action="@{/rooms/book}" th:object="${extendedRequestArgument}" method="post">
                         <input type="submit" value="book">
                     </form>
                 </td>

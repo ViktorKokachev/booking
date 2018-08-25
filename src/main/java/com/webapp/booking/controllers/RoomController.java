@@ -1,11 +1,14 @@
 package com.webapp.booking.controllers;
 
 
+import com.webapp.booking.entities.RoomEntity;
 import com.webapp.booking.requests.other.ExtendedRequestArguments;
+import com.webapp.booking.requests.request.CreateRequestArguments;
 import com.webapp.booking.requests.room.AddDiscountArguments;
 import com.webapp.booking.requests.room.CreateRoomArguments;
 import com.webapp.booking.requests.room.GetAllRoomsWithFilterArguments;
 import com.webapp.booking.requests.room.UpdateRoomArguments;
+import com.webapp.booking.services.HotelService;
 import com.webapp.booking.services.RoomService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,8 @@ public class RoomController {
 
     @Autowired
     private RoomService roomService;
+    @Autowired
+    private HotelService hotelService;
 
     @GetMapping()
     public String getDiscountRooms(Model model) {
@@ -41,7 +46,10 @@ public class RoomController {
 
     @PostMapping("/book/{roomID}")
     public String getBookingRoom(Model model, @PathVariable Integer roomID) {
-        model.addAttribute("bookingRoom", roomService.getRoomByID(roomID));
+        RoomEntity roomByID = roomService.getRoomByID(roomID);
+        model.addAttribute("bookingRoom", roomByID);
+        model.addAttribute("bookingHotel", hotelService.getHotelByID(roomByID.getHotelID()));
+        model.addAttribute("createRequestArguments", new CreateRequestArguments());
         return "client/bookRoom";
     }
 
