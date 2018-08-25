@@ -1,0 +1,26 @@
+body {
+    font: 11pt Arial, Helvetica, sans-serif; /* Рубленый шрифт текста */
+    margin: 0; /* Отступы на странице */
+}
+
+h1 {
+    font-size: 36px; /* Размер шрифта */
+    margin: 0; /* Убираем отступы */
+    color: #fc6; /* Цвет текста */
+}
+
+h2 {
+    margin-top: 0; /* Убираем отступ сверху */
+}
+
+#header { /* Верхний блок */
+    background: #0080c0; /* Цвет фона */
+    padding: 10px; /* Поля вокруг текста */
+    font-size: 18px;
+}
+#footer { /* Нижний блок */
+    background: #333; /* Цвет фона */
+    padding: 5px; /* Поля вокруг текста */
+    color: #fff; /* Цвет текста */
+    clear: left; /* Отменяем действие float */
+}
