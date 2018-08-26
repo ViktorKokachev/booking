@@ -35,9 +35,25 @@ public class RoomRepo {
     }
 
     public List<RoomEntity> getAllRoomsWithFilters(GetAllRoomsWithFilterArguments getAllRoomsWithFilterArguments) {
-        String sql = "select room_id, number, guest_amount, room_type, price, description, hotel_id, discount from room r "
-                + "join hotel h on r.hotel_id = h.hotel_id "
-                + "where h.rating  =  AND r.room_type = AND r.guest_amount = AND r.check_in = AND r.checkout AND price";
+
+        String sql = "select r.room_id, r.number, r.guest_amount, r.room_type, r.price, r.description, r.hotel_id, r.discount from room r "
+                + "from (select room_id, "
+                + "sum(case when (('"+ getAllRoomsWithFilterArguments.getCheckInDate() + "' < check_in and '"+ getAllRoomsWithFilterArguments.getCheckOutDate() + "' < check_in) "
+                + "or ('"+ getAllRoomsWithFilterArguments.getCheckOutDate() + "' > check_out and '"+ getAllRoomsWithFilterArguments.getCheckOutDate() + "' > check_out)) "
+                + "then 1 "
+                + "else 0 "
+                + "end) as tpk "
+                + "from request "
+                + "group by room_id "
+                + "having tpk = 0) as tmp "
+                + "join room r on (r.room_id = tmp.room_id) "
+                + "join hotel h on (r.hotel_id = h.hotel_id) "
+                + "where h.rating = " + getAllRoomsWithFilterArguments.getHotelRating() +" "
+                + "and r.room_type = '"+ getAllRoomsWithFilterArguments.getRoomType() +"' "
+                + "and r.guest_amount = " + getAllRoomsWithFilterArguments.getGuestAmount() + " "
+                + "and (r.price <= " + getAllRoomsWithFilterArguments.getMaxPrice() + " or r.discount <= + " + getAllRoomsWithFilterArguments.getMaxPrice() + " ) "
+                + "and ((r.price >= " + getAllRoomsWithFilterArguments.getMinPrice() + " and r.discount is null) or (r.discount is not null and r.discount >= " + getAllRoomsWithFilterArguments.getMinPrice() + ")) "
+                + "and tpk = 0";
         return jdbcTemplate.query(sql, rowMapper);
     }
 

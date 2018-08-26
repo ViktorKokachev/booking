@@ -21,8 +21,7 @@ public class RoomService {
     private RoomRepo roomRepo;
 
     public List<RoomEntity> getAllRoomsWithFilter(GetAllRoomsWithFilterArguments getAllRoomsWithFilterArguments) {
-            return roomRepo.getAllRooms();
-            //return roomRepo.getAllRoomsWithFilters(getAllRoomsWithFilterArguments);
+            return roomRepo.getAllRoomsWithFilters(getAllRoomsWithFilterArguments);
         }
 
     public void bookRoom() {
