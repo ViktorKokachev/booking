@@ -4,10 +4,7 @@ package com.webapp.booking.controllers;
 import com.webapp.booking.entities.RoomEntity;
 import com.webapp.booking.requests.other.ExtendedRequestArguments;
 import com.webapp.booking.requests.request.CreateRequestArguments;
-import com.webapp.booking.requests.room.AddDiscountArguments;
-import com.webapp.booking.requests.room.CreateRoomArguments;
-import com.webapp.booking.requests.room.GetAllRoomsWithFilterArguments;
-import com.webapp.booking.requests.room.UpdateRoomArguments;
+import com.webapp.booking.requests.room.*;
 import com.webapp.booking.services.HotelService;
 import com.webapp.booking.services.RoomService;
 import lombok.AllArgsConstructor;
@@ -15,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RequestMapping("/rooms")
 @Controller
@@ -37,7 +36,7 @@ public class RoomController {
     @PostMapping("/withFilter")
     public String getAllRoomsWithFilter(@ModelAttribute GetAllRoomsWithFilterArguments getAllRoomsWithFilterArguments,
                                         Model model) {
-            model.addAttribute("allRoomsWithFilter", roomService.getAllRoomsWithFilter(getAllRoomsWithFilterArguments));
+    //        model.addAttribute("allRoomsWithFilter", roomService.getAllRoomsWithFilter(getAllRoomsWithFilterArguments));
 
             // ONLY LIST OF ROOMS EXCEPT OTHER ARGS
 
@@ -45,7 +44,7 @@ public class RoomController {
     }
 
     @PostMapping("/book/{roomID}")
-    public String getBookingRoom(Model model, @PathVariable Integer roomID) {
+    public String getBookingRoom(@PathVariable Integer roomID, Model model) {
         model.addAttribute("bookingRoom", roomService.getRoomByID(roomID));
         model.addAttribute("createRequestArguments", new CreateRequestArguments());
         return "client/bookRoom";

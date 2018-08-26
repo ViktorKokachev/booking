@@ -11,7 +11,6 @@
 <div id="header">Hello,</div>
 <div id="sidebar">
     <form action="#" th:action="@{/rooms/withFilter}" th:object="${getAllRoomsWithFilterArguments}" method="post">
-        <br/>
         <div>Hotel rating:<br/>
             <select name="hotelRating" type="text" th:field="*{hotelRating}">
                 <option selected value="0">not selected</option>
@@ -25,7 +24,7 @@
         <br/>
 
         <div>Room type:<br/>
-            <select name="roomType" th:field="*{roomType}">
+            <select name="roomType" type="text" th:field="*{roomType}">
                 <option selected value="0">not selected</option>
                 <option value="standart">standart</option>
                 <option value="luxury">luxury</option>
@@ -36,8 +35,8 @@
 
         <br/>
         <div>Guest amount:<br/>
-            <select name="guestAmount" th:field="*{guestAmount}">
-                <option selected value="0">not selected</option>
+            <select name="guestAmount" type="text" th:field="*{guestAmount}">
+                <option selected value="0">not selected</option>thy
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -46,17 +45,17 @@
         </div>
         <br/>
 
-        <div>Check in:<br/><input type="date" th:field="*{checkInDate}"></div>  <br/>
-        <div>Check out: <br/><input type="date" th:field="*{checkOutDate}"></div>
+        <div>Check in:<br/><input type="date" th:field="*{checkInDate}"/></div>  <br/>
+        <div>Check out: <br/><input type="date" th:field="*{checkOutDate}"/></div>
         <br/>
 
         <div>
-            Minimum price:<input type="text" name="minPrice" th:field="*{minPrice}">
+            Minimum price:<input type="text" name="minPrice" th:field="*{minPrice}"/>
         </div>
         <br/>
 
         <div>
-            Maximum price:<input type="text" name="maxPrice" th:field="*{maxPrice}">
+            Maximum price:<input type="text" name="maxPrice" th:field="*{maxPrice}"/>
         </div>
         <br/>
         <input type="submit" value="Search">
@@ -66,11 +65,23 @@
 
 
 <div id="content">
-    <div th:each="room : ${allRooms}">
+    <div th:each="room : ${allRoomsWithFilter}">
         <table>
             <tr>
                 <td>Hotel: </td>
-                <td th:text="${room.getHotel().getName()}"></td>
+                <td th:text="${room.getHotel().getName()}">Hotel name</td>
+            </tr>
+            <tr>
+                <td>Address: </td>
+                <td th:text="${room.getHotel().getAddress()}">Hotel address</td>
+            </tr>
+            <tr>
+                <td>Rating: </td>
+                <td th:text="${room.getHotel().getRating()}">Hotel rating</td>
+            </tr>
+            <tr>
+                <td>Description: </td>
+                <td th:text="${room.getHotel().getDescription()}">Hotel description</td>
             </tr>
             <tr>
                 <td>Guests: </td>
@@ -85,13 +96,13 @@
                 <td th:text="${room.getPrice()}"></td>
             </tr>
             <tr>
-                <td>Description: </td>
+                <td>Room description: </td>
                 <td th:text="${room.getDescription()}"></td>
             </tr>
             <tr>
                 <td></td>
                 <td id="book">
-                    <form action="#" th:action="@{/rooms/book}" th:object="${extendedRequestArgument}" method="post">
+                    <form action="#" th:action="@{|/rooms/book/${room.getRoomID()}|}" method="post">
                         <input type="submit" value="book">
                     </form>
                 </td>
