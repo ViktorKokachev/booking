@@ -36,7 +36,7 @@ public class RoomRepo {
 
     public List<RoomEntity> getAllRoomsWithFilters(Date checkInDate, Date checkOutDate, Integer guestAmount, Integer hotelRating, Double minPrice, Double maxPrice, RoomType roomType) {
 
-        String sql = "select r.room_id, r.number, r.guest_amount, r.room_type, r.price, r.description, r.hotel_id, r.discount "
+        String sql = "select room_id, number, guest_amount, room_type, price, room.description, room.hotel_id, discount "
                 + "from (select room_id, "
                 + "sum(case when (('"+ new java.sql.Date(checkInDate.getTime()) + "' < check_in and '" + new java.sql.Date(checkInDate.getTime()) + "' < check_in) "
                 + "or ('"+ new java.sql.Date(checkOutDate.getTime()) + "' > check_out and '"+ new java.sql.Date(checkOutDate.getTime()) + "' > check_out)) "
@@ -46,49 +46,50 @@ public class RoomRepo {
                 + "from request "
                 + "group by room_id "
                 + "having tpk = 0) as tmp "
-                + "join room r on (r.room_id = tmp.room_id) "
-                + "join hotel h on (r.hotel_id = h.hotel_id) "
+                + "join room on (room.room_id = tmp.room_id) "
+                + "join hotel on (room.hotel_id = hotel.hotel_id) "
                 + "where tpk = 0 ";
 
         if (hotelRating != null) {
-            sql += "and h.rating = " + hotelRating + " ";
+            sql += "and rating = " + hotelRating + " ";
         }
         if (roomType != null) {
-            sql+= "and r.room_type = '" + roomType + "' ";
+            sql+= "and room_type = '" + roomType + "' ";
         }
         if (guestAmount != null) {
-            sql += "and r.guest_amount = " + guestAmount + " ";
+            sql += "and guest_amount = " + guestAmount + " ";
         }
         if (maxPrice != null) {
-            sql += "and (r.price <= " + maxPrice + " or r.discount <= " + maxPrice + " ) ";
+            sql += "and (price <= " + maxPrice + " or discount <= " + maxPrice + " ) ";
         }
         if (minPrice != null) {
-            sql += "and ((r.price >= " + minPrice + " and r.discount is null) or (r.discount is not null and r.discount >= " + minPrice + ")) ";
+            sql += "and ((price >= " + minPrice + " and discount is null) or (discount is not null and discount >= " + minPrice + ")) ";
         }
 
         return jdbcTemplate.query(sql, rowMapper);
     }
 
     public List<RoomEntity> getAllRoomsWithFiltersWithoutDates(Integer guestAmount, Integer hotelRating, Double minPrice, Double maxPrice, RoomType roomType) {
-        String sql = "SELECT r.room_id, r.number, r.guest_amount, r.room_type, r.price, r.description, r.hotel_id, r.discount\n"
-                + "FROM room r "
-                + "JOIN hotel h on (r.hotel_id = h.hotel_id) "
+        String sql = "SELECT room_id, number, guest_amount, room_type, price, room.description, room.hotel_id, discount, "
+                + "name, address, rating, hotel.description, owner_id, is_approved "
+                + "FROM room "
+                + "JOIN hotel on (room.hotel_id = hotel.hotel_id) "
                 + "WHERE";
 
         if (hotelRating != null) {
-            sql += " h.rating = " + hotelRating + " AND";
+            sql += " rating = " + hotelRating + " AND";
         }
         if (roomType != null) {
-            sql+= " r.room_type = '" + roomType + "' AND";
+            sql+= " room_type = '" + roomType + "' AND";
         }
         if (guestAmount != null) {
-            sql += " r.guest_amount = " + guestAmount + " AND";
+            sql += " guest_amount = " + guestAmount + " AND";
         }
         if (maxPrice != null) {
-            sql += " (r.price <= " + maxPrice + " or r.discount <= " + maxPrice + " AND)";
+            sql += " (price <= " + maxPrice + " or discount <= " + maxPrice + " AND)";
         }
         if (minPrice != null) {
-            sql += " ((r.price >= " + minPrice + " AND r.discount is null) OR (r.discount is not null AND r.discount >= " + minPrice + "))";
+            sql += " ((price >= " + minPrice + " AND discount is null) OR (discount is not null AND discount >= " + minPrice + "))";
         }
 
         if (sql.endsWith("WHERE") || sql.endsWith("AND")) {
