@@ -36,19 +36,20 @@ public class RoomRepo {
 
     public List<RoomEntity> getAllRoomsWithFilters(Date checkInDate, Date checkOutDate, Integer guestAmount, Integer hotelRating, Double minPrice, Double maxPrice, RoomType roomType) {
 
-        String sql = "select room.room_id, number, guest_amount, room_type, price, room.description, room.hotel_id, discount "
-                + "from (select room_id, "
+        String sql = "select room.room_id, room.number, room.guest_amount, room.room_type, room.price, room.description, room.hotel_id, room.discount, "
+                + "name, address, rating, hotel.description, owner_id, is_approved "
+                + "from room join hotel on room.hotel_id = hotel.hotel_id "
+                + "where room.room_id not in "
+                + "(select room_id from "
+                + "(select request.room_id, "
                 + "sum(case when (('"+ new java.sql.Date(checkInDate.getTime()) + "' < check_in and '" + new java.sql.Date(checkOutDate.getTime()) + "' < check_in) "
                 + "or ('"+ new java.sql.Date(checkInDate.getTime()) + "' > check_out and '"+ new java.sql.Date(checkOutDate.getTime()) + "' > check_out)) "
                 + "then 0 "
                 + "else 1 "
                 + "end) as tpk "
                 + "from request "
-                + "group by room_id "
-                + "having tpk = 0) as tmp "
-                + "join room on (room.room_id = tmp.room_id) "
-                + "join hotel on (room.hotel_id = hotel.hotel_id) "
-                + "where tpk = 0 ";
+                + "group by request.room_id "
+                + "having tpk > 0) as tmp) ";
 
         if (hotelRating != null) {
             sql += "and rating = " + hotelRating + " ";
@@ -65,6 +66,7 @@ public class RoomRepo {
         if (minPrice != null) {
             sql += "and ((price >= " + minPrice + " and discount is null) or (discount is not null and discount >= " + minPrice + ")) ";
         }
+
 
         System.err.println(sql);
 
