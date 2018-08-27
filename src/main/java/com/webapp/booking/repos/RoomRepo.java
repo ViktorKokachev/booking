@@ -36,7 +36,7 @@ public class RoomRepo {
 
     public List<RoomEntity> getAllRoomsWithFilters(Date checkInDate, Date checkOutDate, Integer guestAmount, Integer hotelRating, Double minPrice, Double maxPrice, RoomType roomType) {
 
-        String sql = "select room_id, number, guest_amount, room_type, price, room.description, room.hotel_id, discount "
+        String sql = "select number, guest_amount, room_type, price, room.description, room.hotel_id, discount "
                 + "from (select room_id, "
                 + "sum(case when (('"+ new java.sql.Date(checkInDate.getTime()) + "' < check_in and '" + new java.sql.Date(checkInDate.getTime()) + "' < check_in) "
                 + "or ('"+ new java.sql.Date(checkOutDate.getTime()) + "' > check_out and '"+ new java.sql.Date(checkOutDate.getTime()) + "' > check_out)) "

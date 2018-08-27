@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class RoomEntityRowMapper implements RowMapper<RoomEntity> {
 
     public RoomEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Integer roomId = rs.getInt("room_id");
+        Integer roomId = rs.getInt("room.room_id");
         Integer number = rs.getInt("number");
         Integer guestAmount = rs.getInt("guest_amount");
         Double discount = rs.getDouble("discount");
