@@ -1,6 +1,7 @@
 package com.webapp.booking.services;
 
 import com.webapp.booking.entities.HotelEntity;
+import com.webapp.booking.enums.RoomType;
 import com.webapp.booking.repos.RoomRepo;
 import com.webapp.booking.entities.RoomEntity;
 import com.webapp.booking.requests.room.AddDiscountArguments;
@@ -11,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,8 +23,22 @@ public class RoomService {
     private RoomRepo roomRepo;
 
     public List<RoomEntity> getAllRoomsWithFilter(GetAllRoomsWithFilterArguments getAllRoomsWithFilterArguments) {
-            return roomRepo.getAllRoomsWithFilters(getAllRoomsWithFilterArguments);
+        Date checkInDate = getAllRoomsWithFilterArguments.getCheckInDate();
+        Date checkOutDate = getAllRoomsWithFilterArguments.getCheckOutDate();
+        Integer guestAmount = getAllRoomsWithFilterArguments.getGuestAmount();
+        Integer hotelRating = getAllRoomsWithFilterArguments.getHotelRating();
+        Double minPrice = getAllRoomsWithFilterArguments.getMinPrice();
+        Double maxPrice = getAllRoomsWithFilterArguments.getMaxPrice();
+        RoomType roomType = getAllRoomsWithFilterArguments.getRoomType();
+
+        if (checkInDate != null && checkOutDate != null) {
+            return roomRepo.getAllRoomsWithFilters(checkInDate, checkOutDate, guestAmount, hotelRating, minPrice, maxPrice, roomType);
+        } else if (checkInDate == null && checkOutDate == null) {
+            return roomRepo.getAllRoomsWithFiltersWithoutDates(guestAmount, hotelRating, minPrice, maxPrice, roomType);
+        } else {
+            throw new RuntimeException("You should enter both 'Check in' and 'Check out' dates");
         }
+    }
 
     public void bookRoom() {
 

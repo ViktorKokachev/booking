@@ -1,13 +1,13 @@
 package com.webapp.booking.repos;
 
+import com.webapp.booking.enums.RoomType;
 import com.webapp.booking.repos.util.RoomEntityRowMapper;
 import com.webapp.booking.entities.RoomEntity;
-import com.webapp.booking.requests.room.GetAllRoomsWithFilterArguments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -34,12 +34,12 @@ public class RoomRepo {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
-    public List<RoomEntity> getAllRoomsWithFilters(GetAllRoomsWithFilterArguments getAllRoomsWithFilterArguments) {
+    public List<RoomEntity> getAllRoomsWithFilters(Date checkInDate, Date checkOutDate, Integer guestAmount, Integer hotelRating, Double minPrice, Double maxPrice, RoomType roomType) {
 
-        String sql = "select r.room_id, r.number, r.guest_amount, r.room_type, r.price, r.description, r.hotel_id, r.discount from room r "
+        String sql = "select r.room_id, r.number, r.guest_amount, r.room_type, r.price, r.description, r.hotel_id, r.discount "
                 + "from (select room_id, "
-                + "sum(case when (('"+ getAllRoomsWithFilterArguments.getCheckInDate() + "' < check_in and '"+ getAllRoomsWithFilterArguments.getCheckOutDate() + "' < check_in) "
-                + "or ('"+ getAllRoomsWithFilterArguments.getCheckOutDate() + "' > check_out and '"+ getAllRoomsWithFilterArguments.getCheckOutDate() + "' > check_out)) "
+                + "sum(case when (('"+ new java.sql.Date(checkInDate.getTime()) + "' < check_in and '" + new java.sql.Date(checkInDate.getTime()) + "' < check_in) "
+                + "or ('"+ new java.sql.Date(checkOutDate.getTime()) + "' > check_out and '"+ new java.sql.Date(checkOutDate.getTime()) + "' > check_out)) "
                 + "then 1 "
                 + "else 0 "
                 + "end) as tpk "
@@ -48,12 +48,53 @@ public class RoomRepo {
                 + "having tpk = 0) as tmp "
                 + "join room r on (r.room_id = tmp.room_id) "
                 + "join hotel h on (r.hotel_id = h.hotel_id) "
-                + "where h.rating = " + getAllRoomsWithFilterArguments.getHotelRating() +" "
-                + "and r.room_type = '"+ getAllRoomsWithFilterArguments.getRoomType() +"' "
-                + "and r.guest_amount = " + getAllRoomsWithFilterArguments.getGuestAmount() + " "
-                + "and (r.price <= " + getAllRoomsWithFilterArguments.getMaxPrice() + " or r.discount <= + " + getAllRoomsWithFilterArguments.getMaxPrice() + " ) "
-                + "and ((r.price >= " + getAllRoomsWithFilterArguments.getMinPrice() + " and r.discount is null) or (r.discount is not null and r.discount >= " + getAllRoomsWithFilterArguments.getMinPrice() + ")) "
-                + "and tpk = 0";
+                + "where tpk = 0 ";
+
+        if (hotelRating != null) {
+            sql += "and h.rating = " + hotelRating + " ";
+        }
+        if (roomType != null) {
+            sql+= "and r.room_type = '" + roomType + "' ";
+        }
+        if (guestAmount != null) {
+            sql += "and r.guest_amount = " + guestAmount + " ";
+        }
+        if (maxPrice != null) {
+            sql += "and (r.price <= " + maxPrice + " or r.discount <= " + maxPrice + " ) ";
+        }
+        if (minPrice != null) {
+            sql += "and ((r.price >= " + minPrice + " and r.discount is null) or (r.discount is not null and r.discount >= " + minPrice + ")) ";
+        }
+
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    public List<RoomEntity> getAllRoomsWithFiltersWithoutDates(Integer guestAmount, Integer hotelRating, Double minPrice, Double maxPrice, RoomType roomType) {
+        String sql = "SELECT r.room_id, r.number, r.guest_amount, r.room_type, r.price, r.description, r.hotel_id, r.discount\n"
+                + "FROM room r "
+                + "JOIN hotel h on (r.hotel_id = h.hotel_id) "
+                + "WHERE";
+
+        if (hotelRating != null) {
+            sql += " h.rating = " + hotelRating + " AND";
+        }
+        if (roomType != null) {
+            sql+= " r.room_type = '" + roomType + "' AND";
+        }
+        if (guestAmount != null) {
+            sql += " r.guest_amount = " + guestAmount + " AND";
+        }
+        if (maxPrice != null) {
+            sql += " (r.price <= " + maxPrice + " or r.discount <= " + maxPrice + " AND)";
+        }
+        if (minPrice != null) {
+            sql += " ((r.price >= " + minPrice + " AND r.discount is null) OR (r.discount is not null AND r.discount >= " + minPrice + "))";
+        }
+
+        if (sql.endsWith("WHERE") || sql.endsWith("AND")) {
+            sql = sql.substring(0, sql.lastIndexOf(" "));
+        }
+
         return jdbcTemplate.query(sql, rowMapper);
     }
 

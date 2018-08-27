@@ -13,7 +13,7 @@
     <form action="#" th:action="@{/rooms/withFilter}" th:object="${getAllRoomsWithFilterArguments}" method="post">
         <div>Hotel rating:<br/>
             <select name="hotelRating" type="text" th:field="*{hotelRating}">
-                <option selected value="0">not selected</option>
+                <option selected value="">not selected</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -25,10 +25,10 @@
 
         <div>Room type:<br/>
             <select name="roomType" type="text" th:field="*{roomType}">
-                <option selected value="0">not selected</option>
-                <option value="standart">standart</option>
-                <option value="luxury">luxury</option>
-                <option value="family">family</option>
+                <option selected value="">not selected</option>
+                <option value="STANDARD">standart</option>
+                <option value="LUXURY">luxury</option>
+                <option value="FAMILY">family</option>
             </select>
         </div>
 
@@ -36,7 +36,7 @@
         <br/>
         <div>Guest amount:<br/>
             <select name="guestAmount" type="text" th:field="*{guestAmount}">
-                <option selected value="0">not selected</option>thy
+                <option selected value="">not selected</option>thy
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

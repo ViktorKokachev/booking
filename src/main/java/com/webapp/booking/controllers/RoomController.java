@@ -36,7 +36,7 @@ public class RoomController {
     @PostMapping("/withFilter")
     public String getAllRoomsWithFilter(@ModelAttribute GetAllRoomsWithFilterArguments getAllRoomsWithFilterArguments,
                                         Model model) {
-    //        model.addAttribute("allRoomsWithFilter", roomService.getAllRoomsWithFilter(getAllRoomsWithFilterArguments));
+            model.addAttribute("allRoomsWithFilter", roomService.getAllRoomsWithFilter(getAllRoomsWithFilterArguments));
 
             // ONLY LIST OF ROOMS EXCEPT OTHER ARGS
 
