@@ -37,9 +37,6 @@ public class RoomController {
     public String getAllRoomsWithFilter(@ModelAttribute GetAllRoomsWithFilterArguments getAllRoomsWithFilterArguments,
                                         Model model) {
             model.addAttribute("allRoomsWithFilter", roomService.getAllRoomsWithFilter(getAllRoomsWithFilterArguments));
-
-            // ONLY LIST OF ROOMS EXCEPT OTHER ARGS
-
         return "client/allRoomsWithFilter";
     }
 
@@ -50,34 +47,34 @@ public class RoomController {
         return "client/bookRoom";
     }
 
-    @PostMapping()
-    public String createRoom(@RequestBody CreateRoomArguments createRoomArguments) {
+    @PostMapping("/create")
+    public String createRoom(@RequestBody CreateRoomArguments createRoomArguments, Model model) {
         roomService.createRoom(createRoomArguments);
         return null;
     }
 
-    @PutMapping()
-    public String updateRoom(@RequestBody UpdateRoomArguments updateRoomArguments) {
+    @PostMapping("/update/{roomID}")
+    public String updateRoom(@RequestBody UpdateRoomArguments updateRoomArguments, @PathVariable Integer roomID,
+                             Model model) {
         roomService.updateRoom(updateRoomArguments);
         return null;
     }
 
     @DeleteMapping("/{roomID}")
-    public String deleteRoom(@PathVariable int roomID) {
+    public String deleteRoom(@PathVariable int roomID, Model model) {
         roomService.deleteRoom(roomID);
         return null;
     }
 
-    @PutMapping("/addDiscount")
-    public String addDiscount(@RequestBody AddDiscountArguments addDiscountArguments) {
+    @PostMapping("/addDiscount")
+    public String addDiscount(@ModelAttribute AddDiscountArguments addDiscountArguments, Model model) {
         roomService.addDiscount(addDiscountArguments);
         return null;
     }
 
     @DeleteMapping("/removeDiscount/{roomID}")
-    public String deleteDiscount(@PathVariable int roomID) {
+    public String deleteDiscount(@PathVariable int roomID, Model model) {
         roomService.deleteDiscount(roomID);
         return null;
     }
-
 }

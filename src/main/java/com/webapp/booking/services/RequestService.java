@@ -3,6 +3,7 @@ package com.webapp.booking.services;
 import com.webapp.booking.entities.RequestEntity;
 import com.webapp.booking.repos.RequestRepo;
 import com.webapp.booking.requests.request.CreateRequestArguments;
+import com.webapp.booking.requests.request.PayRequestArguments;
 import com.webapp.booking.requests.request.UpdateRequestArguments;
 import com.webapp.booking.requests.user.UpdateUserArguments;
 import lombok.AllArgsConstructor;
@@ -39,11 +40,7 @@ public class RequestService {
     }
 
     public void createRequest(CreateRequestArguments createRequestArguments) {
-
-
-        // check dates for availability, return price by
-
-
+        // check dates for availability, return price by whole period
         RequestEntity requestEntity = new RequestEntity();
 
         //TODO: fix hardcoded userID
@@ -82,11 +79,11 @@ public class RequestService {
         requestRepo.deleteRequest(requestID);
     }
 
-    public void payRequest() {
+    public void payRequest(Integer requestID, PayRequestArguments payRequestArguments) {
 
     }
 
-    public void declineRequest(int requestID) {
+    public void rejectRequest(int requestID) {
 
     }
 }

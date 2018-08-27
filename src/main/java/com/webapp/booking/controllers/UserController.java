@@ -1,5 +1,6 @@
 package com.webapp.booking.controllers;
 
+import com.webapp.booking.services.RequestService;
 import com.webapp.booking.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
 
-    UserService userService;
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private RequestService requestService;
 
     @GetMapping()
     public String getAllUsers(Model model) {
@@ -31,6 +36,13 @@ public class UserController {
     public String getUserByID(@PathVariable int userID, Model model) {
         model.addAttribute("userByID", userService.getUserByID(userID));
         return "userByID";
+    }
+
+    @GetMapping("/myAccount")
+    public String getMyAccount(@PathVariable int userID, Model model) {
+        model.addAttribute("userInformation", userService.getUserByID(1));
+        model.addAttribute("allRequestsByUser", requestService.getAllRequestsByUserID(1));
+        return "clientAccount";
     }
 
     @PostMapping()

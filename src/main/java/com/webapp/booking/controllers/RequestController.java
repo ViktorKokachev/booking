@@ -2,7 +2,9 @@ package com.webapp.booking.controllers;
 
 
 import com.webapp.booking.requests.request.CreateRequestArguments;
+import com.webapp.booking.requests.request.PayRequestArguments;
 import com.webapp.booking.services.RequestService;
+import com.webapp.booking.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,8 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RequestController {
 
-    private final RequestService requestService;
+    @Autowired
+    private RequestService requestService;
 
     @GetMapping
     public String getAllRequests(Model model) {
@@ -23,33 +26,45 @@ public class RequestController {
     }
 
     @GetMapping("/{userID}")
-    public String getAllRequestsByUserID(@PathVariable int userID, Model model) {
+    public String getAllRequestsByUserID(Model model, @PathVariable int userID) {
         model.addAttribute("allRequestsByUserID", requestService.getAllRequestsByUserID(userID));
-        return "allRequestsByUserID";
+        return "null";
     }
 
     @GetMapping("/{requestID}")
-    public String getRequestByID(@PathVariable int requestID, Model model) {
+    public String getRequestByID(Model model, @PathVariable Integer requestID) {
         model.addAttribute("requestByID", requestService.getRequestByID(requestID));
-        return "requestByID";
+        return null;
     }
 
-    // add arguments
     @PostMapping("/create")
     public String createRequest(Model model, @ModelAttribute CreateRequestArguments createRequestArguments) {
-        System.out.println(createRequestArguments);
-        return "client/discountRooms";
+        requestService.createRequest(createRequestArguments);
+
+        // redirect to /users/myAccount
+
+        // TODO: hardcoded userID
+
+        //
+        return "clientAccount";
     }
 
-    // add arguments
-    @PutMapping
-    public String payRequest() {
+    @PostMapping("/pay/{requestID}")
+    public String payRequest(Model model, @ModelAttribute PayRequestArguments payRequestArguments,
+                             @PathVariable Integer requestID) {
+        requestService.payRequest(requestID, payRequestArguments);
+        return null;
+    }
+
+    @PostMapping("/reject/{requestID}")
+    public String rejectRequest(Model model, @ModelAttribute CreateRequestArguments createRequestArguments,
+                                @PathVariable Integer requestID) {
         return null;
     }
 
     @DeleteMapping("/{requestID}")
-    public String declineRequest(@PathVariable int requestID) {
-        requestService.declineRequest(requestID);
+    public String deleteRequest(@PathVariable Integer requestID, Model model) {
+        requestService.deleteRequest(requestID);
         return null;
     }
 }

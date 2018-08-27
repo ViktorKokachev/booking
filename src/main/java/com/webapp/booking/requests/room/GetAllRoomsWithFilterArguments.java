@@ -10,14 +10,14 @@ import java.util.Date;
 @Getter
 @Setter
 public class GetAllRoomsWithFilterArguments {
-    private Integer guestAmount;
+    private String guestAmount;
     private RoomType roomType;
-    private Double minPrice;
-    private Double maxPrice;
+    private String minPrice;
+    private String maxPrice;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date checkInDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date checkOutDate;
 
-    private Integer hotelRating;
+    private String hotelRating;
 }
