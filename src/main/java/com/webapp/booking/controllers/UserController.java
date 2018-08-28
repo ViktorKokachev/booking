@@ -46,7 +46,7 @@ public class UserController {
 
         model.addAttribute("userInformation", userService.getUserByID(userID));
         model.addAttribute("allRequestsByUser", requestService.getAllRequestsByUserID(userID));
-        return "clientAccount";
+        return "client/clientAccount";
     }
 
     @PostMapping()
