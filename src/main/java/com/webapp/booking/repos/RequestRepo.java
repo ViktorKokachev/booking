@@ -18,7 +18,7 @@ public class RequestRepo {
     RequestEntityRowMapper requestEntityRowMapper;
 
     public List<RequestEntity> getAllRequests() {
-        String sql = "select hotel.hotel_id, hotel.name, hotel.address, hotel.rating, hotel.description, hotel.is_approved,\n" +
+        String sql = "select hotel.hotel_id, hotel.name, hotel.address, hotel.rating, hotel.description, hotel.is_approved, hotel.owner_id,\n" +
                 "       room.room_id, room.number, room.guest_amount, room.room_type, room.price, room.description, room.discount,\n" +
                 "       request.request_id, request.check_in, request.check_out, request.status, request.request_date,\n" +
                 "       user.user_id, user.login, user.password, user.name, user.role\n" +
@@ -30,7 +30,7 @@ public class RequestRepo {
     }
 
     public List<RequestEntity> getAllRequestsByUserID(Integer userID) {
-        String sql = "select hotel.hotel_id, hotel.name, hotel.address, hotel.rating, hotel.description, hotel.is_approved,\n" +
+        String sql = "select hotel.hotel_id, hotel.name, hotel.address, hotel.rating, hotel.description, hotel.is_approved, hotel.owner_id,\n" +
                 "       room.room_id, room.number, room.guest_amount, room.room_type, room.price, room.description, room.discount,\n" +
                 "       request.request_id, request.check_in, request.check_out, request.status, request.request_date,\n" +
                 "       user.user_id, user.login, user.password, user.name, user.role\n" +
@@ -43,7 +43,7 @@ public class RequestRepo {
     }
 
     public List<RequestEntity> getRequestByID(Integer requestID) {
-        String sql = "select hotel.hotel_id, hotel.name, hotel.address, hotel.rating, hotel.description, hotel.is_approved,\n" +
+        String sql = "select hotel.hotel_id, hotel.name, hotel.address, hotel.rating, hotel.description, hotel.is_approved, hotel.owner_id,\n" +
                 "       room.room_id, room.number, room.guest_amount, room.room_type, room.price, room.description, room.discount,\n" +
                 "       request.request_id, request.check_in, request.check_out, request.status, request.request_date,\n" +
                 "       user.user_id, user.login, user.password, user.name, user.role\n" +
