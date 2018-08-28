@@ -1,5 +1,6 @@
 package com.webapp.booking.controllers;
 
+import com.webapp.booking.requests.user.UpdateUserArguments;
 import com.webapp.booking.services.RequestService;
 import com.webapp.booking.services.UserService;
 import lombok.AllArgsConstructor;
@@ -46,6 +47,7 @@ public class UserController {
 
         model.addAttribute("userInformation", userService.getUserByID(userID));
         model.addAttribute("allRequestsByUser", requestService.getAllRequestsByUserID(userID));
+        model.addAttribute("updateUserArguments", new UpdateUserArguments());
         return "client/clientAccount";
     }
 
@@ -54,7 +56,7 @@ public class UserController {
         return null;
     }
 
-    @PutMapping()
+    @PutMapping("/update")
     public String updateUser() {
         return null;
     }

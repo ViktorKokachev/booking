@@ -140,4 +140,14 @@ public class RoomRepo {
         String sql = "DELETE FROM room WHERE room_id = " + roomID ;
         jdbcTemplate.execute(sql);
     }
+
+    public void deleteDiscount(Integer roomID) {
+        String sql = "UPDATE discount = NULL WHERE room_id = " + roomID;
+        jdbcTemplate.execute(sql);
+    }
+
+    public void addDiscount(Integer roomID, Double discount) {
+        String sql = "UPDATE discount = " +  discount + " WHERE room_id = " + roomID;
+        jdbcTemplate.execute(sql);
+    }
 }

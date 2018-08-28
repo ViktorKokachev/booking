@@ -86,11 +86,11 @@ public class RoomService {
     }
 
     public void addDiscount(AddDiscountArguments addDiscountArguments) {
-
+        roomRepo.addDiscount(addDiscountArguments.getRoomID(), addDiscountArguments.getDiscount());
     }
 
-    public void deleteDiscount(int roomID) {
-
+    public void deleteDiscount(Integer roomID) {
+        roomRepo.deleteDiscount(roomID);
     }
 
     public List<RoomEntity> getDiscountRooms() {
