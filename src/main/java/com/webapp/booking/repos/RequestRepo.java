@@ -43,8 +43,8 @@ public class RequestRepo {
         String sql = "INSERT INTO request (room_id, user_id, check_in, check_out) VALUES ('"
                 + requestEntity.getRoomID() + "', '"
                 + requestEntity.getUserID() + "', '"
-                + requestEntity.getCheckInDate() + "', '"
-                + requestEntity.getCheckOutDate() + "')";
+                + new java.sql.Date(requestEntity.getCheckInDate().getTime()) + "', '"
+                + new java.sql.Date(requestEntity.getCheckOutDate().getTime()) + "')";
         jdbcTemplate.execute(sql);
     }
 
