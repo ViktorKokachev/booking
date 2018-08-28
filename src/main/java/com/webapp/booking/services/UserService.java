@@ -48,7 +48,7 @@ public class UserService {
         if (updateUserArguments.getName() != null) {
             toUpdate.setName(updateUserArguments.getName());
         }
-        if (updateUserArguments.getPassword() != null) {
+        if (updateUserArguments.getPassword() != null && !updateUserArguments.getPassword().isEmpty()) {
             toUpdate.setPassword(updateUserArguments.getPassword());
         }
         if (updateUserArguments.getUserRole() != null) {
