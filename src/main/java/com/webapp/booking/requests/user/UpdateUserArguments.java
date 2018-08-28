@@ -10,6 +10,7 @@ public class UpdateUserArguments {
     private Integer userID;
     private String login;
     private String password;
+    private String oldPassword;
     private String name;
     private UserRole userRole;
 }
