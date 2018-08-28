@@ -83,7 +83,7 @@ public class RequestEntityRowMapper implements RowMapper<RequestEntity> {
         requestEntity.setRequestDate(requestDate);
         requestEntity.setRequestID(requestID);
         requestEntity.setRequestStatus(RequestStatus.valueOf(requestStatus));
-        requestEntity.setRoomEntity(roomEntity);
+        requestEntity.setRoom(roomEntity);
         requestEntity.setUserEntity(userEntity);
 
         return requestEntity;

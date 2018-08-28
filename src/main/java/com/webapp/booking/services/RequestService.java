@@ -56,8 +56,8 @@ public class RequestService {
         requestEntity.setUserEntity(new UserEntity());
         requestEntity.getUserEntity().setUserID(userID);
         requestEntity.setRequestStatus(RequestStatus.BOOKED);
-        requestEntity.setRoomEntity(new RoomEntity());
-        requestEntity.getRoomEntity().setRoomID(createRequestArguments.getRoomID());
+        requestEntity.setRoom(new RoomEntity());
+        requestEntity.getRoom().setRoomID(createRequestArguments.getRoomID());
         requestEntity.setCheckInDate(createRequestArguments.getCheckInDate());
         requestEntity.setCheckOutDate(createRequestArguments.getCheckOutDate());
 
