@@ -3,8 +3,8 @@ package com.webapp.booking.controllers;
 
 import com.webapp.booking.requests.request.CreateRequestArguments;
 import com.webapp.booking.requests.request.PayRequestArguments;
+import com.webapp.booking.requests.request.UpdateRequestArguments;
 import com.webapp.booking.services.RequestService;
-import com.webapp.booking.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,8 +47,9 @@ public class RequestController {
         return "redirect:/users/myAccount";
     }
 
-    @PostMapping("/update/{requestID}")
-    public String updateRequest(Model model) {
+    @PostMapping("/update")
+    public String updateRequest(Model model, @ModelAttribute UpdateRequestArguments updateRequestArguments) {
+        requestService.updateRequest(updateRequestArguments);
         return null;
     }
 
