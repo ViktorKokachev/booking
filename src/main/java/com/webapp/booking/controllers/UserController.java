@@ -54,7 +54,7 @@ public class UserController {
         return null;
     }
 
-    @PutMapping("/update")
+    @PostMapping("/update")
     public String updateUser(Model model, UpdateUserArguments updateUserArguments) {
 
         // todo: fix hardcoded userID
