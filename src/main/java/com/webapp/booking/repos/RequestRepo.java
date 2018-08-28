@@ -62,4 +62,9 @@ public class RequestRepo {
         String sql = "UPDATE request SET status = 'PAYED' WHERE request_id = " + requestID;
         jdbcTemplate.execute(sql);
     }
+
+    public void rejectRequest(Integer requestID) {
+        String sql = "UPDATE request SET status = 'REJECTED' WHERE request_id = " + requestID;
+        jdbcTemplate.execute(sql);
+    }
 }

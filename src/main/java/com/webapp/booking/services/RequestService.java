@@ -6,7 +6,6 @@ import com.webapp.booking.repos.RequestRepo;
 import com.webapp.booking.requests.request.CreateRequestArguments;
 import com.webapp.booking.requests.request.PayRequestArguments;
 import com.webapp.booking.requests.request.UpdateRequestArguments;
-import com.webapp.booking.requests.user.UpdateUserArguments;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +21,8 @@ public class RequestService {
 
     private static final String CARD_NUMBER_PATTERN = "^[0-9]{16}$";
     private static final String CARD_CVV_PATTERN = "^[0-9]{3}$";
-    private static final String CARDHOLDER_NAME_PATTERN = "^[\\w]*[\\w]*$";
-    private static final String CARD_EXPIRATION_DATE_PATTERN = "^(1[0-2]|0[1-9]|\\d)\\/(20\\d{2}|19\\d{2}|0(?!0)\\d|[1-9]\\d)$";
+    private static final String CARDHOLDER_NAME_PATTERN = "^[a-zA-Z]+[ ][a-zA-Z]+$";
+    private static final String CARD_EXPIRATION_DATE_PATTERN = "^(1[0-2]|0[1-9])\\/([0-9]{2}$)";
 
     public List<RequestEntity> getAllRequests() {
         return requestRepo.getAllRequests();
@@ -70,6 +69,7 @@ public class RequestService {
     }
 
     private void mergeWhenUpdate(RequestEntity toUpdate, UpdateRequestArguments updateRequestArguments) {
+
         if (updateRequestArguments.getCheckInDate() != null) {
             toUpdate.setCheckInDate(updateRequestArguments.getCheckInDate());
         }
@@ -79,7 +79,6 @@ public class RequestService {
         if (updateRequestArguments.getRequestStatus() != null) {
             toUpdate.setRequestStatus(updateRequestArguments.getRequestStatus());
         }
-
     }
 
     public void deleteRequest(Integer requestID) {
@@ -88,9 +87,6 @@ public class RequestService {
 
     public void payRequest(Integer requestID, PayRequestArguments payRequestArguments) {
 
-        // TODO: get rid of hardcoded value
-        Integer UserID = 1;
-
         if (isCreditCardValid(payRequestArguments.getCardNumber(), payRequestArguments.getCardHolderName(),
                 payRequestArguments.getCardExpirationDate(), payRequestArguments.getCardCVV())) {
             requestRepo.payRequest(requestID);
@@ -98,19 +94,23 @@ public class RequestService {
         else {
             throw new RuntimeException("Payment failed");
         }
-
     }
 
-    public void rejectRequest(int requestID) {
-
+    public void rejectRequest(Integer requestID) {
+        requestRepo.rejectRequest(requestID);
     }
 
     private Boolean isCreditCardValid(String cardNumber, String cardHolderName, String cardExpirationDate, String cardCVV) {
-        return isCardNumberValid(cardNumber);
+        return isCardNumberValid(cardNumber) && isCardHolderNameValid(cardHolderName)
+                && isCardExpirationDateValid(cardExpirationDate) && isCardCVVValid(cardCVV);
     }
 
     private static Boolean isCardNumberValid(String cardNumber)
     {
+
+        if (!cardNumber.matches(CARD_NUMBER_PATTERN))
+            return false;
+
         // Luhn algorithm
 
         int nDigits = cardNumber.length();
@@ -130,5 +130,17 @@ public class RequestService {
             isSecond = !isSecond;
         }
         return (nSum % 10 == 0);
+    }
+
+    private static Boolean isCardHolderNameValid(String cardHolderName) {
+        return cardHolderName.matches(CARDHOLDER_NAME_PATTERN);
+    }
+
+    private static Boolean isCardExpirationDateValid(String cardExpirationDate) {
+        return cardExpirationDate.matches(CARD_EXPIRATION_DATE_PATTERN);
+    }
+
+    private static Boolean isCardCVVValid(String cardCVV) {
+        return cardCVV.matches(CARD_CVV_PATTERN);
     }
 }

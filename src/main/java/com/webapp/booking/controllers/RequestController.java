@@ -25,7 +25,7 @@ public class RequestController {
         return "allRequests";
     }
 
-    @GetMapping("user/{userID}")
+    @GetMapping("/user/{userID}")
     public String getAllRequestsByUserID(Model model, @PathVariable Integer userID) {
         model.addAttribute("allRequestsByUserID", requestService.getAllRequestsByUserID(userID));
         return "null";
@@ -47,6 +47,11 @@ public class RequestController {
         return "redirect:/users/myAccount";
     }
 
+    @PostMapping("/update/{requestID}")
+    public String updateRequest(Model model) {
+        return null;
+    }
+
     @PostMapping("/pay/{requestID}")
     public String payRequest(Model model, @ModelAttribute PayRequestArguments payRequestArguments,
                              @PathVariable Integer requestID) {
@@ -55,13 +60,13 @@ public class RequestController {
     }
 
     @PostMapping("/reject/{requestID}")
-    public String rejectRequest(Model model, @ModelAttribute CreateRequestArguments createRequestArguments,
-                                @PathVariable Integer requestID) {
+    public String rejectRequest(Model model, @PathVariable Integer requestID) {
+        requestService.rejectRequest(requestID);
         return null;
     }
 
     @DeleteMapping("/{requestID}")
-    public String deleteRequest(@PathVariable Integer requestID, Model model) {
+    public String deleteRequest(Model model, @PathVariable Integer requestID) {
         requestService.deleteRequest(requestID);
         return null;
     }
