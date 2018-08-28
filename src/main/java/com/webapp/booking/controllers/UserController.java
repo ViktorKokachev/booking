@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/users")
 @Controller
@@ -51,14 +49,24 @@ public class UserController {
         return "client/clientAccount";
     }
 
-    @PostMapping()
+    @PostMapping("/create")
     public String createUser() {
         return null;
     }
 
     @PutMapping("/update")
-    public String updateUser() {
-        return null;
+    public String updateUser(Model model, UpdateUserArguments updateUserArguments) {
+
+        // todo: fix hardcoded userID
+        Integer userID = 1;
+        updateUserArguments.setUserID(userID);
+
+        userService.updateUser(updateUserArguments);
+
+        model.addAttribute("userInformation", userService.getUserByID(userID));
+        model.addAttribute("allRequestsByUser", requestService.getAllRequestsByUserID(userID));
+        model.addAttribute("updateUserArguments", new UpdateUserArguments());
+        return "client/clientAccount";
     }
 
     @DeleteMapping("/{userID}")
