@@ -95,6 +95,10 @@
                 <td>Price for one night: </td>
                 <td th:text="${room.getPrice()}"></td>
             </tr>
+            <tr th:if="${room.getDiscount() != null}">
+                <td>Discount: </td>
+                <td th:text="${room.getDiscount()}"></td>
+            </tr>
             <tr>
                 <td>Room description: </td>
                 <td th:text="${room.getDescription()}"></td>
