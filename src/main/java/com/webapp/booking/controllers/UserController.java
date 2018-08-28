@@ -39,9 +39,13 @@ public class UserController {
     }
 
     @GetMapping("/myAccount")
-    public String getMyAccount(@PathVariable int userID, Model model) {
-        model.addAttribute("userInformation", userService.getUserByID(1));
-        model.addAttribute("allRequestsByUser", requestService.getAllRequestsByUserID(1));
+    public String getMyAccount(Model model) {
+
+        // todo: fix hardcoded userID
+        Integer userID = 1;
+
+        model.addAttribute("userInformation", userService.getUserByID(userID));
+        model.addAttribute("allRequestsByUser", requestService.getAllRequestsByUserID(userID));
         return "clientAccount";
     }
 

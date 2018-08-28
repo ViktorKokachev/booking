@@ -40,11 +40,12 @@ public class RequestRepo {
     }
 
     public void createRequest(RequestEntity requestEntity) {
-        String sql = "INSERT INTO request (room_id, user_id, check_in, check_out) VALUES ('"
+        String sql = "INSERT INTO request (room_id, user_id, check_in, check_out, request_date) VALUES ('"
                 + requestEntity.getRoomID() + "', '"
                 + requestEntity.getUserID() + "', '"
                 + new java.sql.Date(requestEntity.getCheckInDate().getTime()) + "', '"
-                + new java.sql.Date(requestEntity.getCheckOutDate().getTime()) + "')";
+                + new java.sql.Date(requestEntity.getCheckOutDate().getTime()) + "', "
+                + "now())";
         jdbcTemplate.execute(sql);
     }
 
