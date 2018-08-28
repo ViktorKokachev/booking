@@ -1,6 +1,5 @@
 package com.webapp.booking.services;
 
-import com.webapp.booking.entities.RoomEntity;
 import com.webapp.booking.entities.UserEntity;
 import com.webapp.booking.repos.UserRepo;
 import com.webapp.booking.requests.user.CreateUserArguments;
