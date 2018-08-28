@@ -65,6 +65,12 @@ public class RequestController {
         return null;
     }
 
+    @PostMapping("/approve/{requestID}")
+    public String approveRequest(Model model, @PathVariable Integer requestID) {
+        requestService.approveRequest(requestID);
+        return null;
+    }
+
     @DeleteMapping("/{requestID}")
     public String deleteRequest(Model model, @PathVariable Integer requestID) {
         requestService.deleteRequest(requestID);

@@ -106,6 +106,10 @@ public class RequestService {
         requestRepo.rejectRequest(requestID);
     }
 
+    public void approveRequest(Integer requestID) {
+        requestRepo.approveRequest(requestID);
+    }
+
     private Boolean isCreditCardValid(String cardNumber, String cardHolderName, String cardExpirationDate, String cardCVV) {
         return isCardNumberValid(cardNumber) && isCardHolderNameValid(cardHolderName)
                 && isCardExpirationDateValid(cardExpirationDate) && isCardCVVValid(cardCVV);

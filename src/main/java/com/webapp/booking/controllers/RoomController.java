@@ -1,19 +1,16 @@
 package com.webapp.booking.controllers;
 
 
-import com.webapp.booking.entities.RoomEntity;
+
 import com.webapp.booking.requests.other.ExtendedRequestArguments;
 import com.webapp.booking.requests.request.CreateRequestArguments;
 import com.webapp.booking.requests.room.*;
-import com.webapp.booking.services.HotelService;
 import com.webapp.booking.services.RoomService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RequestMapping("/rooms")
 @Controller
