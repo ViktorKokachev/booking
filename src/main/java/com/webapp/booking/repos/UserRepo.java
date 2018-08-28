@@ -33,7 +33,7 @@ public class UserRepo {
     }
 
     public void createUser(UserEntity userEntity) {
-        String sql = "INSERT INTO room (login, password, name, role) VALUES ('"
+        String sql = "INSERT INTO user (login, password, name, role) VALUES ('"
                 + userEntity.getLogin() + "', '"
                 + userEntity.getPassword() + "', '"
                 + userEntity.getName() + "', '"
@@ -42,7 +42,7 @@ public class UserRepo {
     }
 
     public void updateUser(UserEntity userEntity) {
-        String sql = "UPDATE room SET "
+        String sql = "UPDATE user SET "
                 + "login = '" + userEntity.getLogin()
                 + "', password = '" + userEntity.getPassword()
                 + "', name = '" + userEntity.getName()
