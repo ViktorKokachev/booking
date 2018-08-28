@@ -12,8 +12,8 @@ import java.util.Date;
 public class GetAllRoomsWithFilterArguments {
     private Integer guestAmount;
     private RoomType roomType;
-    private Integer minPrice;
-    private Integer maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date checkInDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
