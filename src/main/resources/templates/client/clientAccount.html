@@ -9,27 +9,60 @@
 <div id="header">Hello,</div>
 
 <div id="content-left">
-    <table th:each="request : ${allRequestsByUserID}" id="requests-info">
+    <table>
         <tr>
-            <td th:text="${request.getRequestID()} + ' | '
+            <th class="request">Booking:</th>
+            <th class="empty"></th>
+            <th class="status">Status: </th>
+        </tr>
+    </table>
+    <table th:each="request : ${allRequestsByUser}">
+        <tr>
+            <td th:text="'Request number: ' + ${request.getRequestID()} + ' | '
                 + ${request.getRoom().getHotel().getName()} + ' | '
                 + ${request.getRoom().getGuestAmount()} + ' guests | from '
-                + ${request().getCheckInDate()} + ' to '
-                + ${request().getCheckOutDate()}">
+                + ${request.getCheckInDate()} + ' to '
+                + ${request.getCheckOutDate()}" class="request">
             </td>
-            <td th:text="${request.getRequestStatus()}" th:title="BOOKED, PAYED, APPROVED, REJECTED,"></td>
+            <td class="empty"></td>
+            <td th:text="${request.getRequestStatus()}" title="BOOKED, PAYED, APPROVED, REJECTED" class="status"></td>
         </tr>
     </table>
     <br/>
 </div>
 
 <div id="content-right">
-    <table>
+    <form action="#" th:action="@{/users/update}" th:object="${updateUserArguments}" method="post">
+    <table class="pesonal">
+        <tr >
+            <th colspan="2">Personal info:</th>
+        </tr>
         <tr>
-            <td th:text="${userInformation.getLogin()}"></td>
-            <td th:text="${userInformation.getName()}"></td>
+            <td>Name:</td>
+            <td>
+                <input name="name" type="text" th:value="${userInformation.getName()}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Login:</td>
+            <td>
+                <input name="login" type="text" th:value="${userInformation.getLogin()}"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Old password:</td>
+            <td><input name="oldPassword" type="text"/></td>
+        </tr>
+        <tr>
+            <td>New password:</td>
+            <td><input name="newPassword" type="text" th:field="*{password}"/></td>
+
+        <tr>
+            <td colspan="2" align="center"><input type="submit" value="Save"></td>
         </tr>
     </table>
+    </form>
 </div>
 </body>
 </html>

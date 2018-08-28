@@ -52,6 +52,7 @@ public class RequestRepo {
                 "join request on room.room_id = request.room_id\n" +
                 "join user on user.user_id = request.user_id "
                 + "WHERE request.request_id = " + requestID;
+        sql += " ORDER BY request.check_in, request.check_out";
         return jdbcTemplate.query(sql, requestEntityRowMapper);
     }
 

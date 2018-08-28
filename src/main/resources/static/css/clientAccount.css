@@ -22,15 +22,35 @@ h2 {
 #content-left { /* Левая колонка */
     float: left; /* Обтекание справа */
     border: 1px solid #333; /* Параметры рамки вокруг */
-    width: 15%; /* Ширина колонки */
+    width: 800px; /* Ширина колонки */
     padding: 10px; /* Поля вокруг текста */
     margin: 10px 10px 20px 15px; /* Значения отступов */
 }
 
+.request {
+    width: 600px;
+    text-align: left;
+    border-bottom: 1px solid black;
+}
+.empty {
+    width: 100px;
+    border-bottom: 1px solid black;
+
+}
+.status {
+    width: 100px;
+    text-align: left;
+    border-bottom: 1px solid black;
+}
+
 #content-right { /* Правая колонка */
-    margin: 10px 105px 20px 25%; /* Значения отступов */
+    margin: 10px 90px 20px 950px; /* Значения отступов */
     padding: 5px; /* Поля вокруг текста */
     border: 1px solid #333; /* Параметры рамки */
+}
+
+.personal {
+    text-align: left;
 }
 
 #footer { /* Нижний блок */
