@@ -9,73 +9,27 @@
 <div id="header">Hello,</div>
 
 <div id="content-left">
-    <table th:each="room : ${allRequestsByUserID}">
+    <table th:each="request : ${allRequestsByUserID}" id="requests-info">
         <tr>
-            <td th:text="${room.getRequestID()} + ' | '
-                + ${room.getHotel.getName()} + ' | '
-                + ${room.getRoom.getGuestAmount()} + ' guests | from '
-                + ${room.getCheckInDate()} + ' to '
-                + ${room.getCheckOutDate()}">
+            <td th:text="${request.getRequestID()} + ' | '
+                + ${request.getRoom().getHotel().getName()} + ' | '
+                + ${request.getRoom().getGuestAmount()} + ' guests | from '
+                + ${request().getCheckInDate()} + ' to '
+                + ${request().getCheckOutDate()}">
             </td>
-            <td th:text="${room.getRequestStatus()}" th:title="BOOKED, PAYED, APPROVED, REJECTED,"></td>
+            <td th:text="${request.getRequestStatus()}" th:title="BOOKED, PAYED, APPROVED, REJECTED,"></td>
         </tr>
     </table>
     <br/>
 </div>
 
 <div id="content-right">
-    <form action="#" th:action="@{/rooms/withFilter}" th:object="${getAllRoomsWithFilterArguments}" method="post">
-        <div>Hotel rating:<br/>
-            <select name="hotelRating" type="text" th:field="*{hotelRating}">
-                <option selected value="">not selected</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-        </div>
-        <br/>
-
-        <div>Room type:<br/>
-            <select name="roomType" type="text" th:field="*{roomType}">
-                <option selected value="">not selected</option>
-                <option value="STANDARD">Standard</option>
-                <option value="LUXURY">Luxury</option>
-                <option value="FAMILY">Family</option>
-            </select>
-        </div>
-
-
-        <br/>
-        <div>Guest amount:<br/>
-            <select name="guestAmount" type="text" th:field="*{guestAmount}">
-                <option selected value="">not selected</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-        <br/>
-
-        <div>Check in:<br/><input type="date" th:field="*{checkInDate}"/></div>  <br/>
-        <div>Check out: <br/><input type="date" th:field="*{checkOutDate}"/></div>
-        <br/>
-
-        <div>
-            Minimum price:<input name="minPrice"  type="text" th:field="*{minPrice}"/>
-        </div>
-        <br/>
-
-        <div>
-            Maximum price:<input name="maxPrice" type="text" th:field="*{maxPrice}"/>
-        </div>
-        <br/>
-        <input type="submit" value="Search">
-        <input type="reset" value="Reset">
-    </form>
+    <table>
+        <tr>
+            <td th:text="${userInformation.getLogin()}"></td>
+            <td th:text="${userInformation.getName()}"></td>
+        </tr>
+    </table>
 </div>
-
 </body>
 </html>

@@ -53,8 +53,8 @@ public class RequestService {
         Integer userID = 1;
 
         //TODO: fix hardcoded userID
-        requestEntity.setUserEntity(new UserEntity());
-        requestEntity.getUserEntity().setUserID(userID);
+        requestEntity.setUser(new UserEntity());
+        requestEntity.getUser().setUserID(userID);
         requestEntity.setRequestStatus(RequestStatus.BOOKED);
         requestEntity.setRoom(new RoomEntity());
         requestEntity.getRoom().setRoomID(createRequestArguments.getRoomID());

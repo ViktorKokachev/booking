@@ -63,7 +63,7 @@ public class RequestRepo {
     public void createRequest(RequestEntity requestEntity) {
         String sql = "INSERT INTO request (room_id, user_id, check_in, check_out, request_date) VALUES ('"
                 + requestEntity.getRoom().getRoomID() + "', '"
-                + requestEntity.getUserEntity().getUserID() + "', '"
+                + requestEntity.getUser().getUserID() + "', '"
                 + new java.sql.Date(requestEntity.getCheckInDate().getTime()) + "', '"
                 + new java.sql.Date(requestEntity.getCheckOutDate().getTime()) + "', "
                 + "now())";
