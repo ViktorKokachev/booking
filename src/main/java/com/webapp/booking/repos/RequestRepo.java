@@ -38,7 +38,7 @@ public class RequestRepo {
                 "join room on room.hotel_id = hotel.hotel_id\n" +
                 "join request on room.room_id = request.room_id\n" +
                 "join user on user.user_id = request.user_id "
-                + "WHERE user_id = " + userID;
+                + "WHERE user.user_id = " + userID;
         return jdbcTemplate.query(sql, requestEntityRowMapper);
     }
 
@@ -51,7 +51,7 @@ public class RequestRepo {
                 "join room on room.hotel_id = hotel.hotel_id\n" +
                 "join request on room.room_id = request.room_id\n" +
                 "join user on user.user_id = request.user_id "
-                + "WHERE request_id = " + requestID;
+                + "WHERE request.request_id = " + requestID;
         return jdbcTemplate.query(sql, requestEntityRowMapper);
     }
 
