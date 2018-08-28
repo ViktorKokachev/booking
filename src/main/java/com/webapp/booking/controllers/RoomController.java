@@ -71,7 +71,7 @@ public class RoomController {
     }
 
     @DeleteMapping("/removeDiscount/{roomID}")
-    public String deleteDiscount(@PathVariable int roomID, Model model) {
+    public String deleteDiscount(@PathVariable Integer roomID, Model model) {
         roomService.deleteDiscount(roomID);
         return null;
     }

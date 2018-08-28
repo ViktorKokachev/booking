@@ -19,6 +19,6 @@ public class RequestEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date requestDate;
     private RequestStatus requestStatus;
-    private Integer roomID;
-    private Integer userID;
+    private RoomEntity roomEntity;
+    private UserEntity userEntity;
 }

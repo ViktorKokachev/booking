@@ -18,18 +18,39 @@ public class RequestRepo {
     RequestEntityRowMapper requestEntityRowMapper;
 
     public List<RequestEntity> getAllRequests() {
-        String sql = "SELECT request_id, check_in, check_out, status, user_id, room_id, request_date FROM request";
+        String sql = "select hotel.hotel_id, hotel.name, hotel.address, hotel.rating, hotel.description, hotel.is_approved,\n" +
+                "       room.room_id, room.number, room.guest_amount, room.room_type, room.price, room.description, room.discount,\n" +
+                "       request.request_id, request.check_in, request.check_out, request.status, request.request_date,\n" +
+                "       user.user_id, user.login, user.password, user.name, user.role\n" +
+                "from hotel\n" +
+                "join room on room.hotel_id = hotel.hotel_id\n" +
+                "join request on room.room_id = request.room_id\n" +
+                "join user on user.user_id = request.user_id";
         return jdbcTemplate.query(sql, requestEntityRowMapper);
     }
 
     public List<RequestEntity> getAllRequestsByUserID(Integer userID) {
-        String sql = "SELECT request_id, check_in, check_out, status, user_id, room_id, request_date FROM request "
+        String sql = "select hotel.hotel_id, hotel.name, hotel.address, hotel.rating, hotel.description, hotel.is_approved,\n" +
+                "       room.room_id, room.number, room.guest_amount, room.room_type, room.price, room.description, room.discount,\n" +
+                "       request.request_id, request.check_in, request.check_out, request.status, request.request_date,\n" +
+                "       user.user_id, user.login, user.password, user.name, user.role\n" +
+                "from hotel\n" +
+                "join room on room.hotel_id = hotel.hotel_id\n" +
+                "join request on room.room_id = request.room_id\n" +
+                "join user on user.user_id = request.user_id "
                 + "WHERE user_id = " + userID;
         return jdbcTemplate.query(sql, requestEntityRowMapper);
     }
 
     public List<RequestEntity> getRequestByID(Integer requestID) {
-        String sql = "SELECT request_id, check_in, check_out, status, user_id, room_id, request_date FROM request "
+        String sql = "select hotel.hotel_id, hotel.name, hotel.address, hotel.rating, hotel.description, hotel.is_approved,\n" +
+                "       room.room_id, room.number, room.guest_amount, room.room_type, room.price, room.description, room.discount,\n" +
+                "       request.request_id, request.check_in, request.check_out, request.status, request.request_date,\n" +
+                "       user.user_id, user.login, user.password, user.name, user.role\n" +
+                "from hotel\n" +
+                "join room on room.hotel_id = hotel.hotel_id\n" +
+                "join request on room.room_id = request.room_id\n" +
+                "join user on user.user_id = request.user_id "
                 + "WHERE request_id = " + requestID;
         return jdbcTemplate.query(sql, requestEntityRowMapper);
     }
@@ -41,8 +62,8 @@ public class RequestRepo {
 
     public void createRequest(RequestEntity requestEntity) {
         String sql = "INSERT INTO request (room_id, user_id, check_in, check_out, request_date) VALUES ('"
-                + requestEntity.getRoomID() + "', '"
-                + requestEntity.getUserID() + "', '"
+                + requestEntity.getRoomEntity().getRoomID() + "', '"
+                + requestEntity.getUserEntity().getUserID() + "', '"
                 + new java.sql.Date(requestEntity.getCheckInDate().getTime()) + "', '"
                 + new java.sql.Date(requestEntity.getCheckOutDate().getTime()) + "', "
                 + "now())";
@@ -54,7 +75,7 @@ public class RequestRepo {
                 + "check_in = '" + requestEntity.getCheckInDate()
                 + "', check_out = '" + requestEntity.getCheckOutDate()
                 + "', status = '" + requestEntity.getRequestStatus()
-                + "' WHERE room_id = " + requestEntity.getRoomID();
+                + "' WHERE room_id = " + requestEntity.getRoomEntity().getRoomID();
         jdbcTemplate.execute(sql);
     }
 

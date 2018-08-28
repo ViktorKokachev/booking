@@ -1,6 +1,8 @@
 package com.webapp.booking.services;
 
 import com.webapp.booking.entities.RequestEntity;
+import com.webapp.booking.entities.RoomEntity;
+import com.webapp.booking.entities.UserEntity;
 import com.webapp.booking.enums.RequestStatus;
 import com.webapp.booking.repos.RequestRepo;
 import com.webapp.booking.requests.request.CreateRequestArguments;
@@ -48,10 +50,14 @@ public class RequestService {
         // check dates for availability, return price by whole period
         RequestEntity requestEntity = new RequestEntity();
 
+        Integer userID = 1;
+
         //TODO: fix hardcoded userID
-        requestEntity.setUserID(1);
+        requestEntity.setUserEntity(new UserEntity());
+        requestEntity.getUserEntity().setUserID(userID);
         requestEntity.setRequestStatus(RequestStatus.BOOKED);
-        requestEntity.setRoomID(createRequestArguments.getRoomID());
+        requestEntity.setRoomEntity(new RoomEntity());
+        requestEntity.getRoomEntity().setRoomID(createRequestArguments.getRoomID());
         requestEntity.setCheckInDate(createRequestArguments.getCheckInDate());
         requestEntity.setCheckOutDate(createRequestArguments.getCheckOutDate());
 
