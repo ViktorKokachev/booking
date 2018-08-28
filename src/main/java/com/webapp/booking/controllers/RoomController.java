@@ -22,8 +22,6 @@ public class RoomController {
 
     @Autowired
     private RoomService roomService;
-    @Autowired
-    private HotelService hotelService;
 
     @GetMapping()
     public String getDiscountRooms(Model model) {

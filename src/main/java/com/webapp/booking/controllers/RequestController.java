@@ -25,8 +25,8 @@ public class RequestController {
         return "allRequests";
     }
 
-    @GetMapping("/{userID}")
-    public String getAllRequestsByUserID(Model model, @PathVariable int userID) {
+    @GetMapping("user/{userID}")
+    public String getAllRequestsByUserID(Model model, @PathVariable Integer userID) {
         model.addAttribute("allRequestsByUserID", requestService.getAllRequestsByUserID(userID));
         return "null";
     }
@@ -41,12 +41,10 @@ public class RequestController {
     public String createRequest(Model model, @ModelAttribute CreateRequestArguments createRequestArguments) {
         requestService.createRequest(createRequestArguments);
 
-        // redirect to /users/myAccount
-
+        // TODO: add condition which checks for succesful request creation
         // TODO: hardcoded userID
 
-        //
-        return "clientAccount";
+        return "redirect:/users/myAccount";
     }
 
     @PostMapping("/pay/{requestID}")

@@ -8,7 +8,7 @@ import lombok.Setter;
 public class PayRequestArguments {
 
      String cardNumber;
-     String cardholderName;
-     String cardExpireDate;
+     String cardHolderName;
+     String cardExpirationDate;
      String cardCVV;
 }

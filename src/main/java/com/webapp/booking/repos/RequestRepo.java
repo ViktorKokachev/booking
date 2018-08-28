@@ -56,4 +56,9 @@ public class RequestRepo {
                 + "' WHERE room_id = " + requestEntity.getRoomID();
         jdbcTemplate.execute(sql);
     }
+
+    public void payRequest(Integer requestID) {
+        String sql = "UPDATE request SET status = 'PAYED' WHERE request_id = " + requestID;
+        jdbcTemplate.execute(sql);
+    }
 }

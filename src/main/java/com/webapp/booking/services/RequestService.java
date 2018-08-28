@@ -1,6 +1,7 @@
 package com.webapp.booking.services;
 
 import com.webapp.booking.entities.RequestEntity;
+import com.webapp.booking.enums.RequestStatus;
 import com.webapp.booking.repos.RequestRepo;
 import com.webapp.booking.requests.request.CreateRequestArguments;
 import com.webapp.booking.requests.request.PayRequestArguments;
@@ -18,6 +19,11 @@ public class RequestService {
 
     @Autowired
     RequestRepo requestRepo;
+
+    private static final String CARD_NUMBER_PATTERN = "^[0-9]{16}$";
+    private static final String CARD_CVV_PATTERN = "^[0-9]{3}$";
+    private static final String CARDHOLDER_NAME_PATTERN = "^[\\w]*[\\w]*$";
+    private static final String CARD_EXPIRATION_DATE_PATTERN = "^(1[0-2]|0[1-9]|\\d)\\/(20\\d{2}|19\\d{2}|0(?!0)\\d|[1-9]\\d)$";
 
     public List<RequestEntity> getAllRequests() {
         return requestRepo.getAllRequests();
@@ -45,6 +51,7 @@ public class RequestService {
 
         //TODO: fix hardcoded userID
         requestEntity.setUserID(1);
+        requestEntity.setRequestStatus(RequestStatus.BOOKED);
         requestEntity.setRoomID(createRequestArguments.getRoomID());
         requestEntity.setCheckInDate(createRequestArguments.getCheckInDate());
         requestEntity.setCheckOutDate(createRequestArguments.getCheckOutDate());
@@ -81,9 +88,47 @@ public class RequestService {
 
     public void payRequest(Integer requestID, PayRequestArguments payRequestArguments) {
 
+        // TODO: get rid of hardcoded value
+        Integer UserID = 1;
+
+        if (isCreditCardValid(payRequestArguments.getCardNumber(), payRequestArguments.getCardHolderName(),
+                payRequestArguments.getCardExpirationDate(), payRequestArguments.getCardCVV())) {
+            requestRepo.payRequest(requestID);
+        }
+        else {
+            throw new RuntimeException("Payment failed");
+        }
+
     }
 
     public void rejectRequest(int requestID) {
 
+    }
+
+    private Boolean isCreditCardValid(String cardNumber, String cardHolderName, String cardExpirationDate, String cardCVV) {
+        return isCardNumberValid(cardNumber);
+    }
+
+    private static Boolean isCardNumberValid(String cardNumber)
+    {
+        // Luhn algorithm
+
+        int nDigits = cardNumber.length();
+
+        int nSum = 0;
+        boolean isSecond = false;
+        for (int i = nDigits - 1; i >= 0; i--)
+        {
+            int d = cardNumber.charAt(i) - 'a';
+            if (isSecond)
+                d = d * 2;
+            // We add two digits to handle
+            // cases that make two digits
+            // after doubling
+            nSum += d / 10;
+            nSum += d % 10;
+            isSecond = !isSecond;
+        }
+        return (nSum % 10 == 0);
     }
 }
