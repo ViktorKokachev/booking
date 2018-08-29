@@ -36,7 +36,7 @@ public class RequestController {
         RequestEntity requestByID = requestService.getRequestByID(requestID);
         model.addAttribute("requestByID", requestByID);
         model.addAttribute("requestSum", requestService.getRequestSum(requestByID));
-        return "userRequest";
+        return "client/userRequest";
     }
 
     @PostMapping("/create")
