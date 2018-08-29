@@ -1,6 +1,6 @@
 package com.webapp.booking.controllers;
 
-import com.webapp.booking.requests.request.CreateRequestArguments;
+import com.webapp.booking.requests.user.CreateUserArguments;
 import com.webapp.booking.requests.user.UpdateUserArguments;
 import com.webapp.booking.services.RequestService;
 import com.webapp.booking.services.UserService;
@@ -24,13 +24,13 @@ public class UserController {
     @GetMapping()
     public String getAllUsers(Model model) {
         model.addAttribute("allUsers", userService.getAllUsers());
-        return "allUsers";
+        return "admin/allUsers";
     }
 
     @GetMapping("/{userID}")
     public String getUserByID(@PathVariable int userID, Model model) {
         model.addAttribute("userByID", userService.getUserByID(userID));
-        return "userByID";
+        return "admin/userByID";
     }
 
     @GetMapping("/myAccount")
@@ -46,7 +46,8 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public String createUser(Model model, @ModelAttribute CreateRequestArguments createRequestArguments) {
+    public String createUser(Model model, @ModelAttribute CreateUserArguments createUserArguments) {
+        userService.createUser(createUserArguments);
         return null;
     }
 
@@ -62,6 +63,7 @@ public class UserController {
         model.addAttribute("userInformation", userService.getUserByID(userID));
         model.addAttribute("allRequestsByUser", requestService.getAllRequestsByUserID(userID));
         model.addAttribute("updateUserArguments", new UpdateUserArguments());
+        // todo: only client case, make implementation for admin
         return "redirect:/users/myAccount";
     }
 

@@ -1,5 +1,8 @@
 package com.webapp.booking.controllers;
 
+import com.webapp.booking.requests.hotel.CreateHotelArguments;
+import com.webapp.booking.requests.hotel.UpdateHotelArguments;
+import com.webapp.booking.requests.request.CreateRequestArguments;
 import com.webapp.booking.services.HotelService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,27 +31,28 @@ public class HotelController {
     }
 
     @GetMapping("/{ownerID}")
-    public String getAllHotelsByOwnerID(@PathVariable int ownerID, Model model) {
+    public String getAllHotelsByOwnerID(@PathVariable Integer ownerID, Model model) {
         model.addAttribute("allHotelsByOwnerID", hotelService.getAllHotelsByOwnerID(ownerID));
         return "hotelByOwnerID";
     }
 
 
     @GetMapping("/{hotelID}")
-    public String getHotelByID(@PathVariable int hotelID, Model model) {
+    public String getHotelByID(@PathVariable Integer hotelID, Model model) {
         model.addAttribute("hotelByID", hotelService.getHotelByID(hotelID));
         return "hotelByID";
     }
 
-    // add arguments
-    @PostMapping()
-    public String createHotel() {
+    @PostMapping("/create")
+    public String createHotel(CreateHotelArguments createHotelArguments, Model model) {
+        hotelService.createHotel(createHotelArguments);
         return null;
     }
 
     //add arguments
-    @PutMapping()
-    public String updateHotel() {
+    @PostMapping("/update")
+    public String updateHotel(UpdateHotelArguments updateHotelArguments, Model model) {
+        hotelService.updateHotel(updateHotelArguments);
         return null;
     }
 
