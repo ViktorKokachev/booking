@@ -14,8 +14,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests().antMatchers("/").permitAll();
+    protected void configure(final HttpSecurity http) throws Exception {
+        http
+                .formLogin()
+                .loginPage("/login")
+                .failureUrl("/loginError")
+                .and()
+                .logout()
+                .logoutSuccessUrl("/rooms");
     }
 
     /*@Autowired
