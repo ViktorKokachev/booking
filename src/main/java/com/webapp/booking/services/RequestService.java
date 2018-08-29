@@ -12,7 +12,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -109,6 +111,36 @@ public class RequestService {
         requestRepo.approveRequest(requestID);
     }
 
+    public Double getRequestSum(RequestEntity requestByID) {
+
+        Double nightPrice;
+
+        if (requestByID.getRoom().getDiscount() == null) {
+              if (requestByID.getRoom().getDiscount() == null) {
+                  throw new RuntimeException("Invalid prices for the room!");
+              } else {
+                  nightPrice = requestByID.getRoom().getDiscount();
+              }
+        } else {
+            if (requestByID.getRoom().getDiscount() == null) {
+                nightPrice = requestByID.getRoom().getPrice();
+            } else {
+                if (requestByID.getRoom().getDiscount() < requestByID.getRoom().getPrice()) {
+                    nightPrice = requestByID.getRoom().getDiscount();
+                } else {
+                    nightPrice = requestByID.getRoom().getPrice();
+                }
+            }
+        }
+
+        return nightPrice * getDifferenceDays(requestByID.getCheckInDate(), requestByID.getCheckOutDate());
+    }
+
+    private static Long getDifferenceDays(Date d1, Date d2) {
+        long diff = d2.getTime() - d1.getTime();
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+    }
+
     private Boolean isCreditCardValid(String cardNumber, String cardHolderName, String cardExpirationDate, String cardCVV) {
         return isCardNumberValid(cardNumber) && isCardHolderNameValid(cardHolderName)
                 && isCardExpirationDateValid(cardExpirationDate) && isCardCVVValid(cardCVV);
@@ -152,4 +184,5 @@ public class RequestService {
     private static Boolean isCardCVVValid(String cardCVV) {
         return cardCVV.matches(CARD_CVV_PATTERN);
     }
+
 }

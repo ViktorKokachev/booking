@@ -1,6 +1,7 @@
 package com.webapp.booking.controllers;
 
 
+import com.webapp.booking.entities.RequestEntity;
 import com.webapp.booking.requests.request.CreateRequestArguments;
 import com.webapp.booking.requests.request.PayRequestArguments;
 import com.webapp.booking.requests.request.UpdateRequestArguments;
@@ -32,7 +33,9 @@ public class RequestController {
 
     @GetMapping("/{requestID}")
     public String getRequestByID(Model model, @PathVariable Integer requestID) {
-        model.addAttribute("requestByID", requestService.getRequestByID(requestID));
+        RequestEntity requestByID = requestService.getRequestByID(requestID);
+        model.addAttribute("requestByID", requestByID);
+        model.addAttribute("requestSum", requestService.getRequestSum(requestByID));
         return "userRequest";
     }
 
