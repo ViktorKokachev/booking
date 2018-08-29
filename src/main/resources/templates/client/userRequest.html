@@ -1,10 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>UserRequest</title>
+    <title>Room booking</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/clientAccount.css}"/>
 </head>
 <body>
+<div id="header">Hello,</div>
+<div id="content-center">
+    <table>
+        <tr>
+            <td>Request number:</td>
+            <td th:text="${requestByID.getRequestID()}">Hotel name</td>
+        </tr>
+        <tr>
+            <td>Hotel:</td>
+            <td th:text="${requestByID.getRoom().getHotel().getName()}">Hotel name</td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td th:text="${requestByID.getRoom().getHotel().getAddress()}">Hotel address</td>
+        </tr>
+        <tr>
+            <td>Rating:</td>
+            <td th:text="${requestByID.getRoom().getHotel().getRating()}">Hotel rating</td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td th:text="${requestByID.getRoom().getHotel().getDescription()}">Hotel description</td>
+        </tr>
+        <tr>
+            <td>Guests:</td>
+            <td th:text="${requestByID.getRoom().getGuestAmount()}"></td>
+        </tr>
+        <tr>
+            <td>Room type:</td>
+            <td th:text="${requestByID.getRoom().getRoomType()}"></td>
+        </tr>
+        <tr>
+            <td>Room description:</td>
+            <td th:text="${requestByID.getRoom().getDescription()}"></td>
+        </tr>
+        <tr>
+            <td>Check in date:</td>
+            <td th:text="${requestByID.getCheckInDate()}"></td>
+        </tr>
+        <tr>
+            <td>Check out date:</td>
+            <td th:text="${requestByID.getCheckOutDate()}"></td>
+        </tr>
+        <tr>
+            <td>Price for one night:</td>
+            <td th:text="${requestByID.getRoom().getPrice()}"></td>
+        </tr>
+        <tr th:if="${requestByID.getRoom().getDiscount() != null}">
+            <td>Discounted price:</td>
+            <td th:text="${requestByID.getRoom().getDiscount()}"></td>
+        </tr>
+        <tr>
+            <td>Total price:</td>
+            <td th:text="${requestByID.getRoom().getPrice()}"></td>
+        </tr>
 
+    </table>
+</div>
 </body>
 </html>

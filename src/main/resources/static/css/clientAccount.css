@@ -52,8 +52,16 @@ h2 {
 
 #content-right { /* Правая колонка */
     margin: 10px 90px 20px 950px; /* Значения отступов */
-    padding: 5px; /* Поля вокруг текста */
+    padding: 10px; /* Поля вокруг текста */
     border: 1px solid #333; /* Параметры рамки */
+}
+
+
+#content-center { /* Левая колонка */
+    border: 1px solid #333; /* Параметры рамки вокруг */
+    width: 800px; /* Ширина колонки */
+    padding: 10px; /* Поля вокруг текста */
+    margin: 10px 10px 20px 15px; /* Значения отступов */
 }
 
 .personal {
