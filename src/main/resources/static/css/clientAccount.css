@@ -13,6 +13,12 @@ h2 {
     margin-top: 0; /* Убираем отступ сверху */
 }
 
+.bb {
+    /*border-style: hidden;*/
+    border-bottom: 1px solid #333;
+    border-collapse: collapse;
+}
+
 #header { /* Верхний блок */
     background: #0080c0; /* Цвет фона */
     padding: 10px; /* Поля вокруг текста */
@@ -27,20 +33,21 @@ h2 {
     margin: 10px 10px 20px 15px; /* Значения отступов */
 }
 
+
 .request {
     width: 600px;
     text-align: left;
-    border-bottom: 1px solid black;
+    /*border-bottom: 1px solid black;*/
 }
 .empty {
     width: 100px;
-    border-bottom: 1px solid black;
+    /*border-bottom: 1px solid black;*/
 
 }
 .status {
     width: 100px;
     text-align: left;
-    border-bottom: 1px solid black;
+    /*border-bottom: 1px solid black;*/
 }
 
 #content-right { /* Правая колонка */

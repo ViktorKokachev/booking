@@ -13,16 +13,20 @@
         <tr>
             <th class="request">Booking:</th>
             <th class="empty"></th>
-            <th class="status">Status: </th>
+            <th class="status">Status:</th>
         </tr>
     </table>
-    <table th:each="request : ${allRequestsByUser}">
+    <table th:each="request : ${allRequestsByUser}" class="bb">
         <tr>
-            <td th:text="'Request number: ' + ${request.getRequestID()} + ' | '
-                + ${request.getRoom().getHotel().getName()} + ' | '
-                + ${request.getRoom().getGuestAmount()} + ' guests | from '
-                + ${request.getCheckInDate()} + ' to '
-                + ${request.getCheckOutDate()}" class="request">
+            <td>
+            <a href="@{/request/${request.getRequestID()}}">
+                <p th:text="'Request number: ' + ${request.getRequestID()} + ' | '
+                     + ${request.getRoom().getHotel().getName()} + ' | '
+                     + ${request.getRoom().getGuestAmount()} + ' guests | from '
+                     + ${request.getCheckInDate()} + ' to '
+                     + ${request.getCheckOutDate()}" class="request">
+                </p>
+            </a>
             </td>
             <td class="empty"></td>
             <td th:text="${request.getRequestStatus()}" title="BOOKED, PAYED, APPROVED, REJECTED" class="status"></td>
@@ -33,35 +37,33 @@
 
 <div id="content-right">
     <form action="#" th:action="@{/users/update}" th:object="${updateUserArguments}" method="post">
-    <table class="pesonal">
-        <tr >
-            <th colspan="2">Personal info:</th>
-        </tr>
-        <tr>
-            <td>Name:</td>
-            <td>
-                <input name="name" type="text" th:value="${userInformation.getName()}"/>
-            </td>
-        </tr>
-        <tr>
-            <td>Login:</td>
-            <td>
-                <input name="login" type="text" th:value="${userInformation.getLogin()}"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Old password:</td>
-            <td><input name="oldPassword" type="text"/></td>
-        </tr>
-        <tr>
-            <td>New password:</td>
-            <td><input name="newPassword" type="text" th:field="*{password}"/></td>
-
-        <tr>
-            <td colspan="2" align="center"><input type="submit" value="Save"></td>
-        </tr>
-    </table>
+        <table class="pesonal">
+            <tr>
+                <th colspan="2">Personal info:</th>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>
+                    <input name="name" type="text" th:value="${userInformation.getName()}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Login:</td>
+                <td>
+                    <input name="login" type="text" th:value="${userInformation.getLogin()}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Old password:</td>
+                <td><input name="oldPassword" type="text" th:field="*{oldPassword}"/></td>
+            </tr>
+            <tr>
+                <td>New password:</td>
+                <td><input name="password" type="text" th:field="*{password}"/></td>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Save"></td>
+            </tr>
+        </table>
     </form>
 </div>
 </body>
