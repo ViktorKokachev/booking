@@ -19,7 +19,6 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RoomService {
 
-    @Autowired
     private RoomRepo roomRepo;
 
     public List<RoomEntity> getAllRoomsWithFilter(GetAllRoomsWithFilterArguments getAllRoomsWithFilterArguments) {

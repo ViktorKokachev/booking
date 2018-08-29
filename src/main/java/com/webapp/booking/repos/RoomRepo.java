@@ -3,6 +3,7 @@ package com.webapp.booking.repos;
 import com.webapp.booking.enums.RoomType;
 import com.webapp.booking.repos.util.RoomEntityRowMapper;
 import com.webapp.booking.entities.RoomEntity;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,12 +12,10 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RoomRepo {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    @Autowired
     private RoomEntityRowMapper rowMapper;
 
     public List<RoomEntity> getDiscountRooms(int amount) {

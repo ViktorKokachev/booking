@@ -2,6 +2,7 @@ package com.webapp.booking.repos;
 
 import com.webapp.booking.entities.HotelEntity;
 import com.webapp.booking.repos.util.HotelEntityRowMapper;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -9,12 +10,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class HotelRepo {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    @Autowired
     private HotelEntityRowMapper rowMapper;
 
     public List<HotelEntity> getAllHotels() {

@@ -18,7 +18,6 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RequestService {
 
-    @Autowired
     RequestRepo requestRepo;
 
     private static final String CARD_NUMBER_PATTERN = "^[0-9]{16}$";

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RoomController {
 
-    @Autowired
     private RoomService roomService;
 
     @GetMapping()

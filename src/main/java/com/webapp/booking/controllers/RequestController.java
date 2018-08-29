@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RequestController {
 
-    @Autowired
     private RequestService requestService;
 
     @GetMapping

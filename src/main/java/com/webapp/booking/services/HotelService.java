@@ -16,7 +16,6 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class HotelService {
 
-    @Autowired
     private HotelRepo hotelRepo;
 
     public List<HotelEntity> getAllHotels() {

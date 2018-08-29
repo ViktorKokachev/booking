@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
 
-    @Autowired
     private UserService userService;
-
-    @Autowired
     private RequestService requestService;
 
     @GetMapping()
