@@ -19,7 +19,7 @@
     <table th:each="request : ${allRequestsByUser}" class="bb">
         <tr>
             <td>
-            <a href="@{/requests/${request.getRequestID()}}">
+                <a th:href="@{'/requests/' + ${request.getRequestID()}}">
                 <p th:text="'Request number: ' + ${request.getRequestID()} + ' | '
                      + ${request.getRoom().getHotel().getName()} + ' | '
                      + ${request.getRoom().getGuestAmount()} + ' guests | from '
