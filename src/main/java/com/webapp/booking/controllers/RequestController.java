@@ -33,7 +33,7 @@ public class RequestController {
     @GetMapping("/{requestID}")
     public String getRequestByID(Model model, @PathVariable Integer requestID) {
         model.addAttribute("requestByID", requestService.getRequestByID(requestID));
-        return null;
+        return "userRequest";
     }
 
     @PostMapping("/create")
