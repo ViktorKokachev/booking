@@ -46,10 +46,16 @@ h2 {
 
 .buttons {
 
-    margin-top: 0px;
-    margin-bottom: 5px;
-    margin-left: 1050px;
+    /*margin-left: 50%;*/
     align: center;
+    display: inline-block;
+    padding: 0px 5px;
+
+}
+.tp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #header { /* Верхний блок */

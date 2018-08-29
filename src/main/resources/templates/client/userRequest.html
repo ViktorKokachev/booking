@@ -66,13 +66,24 @@
         </tr>
     </table>
 </div>
-<div class="buttons">
-    <form action="#" th:action="@{/rooms/myAccount}" method="post">
-        <input type="submit" value="Cancel booking">
-    </form>
-    <form action="#" th:action="@{/payment}" method="post">
-        <input type="submit" value="Pay">
-    </form>
+<div class="tp">
+    <div class="buttons">
+        <form action="#" th:action="@{/rooms/myAccount}" method="post">
+            <input type="submit" value="Back">
+        </form>
+    </div>
+    <div class="buttons">
+        <form action="#" th:action="@{/rooms/myAccount}" method="post">
+            <input type="submit" value="Cancel booking">
+        </form>
+    </div>
+    <div class="buttons">
+        <form action="#" th:action="@{/payment}" method="post">
+            <input type="submit" value="Pay">
+        </form>
+    </div>
 </div>
+
+
 </body>
 </html>
