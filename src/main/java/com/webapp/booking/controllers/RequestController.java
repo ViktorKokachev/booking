@@ -72,6 +72,7 @@ public class RequestController {
     @GetMapping("/pay/{requestID}")
     public String payRequestPage(Model model, @ModelAttribute PayRequestArguments payRequestArguments,
                              @PathVariable Integer requestID) {
+        model.addAttribute("requestID", requestID);
         model.addAttribute("payRequestArguments", new PayRequestArguments());
         return "client/payRequest";
     }
