@@ -49,4 +49,9 @@ public class UserRepo {
                 + "' WHERE user_id = " + userEntity.getUserID();
         jdbcTemplate.execute(sql);
     }
+
+    public List<UserEntity> getUserByLogin(String username) {
+        String sql = "SELECT user_id, login, password, name, role FROM user WHERE login = '" + username + "'";
+        return jdbcTemplate.query(sql, userEntityRowMapper);
+    }
 }
