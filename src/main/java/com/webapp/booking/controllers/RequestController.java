@@ -60,7 +60,7 @@ public class RequestController {
                              @PathVariable Integer requestID) {
         requestService.payRequest(requestID, payRequestArguments);
         //todo: fix hardcoded number
-        return "redirect:/requests/user/" + "1";
+        return "redirect:/users/myAccount";
     }
 
     @PostMapping("/reject/{requestID}")
