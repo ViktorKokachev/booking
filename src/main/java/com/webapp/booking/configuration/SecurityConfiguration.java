@@ -23,17 +23,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                    .antMatchers( "/index", "/signUp", "/login").permitAll()
                     .anyRequest().authenticated()
-                    .antMatchers( "/index", "security/signup", "security/login").permitAll()
-                    .and()
+/*                    .and()
                .formLogin()
-                    .loginPage("/security/login")
+                    .loginPage("/login")
                     .failureUrl("/loginError")
                     .and()
                 .logout()
-                    .logoutUrl("security/logout")
-                    .logoutSuccessUrl("/index")
-                    .and()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/index");*/
+                 .and()
                 .httpBasic().and()
                 .csrf().disable();
     }
