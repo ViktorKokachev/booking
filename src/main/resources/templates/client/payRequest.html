@@ -3,15 +3,15 @@
 <head>
     <title>Payment</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/clientAccount.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/client/payment.css}"/>
 </head>
 <body>
 <div id="header">Hello,</div>
-<div>
-    Please fill card data:
+<div class="top">
+    Please fill in card data:
 </div>
-<div>
-<form action="#" th:object="${payRequestArguments}" method="post">
+<div id="content">
+<form action="#" th:action="@{|/requests/pay/${requestID}|}" th:object="${payRequestArguments}" method="post">
     <table>
         <tr>
             <td>
@@ -46,7 +46,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td colspan="2" align="center">
                 <input type="submit" value="Pay"/>
             </td>
         </tr>
