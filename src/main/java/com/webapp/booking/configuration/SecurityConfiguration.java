@@ -16,13 +16,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http
+                .authorizeRequests()
+                    .antMatchers( "/index", "security/signup", "security/login").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
                 .formLogin()
-                .loginPage("/login")
-                .failureUrl("/loginError")
-                .and()
+                    .loginPage("/security/login")
+                    .failureUrl("/loginError")
+                    .and()
                 .logout()
-                .logoutSuccessUrl("/rooms");
+                    .logoutUrl("security/logout")
+                    .logoutSuccessUrl("/index")
+                    .and()
+                .httpBasic();
+                //.csrf().disable();
     }
+
+    /*@Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .inMemoryAuthentication()
+                .withUser("user").password("password").roles("CLIENT");
+    }*/
 
     /*@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)

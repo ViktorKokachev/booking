@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/security")
 public class SecurityController {
+
+    @GetMapping({"/", "/index"})
+    public String getIndexPage() {
+        return "index";
+    }
+
     @GetMapping("/login")
     public String getLoginPage() {
         return "security/login";
@@ -28,5 +34,15 @@ public class SecurityController {
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
         return "security/error";
+    }
+
+    @GetMapping("/signUp")
+    public String getSignUpPage() {
+        return "security/signUp";
+    }
+
+    @PostMapping("/signUp")
+    public String signUp() {
+        return null;
     }
 }
