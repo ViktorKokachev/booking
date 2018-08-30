@@ -59,13 +59,21 @@ public class RequestController {
     public String payRequest(Model model, @ModelAttribute PayRequestArguments payRequestArguments,
                              @PathVariable Integer requestID) {
         requestService.payRequest(requestID, payRequestArguments);
-        return null;
+        //todo: fix hardcoded number
+        return "redirect:/requests/user/" + "1";
     }
 
     @PostMapping("/reject/{requestID}")
     public String rejectRequest(Model model, @PathVariable Integer requestID) {
         requestService.rejectRequest(requestID);
         return null;
+    }
+
+    @GetMapping("/pay/{requestID}")
+    public String payRequestPage(Model model, @ModelAttribute PayRequestArguments payRequestArguments,
+                             @PathVariable Integer requestID) {
+        model.addAttribute("payRequestArguments", new PayRequestArguments());
+        return "payRequest";
     }
 
     @PostMapping("/approve/{requestID}")
