@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Room booking</title>
+    <title>Room</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/clientAccount.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/client/clientAccount.css}"/>
 </head>
 <body>
 <div id="header">Hello,</div>
@@ -78,7 +78,7 @@
         </form>
     </div>
     <div class="buttons">
-        <form action="#" th:action="@{/payment}" method="post">
+        <form action="#" th:action="@{|/pay/${requestByID.getRoom().getRoomID()}|}" method="post">
             <input type="submit" value="Pay">
         </form>
     </div>

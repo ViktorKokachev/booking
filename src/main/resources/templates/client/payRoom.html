@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Payment</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/clientAccount.css}"/>
+</head>
+<body>
+<div id="header">Hello,</div>
+<div>
+    Please fill card data:
+</div>
+<div>
+<form action="#" th:object="${payRequestArguments}" method="post">
+    <table>
+        <tr>
+            <td>
+                Card number:
+            </td>
+            <td>
+                <input type="text" name="cardNumber" th:field="*{cardNumber}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Expiration date:
+            </td>
+            <td>
+                <input type="text" name="cardExpirationDate" th:field="*{cardExpirationDate}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Security code:
+            </td>
+            <td>
+                <input type="password" name="cardCVVr" th:field="*{cardCVV}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Name and surname:
+            </td>
+            <td>
+                <input type="text" name="cardHolderName" th:field="*{cardHolderName}"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</div>
+</body>
+</html>
