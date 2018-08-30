@@ -73,7 +73,7 @@ public class RequestController {
     public String payRequestPage(Model model, @ModelAttribute PayRequestArguments payRequestArguments,
                              @PathVariable Integer requestID) {
         model.addAttribute("payRequestArguments", new PayRequestArguments());
-        return "payRequest";
+        return "client/payRequest";
     }
 
     @PostMapping("/approve/{requestID}")
