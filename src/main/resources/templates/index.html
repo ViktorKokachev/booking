@@ -1,26 +1,41 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Hello Spring Security</title>
-    <meta charset="utf-8" />
-<!--
-    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
--->
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/logincss}"/>
 </head>
+
 <body>
-<!--<div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
-    Logged in user: <span sec:authentication="name"></span> |
-    Roles: <span sec:authentication="principal.authorities"></span>
-    <div>
-        <form action="#" th:action="@{/logout}" method="post">
-            <input type="submit" value="Logout" />
-        </form>
-    </div>
-</div>-->
-<h1>Start page!</h1>
-<p>ZDAROVA!</p>
-<ul>
-    <li>Go to the <a href="/security/login.html" th:href="@{/login}"> to login!</a></li>
-</ul>
+<div id="header">Hello,</div>
+<!--<p th:if="${loginError}" class="error">Wrong user or password</p>-->
+<div id="content">
+    <form th:action="@{/login}" th:object="${loginArguments}" method="post">
+        <table>
+            <tr>
+                <td>
+                    Username:
+                </td>
+                <td>
+                    <input type="text" id="username" name="username" th:field="*{username}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password:
+                </td>
+                <td>
+                    <input type="password" id="password" name="password" th:field="*{password}"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Log in"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
 </body>
 </html>

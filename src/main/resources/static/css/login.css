@@ -19,15 +19,9 @@ h2 {
     font-size: 18px;
 }
 
-#content { /* Левая колонка */
+#content{ /* Левая колонка */
     border: 1px solid #333; /* Параметры рамки вокруг */
-    width: 300px; /* Ширина колонки *!*/
-    padding: 5px; /* Поля вокруг текста *!*/
+    /*width: 800px; !* Ширина колонки *!*/
+    /*padding: 10px; !* Поля вокруг текста *!*/
     /*margin: 10px 10px 20px 15px; !* Значения отступов *!*/
-    margin-left: 15px;
-}
-
-table {
-    border: 1px solid #333;
-    margin: auto;
 }
