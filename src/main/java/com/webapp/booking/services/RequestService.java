@@ -133,11 +133,11 @@ public class RequestService {
             }
         }
 
-        return nightPrice * getDifferenceDays(requestByID.getCheckInDate(), requestByID.getCheckOutDate());
+        return nightPrice * (getDifferenceDays(requestByID.getCheckInDate(), requestByID.getCheckOutDate()) + 1.0);
     }
 
     private static Long getDifferenceDays(Date d1, Date d2) {
-        long diff = d2.getTime() - d1.getTime();
+        Long diff = d2.getTime() - d1.getTime();
         return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 
@@ -148,6 +148,8 @@ public class RequestService {
 
     private static Boolean isCardNumberValid(String cardNumber)
     {
+
+        cardNumber = cardNumber.replaceAll("\\s+", "");
 
         if (!cardNumber.matches(CARD_NUMBER_PATTERN))
             return false;

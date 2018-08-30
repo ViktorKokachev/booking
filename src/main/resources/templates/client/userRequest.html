@@ -1,68 +1,89 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Room booking</title>
+    <title>Room</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/clientAccount.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/client/clientAccount.css}"/>
 </head>
 <body>
 <div id="header">Hello,</div>
+
 <div id="content-center">
-    <table>
+    <table class="tpk">
         <tr>
-            <td>Request number:</td>
-            <td th:text="${requestByID.getRequestID()}">Hotel name</td>
+            <td class="tpk1">Request number:</td>
+            <td th:text="${requestByID.getRequestID()}" class="tpk2" colspan="2">Hotel name</td>
         </tr>
         <tr>
-            <td>Hotel:</td>
-            <td th:text="${requestByID.getRoom().getHotel().getName()}">Hotel name</td>
+            <td class="tpk1">Hotel:</td>
+            <td th:text="${requestByID.getRoom().getHotel().getName()}" class="tpk2" colspan="2">Hotel name</td>
         </tr>
         <tr>
-            <td>Address:</td>
-            <td th:text="${requestByID.getRoom().getHotel().getAddress()}">Hotel address</td>
+            <td class="tpk1">Address:</td>
+            <td th:text="${requestByID.getRoom().getHotel().getAddress()}" class="tpk2" colspan="2">Hotel address</td>
         </tr>
         <tr>
-            <td>Rating:</td>
-            <td th:text="${requestByID.getRoom().getHotel().getRating()}">Hotel rating</td>
+            <td class="tpk1">Rating:</td>
+            <td th:text="${requestByID.getRoom().getHotel().getRating()}" class="tpk2" colspan="2">Hotel rating</td>
         </tr>
         <tr>
-            <td>Description:</td>
-            <td th:text="${requestByID.getRoom().getHotel().getDescription()}">Hotel description</td>
+            <td class="tpk1">Description:</td>
+            <td th:text="${requestByID.getRoom().getHotel().getDescription()}" class="tpk2" colspan="2">Hotel
+                description
+            </td>
         </tr>
         <tr>
-            <td>Guests:</td>
-            <td th:text="${requestByID.getRoom().getGuestAmount()}"></td>
+            <td class="tpk1">Guests:</td>
+            <td th:text="${requestByID.getRoom().getGuestAmount()}" class="tpk2" colspan="2"></td>
         </tr>
         <tr>
-            <td>Room type:</td>
-            <td th:text="${requestByID.getRoom().getRoomType()}"></td>
+            <td class="tpk1">Room type:</td>
+            <td th:text="${requestByID.getRoom().getRoomType()}" class="tpk2" colspan="2"></td>
         </tr>
         <tr>
-            <td>Room description:</td>
-            <td th:text="${requestByID.getRoom().getDescription()}"></td>
+            <td class="tpk1">Room description:</td>
+            <td th:text="${requestByID.getRoom().getDescription()}" class="tpk2" colspan="2"></td>
         </tr>
         <tr>
-            <td>Check in date:</td>
-            <td th:text="${requestByID.getCheckInDate()}"></td>
+            <td class="tpk1">Check in date:</td>
+            <td th:text="${requestByID.getCheckInDate()}" class="tpk2" colspan="2"></td>
         </tr>
         <tr>
-            <td>Check out date:</td>
-            <td th:text="${requestByID.getCheckOutDate()}"></td>
+            <td class="tpk1">Check out date:</td>
+            <td th:text="${requestByID.getCheckOutDate()}" class="tpk2" colspan="2"></td>
         </tr>
         <tr>
-            <td>Price for one night:</td>
-            <td th:text="${requestByID.getRoom().getPrice()}"></td>
+            <td class="tpk1">Price for one night:</td>
+            <td th:text="${requestByID.getRoom().getPrice()}" class="tpk2" colspan="2"></td>
         </tr>
         <tr th:if="${requestByID.getRoom().getDiscount() != null}">
-            <td>Discounted price:</td>
-            <td th:text="${requestByID.getRoom().getDiscount()}"></td>
+            <td class="tpk1">Discounted price:</td>
+            <td th:text="${requestByID.getRoom().getDiscount()}" class="tpk2" colspan="2"></td>
         </tr>
         <tr>
-            <td>Total price:</td>
-            <td th:text="${requestByID.getRoom().getPrice()}"></td>
+            <td class="tpk1">Total price:</td>
+            <td th:text="${requestByID.getRoom().getPrice()}" class="tpk2" colspan="2"></td>
         </tr>
-
     </table>
 </div>
+<div class="tp">
+    <div class="buttons">
+        <form action="#" th:action="@{/rooms/myAccount}" method="post">
+            <input type="submit" value="Back">
+        </form>
+    </div>
+    <div class="buttons">
+        <form action="#" th:action="@{/rooms/myAccount}" method="post">
+            <input type="submit" value="Cancel booking">
+        </form>
+    </div>
+    <div class="buttons">
+        <form action="#" th:action="@{|/pay/${requestByID.getRoom().getRoomID()}|}" method="post">
+            <input type="submit" value="Pay">
+        </form>
+    </div>
+</div>
+
+
 </body>
 </html>

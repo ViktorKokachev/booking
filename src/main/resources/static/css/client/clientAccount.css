@@ -19,6 +19,45 @@ h2 {
     border-collapse: collapse;
 }
 
+.tpk {
+
+    border-collapse: collapse;
+    width: 945px;
+
+}
+
+.tpk1 {
+    border: 1px solid #333;
+    width: 200px;
+    height: 20px;
+    padding-left: 5px;
+    /*border-collapse: collapse;*/
+
+}
+
+.tpk2 {
+    border: 1px solid #333;
+    width: 745px;
+    height: 20px;
+    padding-left: 5px;
+    /*border-collapse: collapse;*/
+
+}
+
+.buttons {
+
+    /*margin-left: 50%;*/
+    align: center;
+    display: inline-block;
+    padding: 0px 5px;
+
+}
+.tp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #header { /* Верхний блок */
     background: #0080c0; /* Цвет фона */
     padding: 10px; /* Поля вокруг текста */
@@ -56,12 +95,11 @@ h2 {
     border: 1px solid #333; /* Параметры рамки */
 }
 
-
-#content-center { /* Левая колонка */
-    border: 1px solid #333; /* Параметры рамки вокруг */
-    width: 800px; /* Ширина колонки */
-    padding: 10px; /* Поля вокруг текста */
-    margin: 10px 10px 20px 15px; /* Значения отступов */
+#content-center{
+    align: center;
+    margin: 10px 205px 5px 205px; /* Значения отступов */
+    padding: 5px; /* Поля вокруг текста */
+    border: 1px solid #333; /* Параметры рамки */
 }
 
 .personal {
