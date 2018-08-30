@@ -1,8 +1,8 @@
 package com.webapp.booking.controllers;
 
+import com.webapp.booking.requests.other.LoginArguments;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +19,11 @@ public class SecurityController {
 
     @PreAuthorize("permitAll()")
     @PostMapping("/login")
-    public String signIn(String password, String username) {
+    public String signIn(LoginArguments loginArguments) {
 
         // fix
 
-        if (!password.equals("123")) {
+        if (!loginArguments.getPassword().equals("123")) {
             return "redirect:/loginError";
         }
 
