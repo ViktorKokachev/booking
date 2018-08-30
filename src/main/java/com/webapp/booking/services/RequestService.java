@@ -149,6 +149,8 @@ public class RequestService {
     private static Boolean isCardNumberValid(String cardNumber)
     {
 
+        cardNumber = cardNumber.replaceAll("\\s+", "");
+
         if (!cardNumber.matches(CARD_NUMBER_PATTERN))
             return false;
 
