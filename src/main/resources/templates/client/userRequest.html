@@ -78,7 +78,7 @@
         </form>
     </div>
     <div class="buttons">
-        <form action="#" th:action="@{|/pay/${requestByID.getRoom().getRoomID()}|}" method="post">
+        <form action="#" th:action="@{|/pay/${requestByID.getRoom().getRoomID()}|}" method="get">
             <input type="submit" value="Pay">
         </form>
     </div>
