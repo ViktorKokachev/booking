@@ -18,12 +18,6 @@ public class SecurityController {
     }
 
     @PreAuthorize("permitAll()")
-    @GetMapping("/login")
-    public String getLoginPage() {
-        return "security/login";
-    }
-
-    @PreAuthorize("permitAll()")
     @PostMapping("/login")
     public String signIn(String password, String username) {
 
