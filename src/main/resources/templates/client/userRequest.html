@@ -64,10 +64,10 @@
             <td class="tpk1">Total price:</td>
             <td th:text="${requestByID.getRoom().getPrice()}" class="tpk2" colspan="2"></td>
         </tr>
-        <!--<tr>-->
-            <!--<td class="tpk1">Total price:</td>-->
-            <!--<td th:text="${requestByID.Status()}" class="tpk2" colspan="2"></td>-->
-        <!--</tr>-->
+        <tr>
+            <td class="tpk1">Status:</td>
+            <td th:text="${requestByID.getRequestStatus()}" class="tpk2" colspan="2"></td>
+        </tr>
     </table>
 </div>
 <div class="tp">
@@ -81,13 +81,11 @@
             <input type="submit" value="Cancel booking">
         </form>
     </div>
-    <div class="buttons">
+    <div class="buttons" th:if="${requestByID.getRequestStatus().toString() == 'BOOKED'}">
         <form action="#" th:action="@{|/requests/pay/${requestByID.getRoom().getRoomID()}|}" method="get">
             <input type="submit" value="Pay">
         </form>
     </div>
 </div>
-
-
 </body>
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All requests</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/admin.css}"/>
+</head>
+<body>
+<div id="header">Hello,</div>
+
+<div id="sidebar">
+    <form action="#" th:action="@{/requests/withFilter}" th:object="${getAllRequestsWithFilterArguments}" method="post">
+        <div>Booking status<br/>
+            <select name="status" type="text" th:field="*{status}">
+                <option selected value="">not selected</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <br/>
+        <div>
+            Client name: <br/>
+            <input type="text" name="name" th:field="*{name}"/>
+        </div>
+        <br/>
+        <input type="submit" value="Search">
+        <input type="reset" value="Reset">
+    </form>
+</div>
+
+
+<div id="content">
+    <table>
+        <tr>
+            <th class="request">Request:</th>
+            <th class="empty"></th>
+            <th class="status">Status:</th>
+        </tr>
+    </table>
+    <table th:each="request : ${allRequests}" class="bb">
+        <tr>
+            <td>
+                <a th:href="@{'/requests/' + ${request.getRequestID()}}">
+                    <p th:text="'Request number: ' + ${request.getRequestID()} + ' | '
+                     + ${request.getRoom().getHotel().getName()} + ' | '
+                     + ${request.getRoom().getGuestAmount()} + ' guests | from '
+                     + ${request.getCheckInDate()} + ' to '
+                     + ${request.getCheckOutDate()}" class="request">
+                    </p>
+                </a>
+            </td>
+            <td class="empty"></td>
+            <td th:text="${request.getRequestStatus()}" title="BOOKED, PAYED, APPROVED, REJECTED" class="status"></td>
+        </tr>
+    </table>
+    <br/>
+</div>
+
+
+</body>
+</html>
