@@ -42,7 +42,7 @@ public class RequestEntityRowMapper implements RowMapper<RequestEntity> {
         hotelEntity.setAddress(address);
         hotelEntity.setRating(rating);
         hotelEntity.setDescription(hotelDescription);
-        hotelEntity.setOwnerID(ownerID);
+        hotelEntity.(ownerID);
         hotelEntity.setIsApproved(isApproved);
 
         RoomEntity roomEntity = new RoomEntity();
