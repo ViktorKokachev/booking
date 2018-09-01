@@ -8,9 +8,14 @@ import com.webapp.booking.requests.room.*;
 import com.webapp.booking.services.RoomService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Security;
 
 @RequestMapping("/rooms")
 @Controller
@@ -19,8 +24,15 @@ public class RoomController {
 
     private RoomService roomService;
 
+    @PreAuthorize("permitAll()")
     @GetMapping()
     public String getDiscountRooms(Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+
+        System.err.println(currentPrincipalName);
+
         model.addAttribute("discountRooms", roomService.getDiscountRooms());
         model.addAttribute("getAllRoomsWithFilterArguments", new GetAllRoomsWithFilterArguments());
         model.addAttribute("extendedRequestArguments", new ExtendedRequestArguments());
@@ -34,6 +46,7 @@ public class RoomController {
         return "client/allRoomsWithFilter";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/book/{roomID}")
     public String getBookingRoom(@PathVariable Integer roomID, Model model) {
         model.addAttribute("bookingRoom", roomService.getRoomByID(roomID));

@@ -3,6 +3,7 @@ package com.webapp.booking.controllers;
 import com.webapp.booking.requests.other.LoginArguments;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,13 +14,17 @@ public class SecurityController {
 
     @PreAuthorize("permitAll()")
     @GetMapping({"/", "/index"})
-    public String getIndexPage() {
+    public String getIndexPage(Model model) {
+        model.addAttribute("loginArguments", new LoginArguments());
         return "index";
     }
 
     @PreAuthorize("permitAll()")
     @PostMapping("/login")
     public String signIn(LoginArguments loginArguments) {
+
+
+        System.err.println(loginArguments.toString());
 
         // fix
 

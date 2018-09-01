@@ -14,6 +14,7 @@ import java.util.List;
 public class UserRepo {
 
     JdbcTemplate jdbcTemplate;
+
     UserEntityRowMapper userEntityRowMapper;
 
     public List<UserEntity> getAllUsers() {

@@ -21,6 +21,7 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UserService implements UserDetailsService {
 
+
     UserRepo userRepo;
 
     public List<UserEntity> getAllUsers() {
