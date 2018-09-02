@@ -1,0 +1,69 @@
+body {
+    font: 11pt Arial, Helvetica, sans-serif; /* Рубленый шрифт текста */
+    margin: 0; /* Отступы на странице */
+}
+
+h1 {
+    font-size: 36px; /* Размер шрифта */
+    margin: 0; /* Убираем отступы */
+    color: #fc6; /* Цвет текста */
+}
+
+h2 {
+    margin-top: 0; /* Убираем отступ сверху */
+}
+
+#header { /* Верхний блок */
+    background: #0080c0; /* Цвет фона */
+    padding: 10px; /* Поля вокруг текста */
+    font-size: 18px;
+}
+.buttons {
+    margin-left: 25%;
+    align: left;
+    display: inline-block;
+    padding: 0px 5px;
+
+}
+#buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #333;
+}
+
+
+.bb {
+    /*border-style: hidden;*/
+    border-bottom: 1px solid #333;
+    border-collapse: collapse;
+}
+
+#sidebar { /* Левая колонка */
+    float: left; /* Обтекание справа */
+    border: 1px solid #333; /* Параметры рамки вокруг */
+    width: 15%; /* Ширина колонки */
+    padding: 10px; /* Поля вокруг текста */
+    margin: 10px 10px 20px 15px; /* Значения отступов */
+}
+
+#content { /* Правая колонка */
+    margin: 10px 105px 20px 25%; /* Значения отступов */
+    padding: 5px; /* Поля вокруг текста */
+    border: 1px solid #333; /* Параметры рамки */
+}
+.request {
+    width: 600px;
+    text-align: left;
+    /*border-bottom: 1px solid black;*/
+}
+.empty {
+    width: 100px;
+    /*border-bottom: 1px solid black;*/
+
+}
+.status {
+    width: 100px;
+    text-align: left;
+    /*border-bottom: 1px solid black;*/
+}
