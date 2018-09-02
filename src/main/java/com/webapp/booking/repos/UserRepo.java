@@ -14,6 +14,7 @@ import java.util.List;
 public class UserRepo {
 
     JdbcTemplate jdbcTemplate;
+
     UserEntityRowMapper userEntityRowMapper;
 
     public List<UserEntity> getAllUsers() {
@@ -48,5 +49,10 @@ public class UserRepo {
                 + "', role = '" + userEntity.getUserRole()
                 + "' WHERE user_id = " + userEntity.getUserID();
         jdbcTemplate.execute(sql);
+    }
+
+    public List<UserEntity> getUserByLogin(String username) {
+        String sql = "SELECT user_id, login, password, name, role FROM user WHERE login = '" + username + "'";
+        return jdbcTemplate.query(sql, userEntityRowMapper);
     }
 }

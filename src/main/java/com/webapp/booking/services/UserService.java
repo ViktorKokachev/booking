@@ -6,13 +6,21 @@ import com.webapp.booking.requests.user.CreateUserArguments;
 import com.webapp.booking.requests.user.UpdateUserArguments;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class UserService {
+public class UserService implements UserDetailsService {
+
 
     UserRepo userRepo;
 
@@ -69,5 +77,25 @@ public class UserService {
 
     public void deleteUser(Integer userID) {
         userRepo.deleteUser(userID);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        List<UserEntity> userByID = userRepo.getUserByLogin(username);
+        UserEntity userEntity;
+
+        if (userByID.size() == 0) {
+            throw new UsernameNotFoundException("There is no user with this login");
+        } else if (userByID.size() > 1) {
+            throw new UsernameNotFoundException("There are more than one user with this login");
+        } else {
+            userEntity = userByID.get(0);
+        }
+
+        final List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
+        grantedAuthorityList.add(new SimpleGrantedAuthority(userEntity.getUserRole().toString()));
+
+        return new User(userEntity.getLogin(), userEntity.getPassword(), grantedAuthorityList);
     }
 }
