@@ -3,6 +3,7 @@ package com.webapp.booking.controllers;
 
 import com.webapp.booking.entities.RequestEntity;
 import com.webapp.booking.requests.request.CreateRequestArguments;
+import com.webapp.booking.requests.request.GetAllRequestsWithFilterArguments;
 import com.webapp.booking.requests.request.PayRequestArguments;
 import com.webapp.booking.requests.request.UpdateRequestArguments;
 import com.webapp.booking.services.RequestService;
@@ -18,6 +19,13 @@ import org.springframework.web.bind.annotation.*;
 public class RequestController {
 
     private RequestService requestService;
+
+    @GetMapping("/adminRequests")
+    public String getAdminRequests(Model model) {
+        model.addAttribute("allRequests", requestService.getAllRequests());
+        model.addAttribute("getAllRequestsWithFilterArguments", new GetAllRequestsWithFilterArguments());
+        return "requestsList";
+    }
 
     @GetMapping
     public String getAllRequests(Model model) {

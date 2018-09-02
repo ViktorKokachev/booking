@@ -35,23 +35,22 @@ public class SecurityController {
         return "redirect:/rooms";
     }
 
-
-    /*@GetMapping("/loginError")
-    public String loginError(Model model) {
-        model.addAttribute("loginError", true);
-        return "security/error";
-    }*/
-
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("permitAll()")
     @GetMapping("/signUp")
     public String getSignUpPage() {
         return "security/signUp";
     }
 
+    @PreAuthorize("permitAll()")
     @PostMapping("/signUp")
     public String signUp() {
         return null;
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/signOut")
+    public String signOut() {
+        return null;
+    }
 
 }
