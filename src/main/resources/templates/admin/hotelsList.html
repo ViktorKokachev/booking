@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>All requests</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/admin.css}"/>
 </head>
 <body>
+
+<div id="header">
+    <div class="txt">Welcome to bookster!</div>
+
+    <div class="img"><img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/></div>
+</div>
+
+<table>
+    <tr>
+        <th class="request">Request:</th>
+        <th class="empty"></th>
+        <th class="status">Status:</th>
+    </tr>
+</table>
 
 </body>
 </html>

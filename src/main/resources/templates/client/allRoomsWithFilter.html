@@ -8,7 +8,11 @@
 </head>
 <body>
 
-<div id="header">Hello,</div>
+<div id="header">
+    <div class="txt">Hello, </div>
+    <div class="img"><img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/></div>
+</div>
+
 <div id="sidebar">
     <form action="#" th:action="@{/rooms/withFilter}" th:object="${getAllRoomsWithFilterArguments}" method="post">
         <div>Hotel rating:<br/>

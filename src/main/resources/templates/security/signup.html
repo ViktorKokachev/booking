@@ -7,17 +7,22 @@
 </head>
 
 <body>
-<div id="header">Hello,</div>
+
+<div id="header">
+    <div class="txt">Welcome to bookster!</div>
+    <div class="img"><img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/></div>
+</div>
+
 <!--<p th:if="${loginError}" class="error">Wrong user or password</p>-->
 <div id="content">
-    <form th:action="@{/signUp}" th:object="${sighUpArguments}" method="post">
+    <form th:action="@{/signUp}" th:object="${signUpArguments}" method="post">
         <table>
             <tr>
                 <td>
-                    Username:
+                    Login:
                 </td>
                 <td>
-                    <input type="text" id="username" name="username" th:field="*{username}"/>
+                    <input type="text" id="username" name="username" th:field="*{login}"/>
                 </td>
             </tr>
             <tr>
@@ -41,7 +46,7 @@
                     Repeat password:
                 </td>
                 <td>
-                    <input type="password" id="repeatPassword" name="pereatPassword" th:field="*{repeatPassword}"/>
+                    <input type="password" id="repeatedPassword" name="pereatedPassword" th:field="*{repeatedPassword}"/>
                 </td>
             </tr>
             <tr>

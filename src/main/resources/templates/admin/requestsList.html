@@ -6,7 +6,30 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/admin/admin.css}"/>
 </head>
 <body>
-<div id="header">Hello,</div>
+
+<div id="header">
+    <div class="txt">Welcome to bookster!</div>
+    <div class="img"><img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/></div>
+</div>
+
+
+<div id="buttons-container">
+    <div class="buttons">
+        <form action="#" th:action="@{/requests}" method="get">
+            <input type="submit" value="Requests">
+        </form>
+    </div>
+    <div class="buttons">
+        <form action="#" th:action="@{/users}" method="get">
+            <input type="submit" value="Clients">
+        </form>
+    </div>
+    <div class="buttons">
+        <form action="#" th:action="@{/owners}" method="get">
+            <input type="submit" value="Owners">
+        </form>
+    </div>
+</div>
 
 <div id="sidebar">
     <form action="#" th:action="@{/requests/withFilter}" th:object="${getAllRequestsWithFilterArguments}" method="post">
