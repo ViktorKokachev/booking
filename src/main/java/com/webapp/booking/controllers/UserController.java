@@ -1,6 +1,7 @@
 package com.webapp.booking.controllers;
 
 import com.webapp.booking.requests.user.CreateUserArguments;
+import com.webapp.booking.requests.user.GetAllUsersWithFilterArguments;
 import com.webapp.booking.requests.user.UpdateUserArguments;
 import com.webapp.booking.services.RequestService;
 import com.webapp.booking.services.UserService;
@@ -23,7 +24,8 @@ public class UserController {
     @GetMapping()
     public String getAllUsers(Model model) {
         model.addAttribute("allUsers", userService.getAllUsers());
-        return "admin/allUsers";
+        model.addAttribute("getAllUsersWithFilterArguments", new GetAllUsersWithFilterArguments());
+        return "admin/usersList";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

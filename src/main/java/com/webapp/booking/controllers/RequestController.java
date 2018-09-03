@@ -21,13 +21,13 @@ public class RequestController {
 
     private RequestService requestService;
 
-    // todo:  provide authorities
+/*    // todo:  provide authorities
     @GetMapping("/adminRequests")
     public String getAdminRequests(Model model) {
         model.addAttribute("allRequests", requestService.getAllRequests());
         model.addAttribute("getAllRequestsWithFilterArguments", new GetAllRequestsWithFilterArguments());
         return "admin/requestsList";
-    }
+    }*/
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping

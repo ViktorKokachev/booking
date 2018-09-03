@@ -1,6 +1,7 @@
 package com.webapp.booking.controllers;
 
 import com.webapp.booking.requests.hotel.CreateHotelArguments;
+import com.webapp.booking.requests.hotel.GetAllHotelsWithFilterArguments;
 import com.webapp.booking.requests.hotel.UpdateHotelArguments;
 import com.webapp.booking.services.HotelService;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,8 @@ public class HotelController {
     @GetMapping()
     public String getAllHotels(Model model) {
         model.addAttribute("allHotels", hotelService.getAllHotels());
-        return "allHotels";
+        model.addAttribute("getAllHotelsWithFilterArguments", new GetAllHotelsWithFilterArguments());
+        return "admin/hotelsList";
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
