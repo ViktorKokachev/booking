@@ -26,7 +26,7 @@ public class RequestController {
     public String getAdminRequests(Model model) {
         model.addAttribute("allRequests", requestService.getAllRequests());
         model.addAttribute("getAllRequestsWithFilterArguments", new GetAllRequestsWithFilterArguments());
-        return "requestsList";
+        return "admin/requestsList";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

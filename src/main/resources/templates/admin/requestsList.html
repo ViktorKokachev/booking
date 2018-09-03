@@ -11,13 +11,12 @@
 <div id="sidebar">
     <form action="#" th:action="@{/requests/withFilter}" th:object="${getAllRequestsWithFilterArguments}" method="post">
         <div>Booking status<br/>
-            <select name="status" type="text" th:field="*{status}">
+            <select name="status" type="text" th:field="*{requestStatus}">
                 <option selected value="">not selected</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="BOOKED">Booked</option>
+                <option value="PAYED">Payed</option>
+                <option value="APPROVED">Approved</option>
+                <option value="REJECTED">Rejected</option>
             </select>
         </div>
         <br/>
