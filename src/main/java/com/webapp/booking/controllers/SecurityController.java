@@ -52,7 +52,7 @@ public class SecurityController {
     @PreAuthorize("permitAll()")
     @PostMapping("/signUp")
     public String signUp(Model model, SignUpArguments signUpArguments) {
-
+        userService.signUp(signUpArguments);
         return "redirect:/index";
     }
 

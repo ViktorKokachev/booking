@@ -33,7 +33,8 @@ public class RequestController {
     @GetMapping
     public String getAllRequests(Model model) {
         model.addAttribute("allRequests", requestService.getAllRequests());
-        return null;
+        model.addAttribute("getAllRequestsWithFilterArguments", new GetAllRequestsWithFilterArguments());
+        return "admin/requestsList";
     }
 
     @PreAuthorize("hasAuthority('CLIENT')")

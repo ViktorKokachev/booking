@@ -1,7 +1,9 @@
 package com.webapp.booking.services;
 
 import com.webapp.booking.entities.UserEntity;
+import com.webapp.booking.enums.UserRole;
 import com.webapp.booking.repos.UserRepo;
+import com.webapp.booking.requests.other.SignUpArguments;
 import com.webapp.booking.requests.user.CreateUserArguments;
 import com.webapp.booking.requests.user.UpdateUserArguments;
 import lombok.AllArgsConstructor;
@@ -97,5 +99,26 @@ public class UserService implements UserDetailsService {
         grantedAuthorityList.add(new SimpleGrantedAuthority(userEntity.getUserRole().toString()));
 
         return new User(userEntity.getLogin(), userEntity.getPassword(), grantedAuthorityList);
+    }
+
+    public void signUp(SignUpArguments signUpArguments) {
+
+        UserEntity userEntity = new UserEntity();
+
+        if (userRepo.getUserByLogin(signUpArguments.getLogin()) != null) {
+            throw new RuntimeException("We already have user with such login!");
+        }
+
+        userEntity.setLogin(signUpArguments.getLogin());
+
+        userEntity.setName(signUpArguments.getName());
+
+        if (!signUpArguments.getPassword().equals(signUpArguments.getRepeatedPassword()))
+            throw new RuntimeException("Passwords are not the same!");
+
+        userEntity.setPassword(signUpArguments.getPassword());
+        userEntity.setUserRole(UserRole.CLIENT);
+
+        userRepo.createUser(userEntity);
     }
 }
