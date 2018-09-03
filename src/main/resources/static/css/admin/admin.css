@@ -14,10 +14,16 @@ h2 {
 }
 
 #header { /* Верхний блок */
-    background: #0080c0; /* Цвет фона */
+    background: rgb(184, 231, 247); /* Цвет фона */
     padding: 10px; /* Поля вокруг текста */
     font-size: 18px;
+    height: 60px;
 }
+.txt {
+    margin-top: 18px;
+    float:left;
+}
+
 .buttons {
     margin-left: 25%;
     align: left;
