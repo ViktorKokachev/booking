@@ -7,7 +7,11 @@
 </head>
 
 <body>
-<div id="header">Hello,</div>
+<div id="header">
+    Welcome to bookster!
+</div>
+<img src="ic_local_hotel_48px-512.png"/>
+
 <!--<p th:if="${loginError}" class="error">Wrong user or password</p>-->
 <div id="content">
     <form th:action="@{/login}" th:object="${loginArguments}" method="post">
@@ -35,6 +39,11 @@
             </tr>
         </table>
     </form>
+</div>
+
+
+<div class="registration">
+    Not registered? Then click  <a th:href="@{/signUp}">here</a>.
 </div>
 
 </body>
