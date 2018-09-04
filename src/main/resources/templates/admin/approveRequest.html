@@ -1,12 +1,101 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>My account</title>
+    <title>All users</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/client/clientAccount.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/adminSpecificItem.css}"/>
 </head>
 <body>
-<div id="header">Hello,</div>
+
+<div id="header">
+    <div class="txt">Hello, </div>
+    <div class="img"><img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/></div>
+</div>
+
+<div id="content-request">
+    <table class="tpk">
+        <tr>
+            <td class="tpk1">Request number:</td>
+            <td th:text="${requestByID.getRequestID()}" class="tpk2" colspan="2"></td>
+        </tr>
+        <tr>
+            <td class="tpk1">Request date:</td>
+            <td th:text="${requestByID.getRequestDate()}" class="tpk2" colspan="2"></td>
+        </tr>
+        <tr>
+            <td class="tpk1">Hotel:</td>
+            <td th:text="${requestByID.getRoom().getHotel().getName()}" class="tpk2" colspan="2">Hotel name</td>
+        </tr>
+        <tr>
+            <td class="tpk1">Address:</td>
+            <td th:text="${requestByID.getRoom().getHotel().getAddress()}" class="tpk2" colspan="2">Hotel address</td>
+        </tr>
+        <tr>
+            <td class="tpk1">Rating:</td>
+            <td th:text="${requestByID.getRoom().getHotel().getRating()}" class="tpk2" colspan="2">Hotel rating</td>
+        </tr>
+        <tr>
+            <td class="tpk1">Description:</td>
+            <td th:text="${requestByID.getRoom().getHotel().getDescription()}" class="tpk2" colspan="2">Hotel
+                description
+            </td>
+        </tr>
+        <tr>
+            <td class="tpk1">Guests:</td>
+            <td th:text="${requestByID.getRoom().getGuestAmount()}" class="tpk2" colspan="2"></td>
+        </tr>
+        <tr>
+            <td class="tpk1">Room type:</td>
+            <td th:text="${requestByID.getRoom().getRoomType()}" class="tpk2" colspan="2"></td>
+        </tr>
+        <tr>
+            <td class="tpk1">Room description:</td>
+            <td th:text="${requestByID.getRoom().getDescription()}" class="tpk2" colspan="2"></td>
+        </tr>
+        <tr>
+            <td class="tpk1">Check in date:</td>
+            <td th:text="${requestByID.getCheckInDate()}" class="tpk2" colspan="2"></td>
+        </tr>
+        <tr>
+            <td class="tpk1">Check out date:</td>
+            <td th:text="${requestByID.getCheckOutDate()}" class="tpk2" colspan="2"></td>
+        </tr>
+        <tr>
+            <td class="tpk1">Price for one night:</td>
+            <td th:text="${requestByID.getRoom().getPrice()}" class="tpk2" colspan="2"></td>
+        </tr>
+        <tr th:if="${requestByID.getRoom().getDiscount() != null}">
+            <td class="tpk1">Discounted price:</td>
+            <td th:text="${requestByID.getRoom().getDiscount()}" class="tpk2" colspan="2"></td>
+        </tr>
+        <tr>
+            <td class="tpk1">Total price:</td>
+            <td th:text="${requestByID.getRoom().getPrice()}" class="tpk2" colspan="2"></td>
+        </tr>
+        <tr>
+            <td class="tpk1">Status:</td>
+            <td th:text="${requestByID.getRequestStatus()}" class="tpk2" colspan="2"></td>
+        </tr>
+    </table>
+</div>
+<div class="tp">
+    <div class="buttons">
+        <form action="#" th:action="@{/requests}" method="post">
+            <input type="submit" value="Back">
+        </form>
+    </div>
+    <div class="buttons" th:if="${requestByID.getRequestStatus().toString() != 'REJECTED'}">
+        <form action="#" th:action="@{/reject}" method="post">
+            <input type="submit" value="Cancel booking">
+        </form>
+    </div>
+    <div class="buttons" th:if="${requestByID.getRequestStatus().toString() == 'PAYED'}">
+        <form action="#" th:action="@{/approve}" method="get">
+            <input type="submit" value="Approve">
+        </form>
+    </div>
+</div>
+
 
 
 </body>

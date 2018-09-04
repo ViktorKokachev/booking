@@ -1,0 +1,63 @@
+body {
+    font: 11pt Arial, Helvetica, sans-serif; /* Рубленый шрифт текста */
+    margin: 0; /* Отступы на странице */
+}
+
+h1 {
+    font-size: 36px; /* Размер шрифта */
+    margin: 0; /* Убираем отступы */
+    color: #fc6; /* Цвет текста */
+}
+
+h2 {
+    margin-top: 0; /* Убираем отступ сверху */
+}
+#header { /* Верхний блок */
+    background: rgb(184, 231, 247); /* Цвет фона */
+    padding: 10px; /* Поля вокруг текста */
+    font-size: 18px;
+    height: 60px;
+}
+.txt {
+    margin-top: 18px;
+    float:left;
+}
+.img {
+    float:right;
+    vertical-align: middle;
+    margin-right: 25px;
+}
+
+
+.tpk {
+
+    border-collapse: collapse;
+    width: 945px;
+
+}
+
+.tpk1 {
+    border: 1px solid #333;
+    width: 200px;
+    height: 20px;
+    padding-left: 5px;
+    /*border-collapse: collapse;*/
+
+}
+
+.tpk2 {
+    border: 1px solid #333;
+    width: 745px;
+    height: 20px;
+    padding-left: 5px;
+    /*border-collapse: collapse;*/
+
+}
+
+
+#content-request{
+    align: center;
+    margin: 10px 205px 5px 205px; /* Значения отступов */
+    padding: 5px; /* Поля вокруг текста */
+    border: 1px solid #333; /* Параметры рамки */
+}
