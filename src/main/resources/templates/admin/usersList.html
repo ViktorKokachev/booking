@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>All requests</title>
+    <title>All users</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/admin/admin.css}"/>
 </head>
@@ -31,20 +31,34 @@
     </div>
 </div>
 
+
+
+<div class="create-user">
+    <form action="#" th:action="@{/create}" method="get">
+        <input type="submit" value="Create user">
+    </form>
+</div>
+
+
+
 <div id="sidebar">
-    <form action="#" th:action="@{/requests/withFilter}" th:object="${getAllRequestsWithFilterArguments}" method="post">
-        <div>Booking status: <br/>
-            <select name="status" type="text" th:field="*{requestStatus}">
+    <form action="#" th:action="@{/users/withFilter}" th:object="${getAllUsersWithFilterArguments}" method="post">
+        <div>User role: <br/>
+            <select name="userRole" type="text" th:field="*{userRole}">
                 <option selected value="">not selected</option>
-                <option value="BOOKED">Booked</option>
-                <option value="PAYED">Payed</option>
-                <option value="APPROVED">Approved</option>
-                <option value="REJECTED">Rejected</option>
+                <option value="CLIENT">Client</option>
+                <option value="ADMIN">Admin</option>
+                <option value="OWNER">Owner</option>
             </select>
         </div>
         <br/>
         <div>
-            Client name: <br/>
+            Login: <br/>
+            <input type="text" name="login" th:field="*{login}"/>
+        </div>
+        <br/>
+        <div>
+            Name: <br/>
             <input type="text" name="name" th:field="*{name}"/>
         </div>
         <br/>
@@ -54,28 +68,20 @@
 </div>
 
 
-<div id="content">
-    <table>
+<div id="content-user">
+    <table class="table-user">
         <tr>
-            <th class="request">Request:</th>
-            <th class="empty"></th>
-            <th class="status">Status:</th>
+            <th class="table-header">Users:</th>
         </tr>
-    </table>
-    <table th:each="request : ${allRequests}" class="bb">
-        <tr>
+        <tr th:each="user : ${allUsers}" class="bottom-line">
             <td>
-                <a th:href="@{'/requests/' + ${request.getRequestID()}}">
-                    <p th:text="'Request number: ' + ${request.getRequestID()} + ' | '
-                     + ${request.getRoom().getHotel().getName()} + ' | '
-                     + ${request.getRoom().getGuestAmount()} + ' guests | from '
-                     + ${request.getCheckInDate()} + ' to '
-                     + ${request.getCheckOutDate()}" class="request">
+                <a th:href="@{'/users/' + ${user.getUserID()}}">
+                    <p th:text="'User number: ' + ${user.getUserID()} + ' | '
+                     + ${user.getLogin()} + ' | '
+                     + ${user.getUserRole()}">
                     </p>
                 </a>
             </td>
-            <td class="empty"></td>
-            <td th:text="${request.getRequestStatus()}" title="BOOKED, PAYED, APPROVED, REJECTED" class="status"></td>
         </tr>
     </table>
     <br/>

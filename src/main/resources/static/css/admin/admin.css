@@ -53,11 +53,12 @@ table {
 }
 
 #sidebar { /* Левая колонка */
-    float: left; /* Обтекание справа */
+    float: left;
     border: 1px solid #333; /* Параметры рамки вокруг */
     width: 15%; /* Ширина колонки */
     padding: 10px; /* Поля вокруг текста */
     margin: 10px 10px 20px 15px; /* Значения отступов */
+
 }
 
 #content { /* Правая колонка */
@@ -79,4 +80,29 @@ table {
     width: 100px;
     text-align: left;
     /*border-bottom: 1px solid black;*/
+}
+
+#content-user {
+    margin: 10px 350px 20px 25%; /* Значения отступов */
+    padding: 10px 5px 5px 30px; /* Поля вокруг текста */
+    border: 1px solid #333; /* Параметры рамки */
+
+}
+.table-user {
+    width: 600px;
+
+}
+
+.bottom-line {
+    border-bottom: 1px solid #333;
+
+}
+
+.create-user {
+    margin: 10px 130px 20px 0px;
+    float: right;
+}
+
+.table-header {
+    text-align: left;
 }
