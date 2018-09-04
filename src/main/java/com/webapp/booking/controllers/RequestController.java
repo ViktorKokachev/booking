@@ -88,7 +88,7 @@ public class RequestController {
     }
 
     @PreAuthorize("hasAuthority('CLIENT')")
-    @PostMapping("/pay/{requestID}")
+    @PostMapping("/{requestID}/pay")
     public String payRequest(Model model, @ModelAttribute PayRequestArguments payRequestArguments,
                              @PathVariable Integer requestID) {
         requestService.payRequest(requestID, payRequestArguments);

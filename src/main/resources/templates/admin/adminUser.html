@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/adminSpecificItem.css}"/>
+</head>
+<body>
+
+<div id="header">
+    <div class="txt">Hello,</div>
+    <div class="img"><img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/></div>
+</div>
+
+<div id="content-user">
+    <form action="#" th:action="@{/update}" th:object="${updateUserArguments}" method="post">
+        <table class="tpk">
+            <tr>
+                <td class="tpk1">User ID:</td>
+                <td type="text" th:value="${userByID.getUserID()}" class="tpk2" colspan="2"></td>
+            </tr>
+            <tr>
+                <td class="tpk1">Login:</td>
+                <td type="text" th:value="${userByID.getLogin()}" class="tpk2" colspan="2"></td>
+            </tr>
+            <tr>
+                <td class="tpk1">Name:</td>
+                <td type="text" th:value="${userByID.getName()}" class="tpk2" colspan="2">Hotel name</td>
+            </tr>
+            <tr>
+                <td class="tpk1">Reset password:</td>
+                <td type="text" th:field="*{password}" class="tpk2" colspan="2"></td>
+            </tr>
+            <!--<tr>-->
+                <!--<td class="tpk1">User role:</td>-->
+                <!--<td class="tpk2" colspan="2">-->
+                    <!--<select name="userRole" type="text" th:value="${userByID.getUserRole()}">-->
+                        <!--<option selected value="">not selected</option>-->
+                        <!--<option value="CLIENT">Client</option>-->
+                        <!--<option value="ADMIN">Admin</option>-->
+                        <!--<option value="OWNER">Owner</option>-->
+                    <!--</select>-->
+                <!--</td>-->
+            <!--</tr>-->
+        </table>
+</div>
+
+
+<div class="tp">
+    <div class="buttons">
+        <form action="#" th:action="@{/users}" method="post">
+            <input type="submit" value="Back">
+        </form>
+    </div>
+    <div class="buttons">
+        <input type="submit" value="Update">
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -76,7 +76,7 @@
         <tr th:each="user : ${allUsers}" class="bottom-line">
             <td>
                 <a th:href="@{'/users/' + ${user.getUserID()}}">
-                    <p th:text="'User number: ' + ${user.getUserID()} + ' | '
+                    <p th:text="'User ID: ' + ${user.getUserID()} + ' | '
                      + ${user.getLogin()} + ' | '
                      + ${user.getUserRole()}">
                     </p>

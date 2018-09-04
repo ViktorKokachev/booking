@@ -87,7 +87,7 @@
         </form>
     </div>
     <div class="buttons" th:if="${requestByID.getRequestStatus().toString() == 'BOOKED'}">
-        <form action="#" th:action="@{|/requests/pay/${requestByID.getRoom().getRoomID()}|}" method="get">
+        <form action="#" th:action="@{|/requests/${requestByID.getRoom().getRoomID()}/pay|}" method="get">
             <input type="submit" value="Pay">
         </form>
     </div>

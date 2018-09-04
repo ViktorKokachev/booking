@@ -32,7 +32,8 @@ public class UserController {
     @GetMapping("/{userID}")
     public String getUserByID(@PathVariable int userID, Model model) {
         model.addAttribute("userByID", userService.getUserByID(userID));
-        return "admin/userByID";
+        model.addAttribute("updateUserArguments", new UpdateUserArguments());
+        return "admin/adminUser";
     }
 
     @PreAuthorize("hasAuthority('CLIENT')")

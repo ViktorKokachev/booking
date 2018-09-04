@@ -16,14 +16,14 @@
     Please fill in card data:
 </div>
 <div id="content">
-<form action="#" th:action="@{|/requests/pay/${requestID}|}" th:object="${payRequestArguments}" method="post">
+<form action="#" th:action="@{|/requests/${requestID}/pay|}" th:object="${payRequestArguments}" method="post">
     <table>
         <tr>
             <td>
                 Card number:
             </td>
             <td>
-                <input type="text" name="cardNumber" th:field="*{cardNumber}"/>
+                <input type="text" name="cardNumber" th:field="*{cardNumber}" th:required="required"/>
             </td>
         </tr>
         <tr>
@@ -31,7 +31,7 @@
                 Expiration date:
             </td>
             <td>
-                <input type="text" name="cardExpirationDate" th:field="*{cardExpirationDate}"/>
+                <input type="text" name="cardExpirationDate" th:field="*{cardExpirationDate}" th:required="required"/>
             </td>
         </tr>
         <tr>
@@ -39,7 +39,7 @@
                 Security code:
             </td>
             <td>
-                <input type="password" name="cardCVVr" th:field="*{cardCVV}"/>
+                <input type="password" name="cardCVV" th:field="*{cardCVV}" th:required="required"/>
             </td>
         </tr>
         <tr>
@@ -47,7 +47,7 @@
                 Name and surname:
             </td>
             <td>
-                <input type="text" name="cardHolderName" th:field="*{cardHolderName}"/>
+                <input type="text" name="cardHolderName" th:field="*{cardHolderName}" th:required="required"/>
             </td>
         </tr>
         <tr>
