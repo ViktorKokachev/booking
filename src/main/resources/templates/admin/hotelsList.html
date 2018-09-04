@@ -8,18 +8,80 @@
 <body>
 
 <div id="header">
-    <div class="txt">Welcome to bookster!</div>
-
+    <div class="txt">Hello,</div>
     <div class="img"><img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/></div>
 </div>
 
-<table>
-    <tr>
-        <th class="request">Request:</th>
-        <th class="empty"></th>
-        <th class="status">Status:</th>
-    </tr>
-</table>
+
+<div id="buttons-container">
+    <div class="buttons">
+        <form action="#" th:action="@{/requests}" method="get">
+            <input type="submit" value="Requests">
+        </form>
+    </div>
+    <div class="buttons">
+        <form action="#" th:action="@{/users}" method="get">
+            <input type="submit" value="Users">
+        </form>
+    </div>
+    <div class="buttons">
+        <form action="#" th:action="@{/hotels}" method="get">
+            <input type="submit" value="Hotels">
+        </form>
+    </div>
+</div>
+
+<div id="sidebar">
+    <form action="#" th:action="@{/hotels/withFilter}" th:object="${getAllHotelsWithFilterArguments}" method="post">
+        <div>Hotel rating:<br/>
+            <select name="hotelRating" type="text" th:field="*{rating}">
+                <option selected value="">not selected</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <br/>
+
+        <div>
+            Name: <br/>
+            <input type="text" name="name" th:field="*{name}"/>
+        </div>
+        <br/>
+
+        <div>
+            Owner name: <br/>
+            <input type="text" name="name" th:field="*{ownerName}"/>
+        </div>
+        <br/>
+
+        <input type="submit" value="Search">
+        <input type="reset" value="Reset">
+    </form>
+</div>
+
+
+<div id="content-hotel">
+    <table>
+        <tr>
+            <th class="table-header">Hotel:</th>
+        </tr>
+        <tr th:each="hotel : ${allHotels}" class="bottom-line">
+            <td>
+                <a th:href="@{'/hotels/' + ${hotel.getHotelID()}}">
+                    <p th:text="${hotel.getName()} + ' | '
+                     + ${hotel.getAddress()} + ' | Rating: '
+                     + ${hotel.getRating()}">
+                    </p>
+                </a>
+            </td>
+        </tr>
+        <br/>
+    </table>
+</div>
+
 
 </body>
 </html>
