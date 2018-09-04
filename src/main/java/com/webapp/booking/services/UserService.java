@@ -120,4 +120,8 @@ public class UserService implements UserDetailsService {
 
         userRepo.createUser(userEntity);
     }
+
+    public UserEntity getUserByLogin(String username) {
+        return userRepo.getUserByLogin(username).get(0);
+    }
 }
