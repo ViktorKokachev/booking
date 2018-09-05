@@ -82,17 +82,17 @@
 
 <div class="tp">
     <div class="buttons">
-        <form action="#" th:action="@{/requests}" method="post">
+        <form action="#" th:action="@{/requests}">
             <input type="submit" value="Back">
         </form>
     </div>
     <div class="buttons" th:if="${requestByID.getRequestStatus().toString() != 'REJECTED'}">
-        <form action="#" th:action="@{/reject}" method="post">
+        <form action="#" th:action="@{|/requests/${requestByID.getRequestID()}/reject|}" method="post">
             <input type="submit" value="Cancel booking">
         </form>
     </div>
     <div class="buttons" th:if="${requestByID.getRequestStatus().toString() == 'PAYED'}">
-        <form action="#" th:action="@{/approve}" method="get">
+        <form action="#" th:action="@{|/requests/${requestByID.getRequestID()}/approve|}" method="get">
             <input type="submit" value="Approve">
         </form>
     </div>

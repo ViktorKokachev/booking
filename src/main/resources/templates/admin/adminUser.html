@@ -13,43 +13,40 @@
 </div>
 
 <div id="content-user">
-    <form action="#" th:action="@{/update}" th:object="${updateUserArguments}" method="post">
-        <table class="tpk">
+    <form action="#" th:action="@{|/users/${userByID.getUserID()}/update|}" th:object="${updateUserArguments}" method="post">
+        <table class="table-user">
             <tr>
-                <td class="tpk1">User ID:</td>
-                <td type="text" th:text="${userByID.getUserID()}" class="tpk2" colspan="2"></td>
+                <td class="table-user-1">User ID:</td>
+
+
+
+                <td type="text" th:field="${userByID.getUserID()}" class="table-user-2"></td>
             </tr>
             <tr>
-                <td class="tpk1">Login:</td>
-                <td class="tpk2" colspan="2">
-                    <input name="login" type="text" th:value="${userByID.getLogin()}"/>
+                <td class="table-user-1">Login:</td>
+                <td class="table-user-2">
+                    <input name="login" type="text" th:value="${userByID.getLogin()}" th:required="required"/>
                 </td>
             </tr>
             <tr>
-                <td class="tpk1">Name:</td>
-                <td class="tpk2" colspan="2">
-                    <input name="name" type="text" th:value="${userByID.getName()}"/>
+                <td class="table-user-1">Name:</td>
+                <td class="table-user-2">
+                    <input name="name" type="text" th:value="${userByID.getName()}" th:required="required"/>
                 </td>
             </tr>
             <tr>
-                <td class="tpk1">Reset password:</td>
-                <td class="tpk2" colspan="2">
+                <td class="table-user-1">Reset password:</td>
+                <td class="table-user-2">
                     <input name="password" type="text" th:field="*{password}"/>
                 </td>
             </tr>
             <tr>
-                <td class="tpk1">User role:</td>
-                <td class="tpk2" colspan="2">
+                <td class="table-user-1">User role:</td>
+                <td class="table-user-2">
                     <select name="userRole" type="text" th:value="${userRole}">
                         <option value="CLIENT" th:selected="${userByID.getUserRole().toString() == 'CLIENT'}">Client</option>
                         <option value="ADMIN" th:selected="${userByID.getUserRole().toString() == 'ADMIN'}">Admin</option>
                         <option value="OWNER" th:selected="${userByID.getUserRole().toString() == 'OWNER'}">Owner</option>
-                        <!--userByID.getUserRole()-->
-                        <!--<option th:each="option : ${searchOptions}"-->
-                                <!--th:value="${option.getOption()}"-->
-                                <!--th:text="${option.getOptionName()}"-->
-                                <!--th:selected="${searchCriteria.isSelected(option)}">-->
-                        <!--</option>-->
                     </select>
                 </td>
             </tr>
@@ -59,12 +56,12 @@
 
 <div class="tp">
     <div class="buttons">
-        <form action="#" th:action="@{/users}" method="post">
-            <input type="submit" value="Back">
+        <input type="submit" value="Update">
         </form>
     </div>
     <div class="buttons">
-        <input type="submit" value="Update">
+        <form action="#" th:action="@{/users}">
+            <input type="submit" value="Back">
         </form>
     </div>
 </div>
