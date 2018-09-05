@@ -1,5 +1,8 @@
 package com.webapp.booking.configuration;
 
+import com.webapp.booking.enums.UserRole;
+import com.webapp.booking.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -14,6 +17,9 @@ import java.io.IOException;
 
 @Component
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+
+    @Autowired
+    UserService userService;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
@@ -34,7 +40,15 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         //since we have created our custom success handler, its up to us to where
         //we will redirect the user after successfully login
 
-        //todo: redirect to proper pages
-        httpServletResponse.sendRedirect("/rooms");
+        if (userService.getUserRoleByLogin() == UserRole.CLIENT) {
+            //todo: redirect to proper pages
+            httpServletResponse.sendRedirect("/rooms");
+        } else if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+            httpServletResponse.sendRedirect("/requests");
+        } else if (userService.getUserRoleByLogin() == UserRole.OWNER) {
+            throw new RuntimeException("OWNER IS CURRENTLY NOT ACTIVATED!");
+        } else {
+            throw new RuntimeException("DEAFAULT REDIRECT ERROR!");
+        }
     }
 }

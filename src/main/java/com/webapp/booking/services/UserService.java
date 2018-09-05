@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -121,7 +122,13 @@ public class UserService implements UserDetailsService {
         userRepo.createUser(userEntity);
     }
 
-    public UserEntity getUserByLogin(String username) {
-        return userRepo.getUserByLogin(username).get(0);
+    public UserRole getUserRoleByLogin() {
+
+        User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        // todo: add some checks
+        UserEntity userByLogin = userRepo.getUserByLogin(authUser.getUsername()).get(0);
+
+        return userByLogin.getUserRole();
     }
 }

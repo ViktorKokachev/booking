@@ -2,7 +2,6 @@ package com.webapp.booking.controllers;
 
 
 import com.webapp.booking.entities.RequestEntity;
-import com.webapp.booking.entities.UserEntity;
 import com.webapp.booking.enums.UserRole;
 import com.webapp.booking.requests.request.CreateRequestArguments;
 import com.webapp.booking.requests.request.GetAllRequestsWithFilterArguments;
@@ -13,8 +12,6 @@ import com.webapp.booking.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -58,11 +55,9 @@ public class RequestController {
         model.addAttribute("requestByID", requestByID);
         model.addAttribute("requestSum", requestService.getRequestSum(requestByID));
 
-        User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserRole userRoleByLogin = userService.getUserRoleByLogin();
 
-        UserEntity userByLogin = userService.getUserByLogin(authUser.getUsername());
-
-        if (userByLogin.getUserRole() == UserRole.ADMIN) {
+        if (userRoleByLogin == UserRole.ADMIN) {
             return "admin/adminRequest";
         }
 
