@@ -30,7 +30,7 @@ public class HotelController {
     @GetMapping("/owner/{ownerID}")
     public String getAllHotelsByOwnerID(@PathVariable Integer ownerID, Model model) {
         model.addAttribute("allHotelsByOwnerID", hotelService.getAllHotelsByOwnerID(ownerID));
-        return "hotelByOwnerID";
+        return "/owner/ownerHotelsList";
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")

@@ -112,7 +112,8 @@ h2 {
     padding: 5px; /* Поля вокруг текста */
     border: 1px solid #333; /* Параметры рамки */
 }
-.table-hotel {
+.table-hotel {)
+
     border-collapse: collapse;
     border: 1px solid #333;
 }

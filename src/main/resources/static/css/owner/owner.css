@@ -1,0 +1,66 @@
+body {
+    font: 11pt Arial, Helvetica, sans-serif; /* Рубленый шрифт текста */
+    margin: 0; /* Отступы на странице */
+}
+
+h1 {
+    font-size: 36px; /* Размер шрифта */
+    margin: 0; /* Убираем отступы */
+    color: #fc6; /* Цвет текста */
+}
+
+h2 {
+    margin-top: 0; /* Убираем отступ сверху */
+}
+#header { /* Верхний блок */
+    background: rgb(184, 231, 247); /* Цвет фона */
+    padding: 10px; /* Поля вокруг текста */
+    font-size: 18px;
+    height: 60px;
+}
+.txt {
+    margin-top: 18px;
+    float:left;
+}
+.img {
+    float:right;
+    vertical-align: middle;
+    margin-right: 25px;
+}
+
+
+.buttons {
+    /*margin-left: 25%;*/
+    /*align: left;*/
+    display: inline-block;
+    padding: 15px 10px 5px 10px;
+
+}
+#buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.create-hotel {
+    margin: 10px 130px 20px 0px;
+    float: right;
+}
+
+
+#content-hotel {
+    margin: 10px 200px 20px 25%; /* Значения отступов */
+    padding: 0px 20px 15px 20px;/* Поля вокруг текста */
+    border: 1px solid #333; /* Параметры рамки */
+}
+.table-header {
+    text-align: left;
+}
+.table-hotel {
+    border-bottom: 0px;
+}
+.bottom-line {
+    border-bottom: 1px solid #333;
+
+}
