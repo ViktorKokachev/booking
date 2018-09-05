@@ -28,27 +28,6 @@ h2 {
     margin-right: 25px;
 }
 
-
-.buttons {
-    /*margin-left: 25%;*/
-    /*align: left;*/
-    display: inline-block;
-    padding: 15px 10px 5px 10px;
-
-}
-#buttons-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.all-rooms {
-    margin: 10px 130px 20px 0px;
-    float: right;
-}
-
-
 #content-hotel {
     margin: 10px 200px 20px 25%; /* Значения отступов */
     padding: 0px 20px 15px 20px;/* Поля вокруг текста */
@@ -63,4 +42,9 @@ h2 {
 .bottom-line {
     border-bottom: 1px solid #333;
 
+}
+
+.room-list {
+    margin: 10px 130px 20px 0px;
+    float: right;
 }

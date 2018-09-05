@@ -92,7 +92,7 @@
         </form>
     </div>
     <div class="buttons" th:if="${requestByID.getRequestStatus().toString() == 'PAYED'}">
-        <form action="#" th:action="@{|/requests/${requestByID.getRequestID()}/approve|}" method="get">
+        <form action="#" th:action="@{|/requests/${requestByID.getRequestID()}/approve|}" method="post">
             <input type="submit" value="Approve">
         </form>
     </div>

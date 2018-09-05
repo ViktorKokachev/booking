@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/owner/ownerSpecificItem.css}"/>
+</head>
+<body>
+
+<div id="header">
+    <div class="txt">Hello,</div>
+    <div class="img"><img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/></div>
+</div>
+
+
+<div class="all-rooms">
+    <form action="#" th:action="@{/create}" method="get">
+        <input type="submit" value="Rooms">
+    </form>
+</div>
+
+
+<div id="content-hotel">
+    <form action="#" th:action="@{|/hotels/${hotelByID.getHotelID()}/update|}" th:object="${updateHotelArguments}" method="post">
+        <table class="table-hotel">
+            <tr>
+                <td class="table-hotel-1">Name:</td>
+                <td>
+                    <input name="name" type="text" th:value="${hotelByID.getName()}" th:required="required" class="input-hotel"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-hotel-1">Address:</td>
+                <td>
+                    <input name="address" type="text" th:value="${hotelByID.getAddress()}" th:required="required" class="input-hotel" height="100px"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-hotel-1">Rating:</td>
+                <td>
+                    <input name="rating" type="text" th:value="${hotelByID.getRating()}" th:required="required" class="input-hotel"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-hotel-1">Description:</td>
+                <td>
+                    <input name="description" type="text" th:value="${hotelByID.getDescription()}" th:required="required" class="input-hotel"/>
+                </td>
+            </tr>
+        </table>
+</div>
+
+
+<div class="tp">
+    <div class="buttons">
+        <input type="submit" value="Update">
+        </form>
+        <div class="buttons">
+            <form action="#" th:action="@{/hotels}">
+                <input type="submit" value="Back">
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>
