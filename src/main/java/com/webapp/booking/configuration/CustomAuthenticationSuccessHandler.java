@@ -36,8 +36,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         //set our response to OK status
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
-
-        //since we have created our custom success handler, its up to us to where
+         //since we have created our custom success handler, its up to us to where
         //we will redirect the user after successfully login
 
         if (userService.getUserRoleByLogin() == UserRole.CLIENT) {

@@ -41,6 +41,14 @@ public class RequestController {
         return "admin/requestsList";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/withFilter")
+    public String getAllRequestsWithFilter(Model model,
+                                           @ModelAttribute GetAllRequestsWithFilterArguments getAllRequestsWithFilterArguments) {
+        model.addAttribute("allRequests", requestService.getAllRequestsWithFilter(getAllRequestsWithFilterArguments));
+        return "admin/requestsList";
+    }
+
     @PreAuthorize("hasAuthority('CLIENT')")
     @GetMapping("/user/{userID}")
     public String getAllRequestsByUserID(Model model, @PathVariable Integer userID) {

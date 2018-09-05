@@ -6,6 +6,7 @@ import com.webapp.booking.entities.UserEntity;
 import com.webapp.booking.enums.RequestStatus;
 import com.webapp.booking.repos.RequestRepo;
 import com.webapp.booking.requests.request.CreateRequestArguments;
+import com.webapp.booking.requests.request.GetAllRequestsWithFilterArguments;
 import com.webapp.booking.requests.request.PayRequestArguments;
 import com.webapp.booking.requests.request.UpdateRequestArguments;
 import lombok.AllArgsConstructor;
@@ -136,6 +137,12 @@ public class RequestService {
         return nightPrice * (getDifferenceDays(requestByID.getCheckInDate(), requestByID.getCheckOutDate()) + 1.0);
     }
 
+
+    public List<RequestEntity> getAllRequestsWithFilter(GetAllRequestsWithFilterArguments getAllRequestsWithFilterArguments) {
+
+        return getAllRequests();
+    }
+
     private static Long getDifferenceDays(Date d1, Date d2) {
         Long diff = d2.getTime() - d1.getTime();
         return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
@@ -186,5 +193,4 @@ public class RequestService {
     private static Boolean isCardCVVValid(String cardCVV) {
         return cardCVV.matches(CARD_CVV_PATTERN);
     }
-
 }
