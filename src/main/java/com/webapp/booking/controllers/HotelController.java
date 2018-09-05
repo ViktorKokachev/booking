@@ -36,6 +36,7 @@ public class HotelController {
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
     @GetMapping("/{hotelID}")
     public String getHotelByID(@PathVariable Integer hotelID, Model model) {
+        model.addAttribute("updateHotelArguments", new UpdateHotelArguments());
         model.addAttribute("hotelByID", hotelService.getHotelByID(hotelID));
         return "hotelByID";
     }
