@@ -17,31 +17,42 @@
         <table class="tpk">
             <tr>
                 <td class="tpk1">User ID:</td>
-                <td type="text" th:value="${userByID.getUserID()}" class="tpk2" colspan="2"></td>
+                <td type="text" th:text="${userByID.getUserID()}" class="tpk2" colspan="2"></td>
             </tr>
             <tr>
                 <td class="tpk1">Login:</td>
-                <td type="text" th:value="${userByID.getLogin()}" class="tpk2" colspan="2"></td>
+                <td class="tpk2" colspan="2">
+                    <input name="login" type="text" th:value="${userByID.getLogin()}"/>
+                </td>
             </tr>
             <tr>
                 <td class="tpk1">Name:</td>
-                <td type="text" th:value="${userByID.getName()}" class="tpk2" colspan="2">Hotel name</td>
+                <td class="tpk2" colspan="2">
+                    <input name="name" type="text" th:value="${userByID.getName()}"/>
+                </td>
             </tr>
             <tr>
                 <td class="tpk1">Reset password:</td>
-                <td type="text" th:field="*{password}" class="tpk2" colspan="2"></td>
+                <td class="tpk2" colspan="2">
+                    <input name="password" type="text" th:field="*{password}"/>
+                </td>
             </tr>
-            <!--<tr>-->
-                <!--<td class="tpk1">User role:</td>-->
-                <!--<td class="tpk2" colspan="2">-->
-                    <!--<select name="userRole" type="text" th:value="${userByID.getUserRole()}">-->
-                        <!--<option selected value="">not selected</option>-->
-                        <!--<option value="CLIENT">Client</option>-->
-                        <!--<option value="ADMIN">Admin</option>-->
-                        <!--<option value="OWNER">Owner</option>-->
-                    <!--</select>-->
-                <!--</td>-->
-            <!--</tr>-->
+            <tr>
+                <td class="tpk1">User role:</td>
+                <td class="tpk2" colspan="2">
+                    <select name="userRole" type="text" th:value="${userRole}">
+                        <option value="CLIENT" th:selected="${userByID.getUserRole().toString() == 'CLIENT'}">Client</option>
+                        <option value="ADMIN" th:selected="${userByID.getUserRole().toString() == 'ADMIN'}">Admin</option>
+                        <option value="OWNER" th:selected="${userByID.getUserRole().toString() == 'OWNER'}">Owner</option>
+                        <!--userByID.getUserRole()-->
+                        <!--<option th:each="option : ${searchOptions}"-->
+                                <!--th:value="${option.getOption()}"-->
+                                <!--th:text="${option.getOptionName()}"-->
+                                <!--th:selected="${searchCriteria.isSelected(option)}">-->
+                        <!--</option>-->
+                    </select>
+                </td>
+            </tr>
         </table>
 </div>
 
