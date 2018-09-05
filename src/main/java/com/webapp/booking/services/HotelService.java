@@ -4,6 +4,7 @@ import com.webapp.booking.entities.HotelEntity;
 import com.webapp.booking.repos.HotelRepo;
 import com.webapp.booking.repos.RoomRepo;
 import com.webapp.booking.requests.hotel.CreateHotelArguments;
+import com.webapp.booking.requests.hotel.GetAllHotelsWithFilterArguments;
 import com.webapp.booking.requests.hotel.UpdateHotelArguments;
 import com.webapp.booking.requests.room.UpdateRoomArguments;
 import lombok.AllArgsConstructor;
@@ -82,5 +83,10 @@ public class HotelService {
         if (updateHotelArguments.getRating() != null) {
             toUpdate.setRating(updateHotelArguments.getRating());
         }
+    }
+
+    public List<HotelEntity> getAllHotelsWithFilter(GetAllHotelsWithFilterArguments getAllHotelsWithFilterArguments) {
+        // todo: return real filtered hotels
+        return getAllHotels();
     }
 }

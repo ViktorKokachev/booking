@@ -5,6 +5,7 @@ import com.webapp.booking.enums.UserRole;
 import com.webapp.booking.repos.UserRepo;
 import com.webapp.booking.requests.other.SignUpArguments;
 import com.webapp.booking.requests.user.CreateUserArguments;
+import com.webapp.booking.requests.user.GetAllUsersWithFilterArguments;
 import com.webapp.booking.requests.user.UpdateUserArguments;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,6 +123,18 @@ public class UserService implements UserDetailsService {
         userRepo.createUser(userEntity);
     }
 
+    public UserEntity getCurrentUser() {
+
+        User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        // todo: add some checks
+        UserEntity userByLogin = userRepo.getUserByLogin(authUser.getUsername()).get(0);
+
+        return userByLogin;
+    }
+
+
+
     public UserRole getUserRoleByLogin() {
 
         User authUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -130,5 +143,10 @@ public class UserService implements UserDetailsService {
         UserEntity userByLogin = userRepo.getUserByLogin(authUser.getUsername()).get(0);
 
         return userByLogin.getUserRole();
+    }
+
+    public List<UserEntity> getAllUsersWithFilter(GetAllUsersWithFilterArguments getAllUsersWithFilterArguments) {
+        // todo: return real filtered lists
+        return getAllUsers();
     }
 }

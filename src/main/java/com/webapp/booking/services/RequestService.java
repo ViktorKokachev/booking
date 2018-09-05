@@ -140,6 +140,7 @@ public class RequestService {
 
     public List<RequestEntity> getAllRequestsWithFilter(GetAllRequestsWithFilterArguments getAllRequestsWithFilterArguments) {
 
+        // todo: return real filtered requests
         return getAllRequests();
     }
 

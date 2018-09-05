@@ -26,6 +26,14 @@ public class HotelController {
         return "admin/hotelsList";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping()
+    public String getAllHotelsWithFilter(Model model,
+                                         @ModelAttribute GetAllHotelsWithFilterArguments getAllHotelsWithFilterArguments) {
+        model.addAttribute("allHotels", hotelService.getAllHotelsWithFilter(getAllHotelsWithFilterArguments));
+        return "admin/hotelsList";
+    }
+
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
     @GetMapping("/owner/{ownerID}")
     public String getAllHotelsByOwnerID(@PathVariable Integer ownerID, Model model) {
@@ -42,9 +50,10 @@ public class HotelController {
     }
 
     @PreAuthorize("hasAuthority('OWNER')")
+    @PostMapping("/create")
     public String createHotel(CreateHotelArguments createHotelArguments, Model model) {
         hotelService.createHotel(createHotelArguments);
-        return null;
+        return "/owner/ownerHotelsList";
     }
 
     //add arguments
@@ -59,6 +68,6 @@ public class HotelController {
     @DeleteMapping("/{hotelID}")
     public String deleteHotel(@PathVariable int hotelID, Model model) {
         hotelService.deleteHotel(hotelID);
-        return null;
+        return "redirect:/hotels";
     }
 }

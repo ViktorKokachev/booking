@@ -103,7 +103,7 @@ public class RequestController {
     @PostMapping("/{requestID}/reject")
     public String rejectRequest(Model model, @PathVariable Integer requestID) {
         requestService.rejectRequest(requestID);
-        return "redirect:/admin/adminRequest";
+        return "redirect:/requests/" + requestID;
     }
 
     @PreAuthorize("hasAuthority('CLIENT')")
@@ -119,7 +119,7 @@ public class RequestController {
     @PostMapping("/{requestID}/approve")
     public String approveRequest(Model model, @PathVariable Integer requestID) {
         requestService.approveRequest(requestID);
-        return "redirect:/admin/adminRequest";
+        return "redirect:/requests/" + requestID;
     }
 
     @PreAuthorize("hasAuthority('CLIENT')")

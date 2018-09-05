@@ -45,9 +45,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         } else if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
             httpServletResponse.sendRedirect("/requests");
         } else if (userService.getUserRoleByLogin() == UserRole.OWNER) {
-            throw new RuntimeException("OWNER IS CURRENTLY NOT ACTIVATED!");
+            httpServletResponse.sendRedirect("/hotels");
         } else {
-            throw new RuntimeException("DEAFAULT REDIRECT ERROR!");
+            throw new RuntimeException("DEFAULT REDIRECT ERROR!");
         }
     }
 }
