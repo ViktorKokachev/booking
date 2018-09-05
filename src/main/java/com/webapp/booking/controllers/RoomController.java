@@ -61,7 +61,7 @@ public class RoomController {
     }
 
     @PreAuthorize("hasAuthority('OWNER')")
-    @PostMapping("/update/{roomID}")
+    @PostMapping("/{roomID}/update")
     public String updateRoom(@RequestBody UpdateRoomArguments updateRoomArguments, @PathVariable Integer roomID,
                              Model model) {
         roomService.updateRoom(updateRoomArguments);
@@ -83,7 +83,7 @@ public class RoomController {
     }
 
     @PreAuthorize("hasAuthority('OWNER')")
-    @DeleteMapping("/removeDiscount/{roomID}")
+    @DeleteMapping("/{roomID}/removeDiscount")
     public String deleteDiscount(@PathVariable Integer roomID, Model model) {
         roomService.deleteDiscount(roomID);
         return null;
