@@ -74,7 +74,6 @@ public class RequestService {
         mergeWhenUpdate(requestByID, updateRequestArguments);
 
         requestRepo.updateRequest(requestByID);
-
     }
 
     private void mergeWhenUpdate(RequestEntity toUpdate, UpdateRequestArguments updateRequestArguments) {

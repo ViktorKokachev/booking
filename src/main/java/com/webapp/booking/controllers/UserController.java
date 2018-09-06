@@ -9,7 +9,6 @@ import com.webapp.booking.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -76,7 +75,7 @@ public class UserController {
     @PostMapping("/{userID}/update")
     public String updateUser(Model model, UpdateUserArguments updateUserArguments,
                              @PathVariable Integer userID) {
-/*
+
         if (userService.getUserRoleByLogin() == UserRole.CLIENT) {
             updateUserArguments.setUserID(userService.getCurrentUser().getUserID());
         }
@@ -92,15 +91,15 @@ public class UserController {
             model.addAttribute("updateUserArguments", new UpdateUserArguments());
 
             return "redirect:/users/myAccount";
-        } else {
-            return "redirect:/users/" + updateUserArguments.getUserID();
-        }*/
 
-        if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
-            updateUserArguments.setUserID(userID);
-            userService.updateUser(updateUserArguments);
+        } else {
+
+            if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+                updateUserArguments.setUserID(userID);
+                userService.updateUser(updateUserArguments);
+            }
+            return "redirect:/users/" + updateUserArguments.getUserID();
         }
-        return "redirect:/users/" + updateUserArguments.getUserID();
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
