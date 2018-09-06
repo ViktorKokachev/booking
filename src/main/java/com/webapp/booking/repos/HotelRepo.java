@@ -17,7 +17,7 @@ public class HotelRepo {
     private HotelEntityRowMapper rowMapper;
 
     public List<HotelEntity> getAllHotels() {
-        String sql = "SELECT hotel_id, name, address, rating, description, owner_id, FROM hotel";
+        String sql = "SELECT hotel_id, name, address, rating, description, owner_id FROM hotel";
         return jdbcTemplate.query(sql, rowMapper);
     }
 
