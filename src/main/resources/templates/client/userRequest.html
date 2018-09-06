@@ -82,12 +82,12 @@
         </form>
     </div>
     <div class="buttons" th:if="${requestByID.getRequestStatus().toString() != 'REJECTED'}">
-        <form action="#" th:action="@{/rooms/myAccount}" method="post">
+        <form action="#" th:action="@{|/requests/${requestByID.getRoom().getRoomID()}/cancel|}" method="post">
             <input type="submit" value="Cancel booking">
         </form>
     </div>
     <div class="buttons" th:if="${requestByID.getRequestStatus().toString() == 'BOOKED'}">
-        <form action="#" th:action="@{|/requests/${requestByID.getRoom().getRoomID()}/pay|}" method="post">
+        <form action="#" th:action="@{|/requests/${requestByID.getRoom().getRoomID()}/pay|}">
             <input type="submit" value="Pay">
         </form>
     </div>

@@ -57,7 +57,7 @@ public class RequestRepo {
 
     public void deleteRequest(Integer requestID) {
         String sql = "DELETE FROM request WHERE request_id = " + requestID;
-        jdbcTemplate.execute(sql);
+        jdbcTemplate.update(sql);
     }
 
     public void createRequest(RequestEntity requestEntity) {
