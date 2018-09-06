@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class RequestService {
 
     RequestRepo requestRepo;
+    UserService userService;
 
     private static final String CARD_NUMBER_PATTERN = "^[0-9]{16}$";
     private static final String CARD_CVV_PATTERN = "^[0-9]{3}$";
@@ -52,11 +53,11 @@ public class RequestService {
         // check dates for availability, return price by whole period
         RequestEntity requestEntity = new RequestEntity();
 
-        Integer userID = 1;
 
-        //TODO: fix hardcoded userID
+        UserEntity currentUser = userService.getCurrentUser();
+
         requestEntity.setUser(new UserEntity());
-        requestEntity.getUser().setUserID(userID);
+        requestEntity.getUser().setUserID(currentUser.getUserID());
         requestEntity.setRequestStatus(RequestStatus.BOOKED);
         requestEntity.setRoom(new RoomEntity());
         requestEntity.getRoom().setRoomID(createRequestArguments.getRoomID());

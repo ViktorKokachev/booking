@@ -108,8 +108,7 @@ public class RequestController {
 
     @PreAuthorize("hasAuthority('CLIENT')")
     @GetMapping("/{requestID}/pay")
-    public String payRequestPage(Model model, @ModelAttribute PayRequestArguments payRequestArguments,
-                             @PathVariable Integer requestID) {
+    public String payRequestPage(Model model, @PathVariable Integer requestID) {
         model.addAttribute("requestID", requestID);
         model.addAttribute("payRequestArguments", new PayRequestArguments());
         return "client/payRequest";
