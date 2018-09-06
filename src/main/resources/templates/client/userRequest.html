@@ -77,17 +77,17 @@
 </div>
 <div class="tp">
     <div class="buttons">
-        <form action="#" th:action="@{/rooms/myAccount}" method="post">
+        <form action="#" th:action="@{/users/myAccount}">
             <input type="submit" value="Back">
         </form>
     </div>
-    <div class="buttons">
+    <div class="buttons" th:if="${requestByID.getRequestStatus().toString() != 'REJECTED'}">
         <form action="#" th:action="@{/rooms/myAccount}" method="post">
             <input type="submit" value="Cancel booking">
         </form>
     </div>
     <div class="buttons" th:if="${requestByID.getRequestStatus().toString() == 'BOOKED'}">
-        <form action="#" th:action="@{|/requests/${requestByID.getRoom().getRoomID()}/pay|}" method="get">
+        <form action="#" th:action="@{|/requests/${requestByID.getRoom().getRoomID()}/pay|}" method="post">
             <input type="submit" value="Pay">
         </form>
     </div>
