@@ -107,7 +107,7 @@ public class RequestController {
     }
 
     @PreAuthorize("hasAuthority('CLIENT')")
-    @PostMapping("/{requestID}/pay")
+    @GetMapping("/{requestID}/pay")
     public String payRequestPage(Model model, @ModelAttribute PayRequestArguments payRequestArguments,
                              @PathVariable Integer requestID) {
         model.addAttribute("requestID", requestID);
@@ -126,6 +126,6 @@ public class RequestController {
     @PostMapping("/{requestID}/cancel")
     public String deleteRequest(Model model, @PathVariable Integer requestID) {
         requestService.deleteRequest(requestID);
-        return null;
+        return "redirect:/users/myAccount";
     }
 }
