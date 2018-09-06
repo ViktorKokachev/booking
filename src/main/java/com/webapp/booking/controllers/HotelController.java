@@ -24,12 +24,15 @@ public class HotelController {
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
     @GetMapping()
     public String getAllHotels(Model model) {
-        model.addAttribute("allHotels", hotelService.getAllHotels());
+
         model.addAttribute("getAllHotelsWithFilterArguments", new GetAllHotelsWithFilterArguments());
 
         if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+            model.addAttribute("allHotels", hotelService.getAllHotels());
             return "admin/hotelsList";
         } else {
+            Integer ownerID = userService.getCurrentUser().getUserID();
+            model.addAttribute("allHotels", hotelService.getAllHotelsByOwnerID(ownerID));
             return "owner/ownerHotelsList";
         }
     }
@@ -38,11 +41,12 @@ public class HotelController {
     @PostMapping()
     public String getAllHotelsWithFilter(Model model,
                                          @ModelAttribute GetAllHotelsWithFilterArguments getAllHotelsWithFilterArguments) {
-        model.addAttribute("allHotels", hotelService.getAllHotelsWithFilter(getAllHotelsWithFilterArguments));
 
         if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+            model.addAttribute("allHotels", hotelService.getAllHotelsWithFilter(getAllHotelsWithFilterArguments));
             return "admin/hotelsList";
         } else {
+            model.addAttribute("allHotels", hotelService.getAllHotelsWithFilterForOwner(getAllHotelsWithFilterArguments));
             return "owner/ownerHotelsList";
         }
     }
