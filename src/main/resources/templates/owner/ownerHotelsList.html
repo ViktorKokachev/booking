@@ -15,12 +15,12 @@
 
 <div id="buttons-container">
     <div class="buttons">
-        <form action="#" th:action="@{/hotels/owner}">
+        <form action="#" th:action="@{/hotels}">
             <input type="submit" value="Hotels">
         </form>
     </div>
     <div class="buttons">
-        <form action="#" th:action="@{/}">
+        <form action="#" th:action="@{/specialOffers}">
             <input type="submit" value="Special offers">
         </form>
     </div>
@@ -28,7 +28,7 @@
 
 
 <div class="create-hotel">
-    <form action="#" th:action="@{/hotels/create}" method="post">
+    <form action="#" th:action="@{/hotels/create}">
         <input type="submit" value="Create hotel">
     </form>
 </div>
@@ -38,9 +38,9 @@
         <tr>
             <th class="table-header">Hotel:</th>
         </tr>
-        <tr th:each="hotel : ${allHotelsByOwnerID}">
+        <tr th:each="hotel : ${allHotels}">
             <td>
-                <a th:href="@{|'/hotels/owner/' + ${hotel.getOwnerID()} + '/' + ${hotel.getHotelID()}|}">
+                <a th:href="@{|'/hotels/' + ${hotel.getHotelID()}|}">
                     <p th:text="${hotel.getName()} + ' | '
                      + ${hotel.getAddress()} + ' | Rating: '
                      + ${hotel.getRating()}">
