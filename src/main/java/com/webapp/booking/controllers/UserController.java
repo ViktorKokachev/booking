@@ -45,7 +45,7 @@ public class UserController {
         return "admin/adminUser";
     }
 
-    @PreAuthorize("hasAuthority('CLIENT')")
+    @PreAuthorize("hasAnyAuthority('CLIENT', 'ADMIN', 'OWNER')")
     @GetMapping("/myAccount")
     public String getMyAccount(Model model) {
 
@@ -74,7 +74,7 @@ public class UserController {
     @PreAuthorize("hasAnyAuthority('CLIENT', 'ADMIN', 'OWNER')")
     @PostMapping("/update")
     public String updateUser(Model model, UpdateUserArguments updateUserArguments) {
-
+/*
         if (userService.getUserRoleByLogin() == UserRole.CLIENT) {
             updateUserArguments.setUserID(userService.getCurrentUser().getUserID());
         }
@@ -92,7 +92,12 @@ public class UserController {
             return "redirect:/users/myAccount";
         } else {
             return "redirect:/users/" + updateUserArguments.getUserID();
+        }*/
+
+        if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+            userService.updateUser(updateUserArguments);
         }
+        return "redirect:/users/" + updateUserArguments.getUserID();
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
