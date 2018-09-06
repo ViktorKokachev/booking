@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -58,7 +59,8 @@ public class UserService implements UserDetailsService {
             toUpdate.setName(updateUserArguments.getName());
         }
         if (updateUserArguments.getPassword() != null && !updateUserArguments.getPassword().isEmpty()) {
-            toUpdate.setPassword(updateUserArguments.getPassword());
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+            toUpdate.setPassword(bCryptPasswordEncoder.encode(updateUserArguments.getPassword()));
         }
         if (updateUserArguments.getUserRole() != null) {
             toUpdate.setUserRole(updateUserArguments.getUserRole());
@@ -72,7 +74,8 @@ public class UserService implements UserDetailsService {
 
         userEntity.setLogin(createUserArguments.getLogin());
         userEntity.setName(createUserArguments.getName());
-        userEntity.setPassword(createUserArguments.getPassword());
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        userEntity.setPassword(bCryptPasswordEncoder.encode(createUserArguments.getPassword()));
         userEntity.setUserRole(createUserArguments.getUserRole());
 
         userRepo.createUser(userEntity);
