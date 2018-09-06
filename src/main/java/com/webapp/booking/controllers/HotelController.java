@@ -18,7 +18,7 @@ public class HotelController {
 
     private final HotelService hotelService;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
     @GetMapping()
     public String getAllHotels(Model model) {
         model.addAttribute("allHotels", hotelService.getAllHotels());
@@ -26,7 +26,7 @@ public class HotelController {
         return "admin/hotelsList";
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
     @PostMapping()
     public String getAllHotelsWithFilter(Model model,
                                          @ModelAttribute GetAllHotelsWithFilterArguments getAllHotelsWithFilterArguments) {
@@ -57,7 +57,7 @@ public class HotelController {
     }
 
     //add arguments
-    @PreAuthorize("hasAuthority('OWNER')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
     @PostMapping("/update")
     public String updateHotel(UpdateHotelArguments updateHotelArguments, Model model) {
         hotelService.updateHotel(updateHotelArguments);
