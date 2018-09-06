@@ -17,28 +17,27 @@ public class HotelRepo {
     private HotelEntityRowMapper rowMapper;
 
     public List<HotelEntity> getAllHotels() {
-        String sql = "SELECT hotel_id, name, address, rating, description, owner_id, is_approved FROM hotel";
+        String sql = "SELECT hotel_id, name, address, rating, description, owner_id, FROM hotel";
         return jdbcTemplate.query(sql, rowMapper);
     }
 
     public List<HotelEntity> getAllHotelsByOwnerID(Integer ownerID) {
-        String sql = "SELECT hotel_id, name, address, rating, description, owner_id, is_approved FROM hotel WHERE owner_id = " + ownerID;
+        String sql = "SELECT hotel_id, name, address, rating, description, owner_id FROM hotel WHERE owner_id = " + ownerID;
         return jdbcTemplate.query(sql, rowMapper);
     }
 
     public List<HotelEntity> getHotelByID(Integer hotelID) {
-        String sql = "SELECT hotel_id, name, address, rating, description, owner_id, is_approved FROM hotel WHERE hotel_id = " + hotelID;
+        String sql = "SELECT hotel_id, name, address, rating, description, owner_id FROM hotel WHERE hotel_id = " + hotelID;
         return jdbcTemplate.query(sql, rowMapper);
     }
 
     public void createHotel(HotelEntity hotelEntity) {
-        String sql = "INSERT INTO hotel (name, address, rating, description, owner_id, is_approved) VALUES ('"
+        String sql = "INSERT INTO hotel (name, address, rating, description, owner_id) VALUES ('"
                 + hotelEntity.getName() + "', '"
                 + hotelEntity.getAddress() + "', '"
                 + hotelEntity.getRating() + "', '"
                 + hotelEntity.getDescription() + "', '"
-                + hotelEntity.getOwnerID() + "', '"
-                + hotelEntity.getIsApproved() + "')";
+                + hotelEntity.getOwnerID() + "', '";
         jdbcTemplate.execute(sql);
     }
 
@@ -49,7 +48,6 @@ public class HotelRepo {
                 + "', rating = '" + hotelEntity.getRating()
                 + "', description = '" + hotelEntity.getDescription()
                 + "', owner_id = '" + hotelEntity.getOwnerID()
-                + "', is_approved = '" + hotelEntity.getIsApproved()
                 + "' WHERE hotel_id = " + hotelEntity.getHotelID();
         jdbcTemplate.execute(sql);
     }

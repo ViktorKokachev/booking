@@ -47,7 +47,6 @@ public class HotelService {
         hotelEntity.setRating(createHotelArguments.getRating());
         hotelEntity.setOwnerID(createHotelArguments.getOwnerID());
         hotelEntity.setName(createHotelArguments.getName());
-        hotelEntity.setIsApproved(createHotelArguments.getIsApproved());
         hotelEntity.setDescription(createHotelArguments.getDescription());
         hotelEntity.setAddress(createHotelArguments.getAddress());
 
@@ -73,9 +72,6 @@ public class HotelService {
         }
         if (updateHotelArguments.getDescription() != null) {
             toUpdate.setDescription(updateHotelArguments.getDescription());
-        }
-        if (updateHotelArguments.getIsApproved() != null) {
-            toUpdate.setIsApproved(updateHotelArguments.getIsApproved());
         }
         if (updateHotelArguments.getName() != null) {
             toUpdate.setName(updateHotelArguments.getName());

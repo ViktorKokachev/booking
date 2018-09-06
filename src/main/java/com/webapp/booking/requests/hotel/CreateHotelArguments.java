@@ -11,5 +11,4 @@ public class CreateHotelArguments {
     private Integer rating;
     private String description;
     private Integer ownerID;
-    private Boolean isApproved;
 }

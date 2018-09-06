@@ -15,7 +15,6 @@ public class HotelEntityRowMapper implements RowMapper<HotelEntity> {
         Integer hotelID = rs.getInt("hotel_id");
         String address = rs.getString("address");
         String descrption = rs.getString("description");
-        Boolean isApproved = rs.getBoolean("is_approved");
         String name = rs.getString("name");
         Integer ownerID = rs.getInt("owner_id");
         Integer rating = rs.getInt("rating");
@@ -25,7 +24,6 @@ public class HotelEntityRowMapper implements RowMapper<HotelEntity> {
         hotelEntity.setHotelID(hotelID);
         hotelEntity.setAddress(address);
         hotelEntity.setDescription(descrption);
-        hotelEntity.setIsApproved(isApproved);
         hotelEntity.setName(name);
         hotelEntity.setOwnerID(ownerID);
         hotelEntity.setRating(rating);
