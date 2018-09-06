@@ -83,17 +83,22 @@ public class HotelController {
 
     //add arguments
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
-    @PostMapping("/update")
-    public String updateHotel(UpdateHotelArguments updateHotelArguments, Model model) {
+    @PostMapping("/{hotelID}/update")
+    public String updateHotel(UpdateHotelArguments updateHotelArguments, Model model, @PathVariable Integer hotelID) {
+
+        updateHotelArguments.setHotelID(hotelID);
+
         hotelService.updateHotel(updateHotelArguments);
 
         model.addAttribute("hotelByID", hotelService.getHotelByID(updateHotelArguments.getHotelID()));
 
-        if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+        return "redirect:/hotels/" + hotelID;
+
+        /*if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
             return "admin/adminHotel";
         } else {
-            return "owner/ownerHotel";
-        }
+            return "redirect:/hotels/" + hotelID;
+        }*/
     }
 
     @PreAuthorize("hasAuthority('OWNER')")
