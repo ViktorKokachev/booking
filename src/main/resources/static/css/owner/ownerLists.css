@@ -3,15 +3,6 @@ body {
     margin: 0; /* Отступы на странице */
 }
 
-h1 {
-    font-size: 36px; /* Размер шрифта */
-    margin: 0; /* Убираем отступы */
-    color: #fc6; /* Цвет текста */
-}
-
-h2 {
-    margin-top: 0; /* Убираем отступ сверху */
-}
 #header { /* Верхний блок */
     background: rgb(184, 231, 247); /* Цвет фона */
     padding: 10px; /* Поля вокруг текста */
@@ -28,7 +19,6 @@ h2 {
     margin-right: 25px;
 }
 
-
 .buttons {
     /*margin-left: 25%;*/
     /*align: left;*/
@@ -42,27 +32,16 @@ h2 {
     align-items: center;
 }
 
-
-.all-rooms {
-    margin: 10px 130px 20px 0px;
-    float: right;
-}
 .create-hotel {
     margin: 10px 90px 20px 0px;
     float: right;
 }
 
-#content-hotel {
-    margin: 10px 270px 20px 270px; /* Значения отступов */
+.content-hotel {
+    margin: 0px 270px 20px 270px; /* Значения отступов */
     padding: 10px 20px 5px 30px; /* Поля вокруг текста */
     border: 1px solid #333;
 }
 .table-header {
     text-align: left;
-}
-.table-hotel {
-    border: 1px;
-}
-.bottom-line {
-    border: 1px solid #333;
 }
