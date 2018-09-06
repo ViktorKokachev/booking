@@ -1,9 +1,11 @@
 package com.webapp.booking.controllers;
 
+import com.webapp.booking.enums.UserRole;
 import com.webapp.booking.requests.hotel.CreateHotelArguments;
 import com.webapp.booking.requests.hotel.GetAllHotelsWithFilterArguments;
 import com.webapp.booking.requests.hotel.UpdateHotelArguments;
 import com.webapp.booking.services.HotelService;
+import com.webapp.booking.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,13 +19,19 @@ import org.springframework.web.bind.annotation.*;
 public class HotelController {
 
     private final HotelService hotelService;
+    private final UserService userService;
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
     @GetMapping()
     public String getAllHotels(Model model) {
         model.addAttribute("allHotels", hotelService.getAllHotels());
         model.addAttribute("getAllHotelsWithFilterArguments", new GetAllHotelsWithFilterArguments());
-        return "admin/hotelsList";
+
+        if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+            return "admin/hotelsList";
+        } else {
+            return "owner/ownerHotelsList";
+        }
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
@@ -31,14 +39,23 @@ public class HotelController {
     public String getAllHotelsWithFilter(Model model,
                                          @ModelAttribute GetAllHotelsWithFilterArguments getAllHotelsWithFilterArguments) {
         model.addAttribute("allHotels", hotelService.getAllHotelsWithFilter(getAllHotelsWithFilterArguments));
-        return "admin/hotelsList";
+
+        if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+            return "admin/hotelsList";
+        } else {
+            return "owner/ownerHotelsList";
+        }
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
     @GetMapping("/owner/{ownerID}")
     public String getAllHotelsByOwnerID(@PathVariable Integer ownerID, Model model) {
         model.addAttribute("allHotelsByOwnerID", hotelService.getAllHotelsByOwnerID(ownerID));
-        return "/owner/ownerHotelsList";
+        if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+            return "owner/ownerHotelsList";
+        } else {
+            return "owner/ownerHotelsList";
+        }
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
@@ -46,7 +63,11 @@ public class HotelController {
     public String getHotelByID(@PathVariable Integer hotelID, Model model) {
         model.addAttribute("updateHotelArguments", new UpdateHotelArguments());
         model.addAttribute("hotelByID", hotelService.getHotelByID(hotelID));
-        return "admin/adminHotel";
+        if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+            return "admin/adminHotel";
+        } else {
+            return "owner/ownerHotel";
+        }
     }
 
     @PreAuthorize("hasAuthority('OWNER')")
@@ -61,7 +82,14 @@ public class HotelController {
     @PostMapping("/update")
     public String updateHotel(UpdateHotelArguments updateHotelArguments, Model model) {
         hotelService.updateHotel(updateHotelArguments);
-        return null;
+
+        model.addAttribute("hotelByID", hotelService.getHotelByID(updateHotelArguments.getHotelID()));
+
+        if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+            return "admin/adminHotel";
+        } else {
+            return "owner/ownerHotel";
+        }
     }
 
     @PreAuthorize("hasAuthority('OWNER')")
