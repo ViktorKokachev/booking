@@ -76,7 +76,7 @@ public class UserController {
     public String updateUser(Model model, UpdateUserArguments updateUserArguments,
                              @PathVariable Integer userID) {
 
-        if (userService.getUserRoleByLogin() == UserRole.CLIENT) {
+        /*if (userService.getUserRoleByLogin() == UserRole.CLIENT) {
             updateUserArguments.setUserID(userService.getCurrentUser().getUserID());
         }
 
@@ -92,14 +92,35 @@ public class UserController {
 
             return "redirect:/users/myAccount";
 
-        } else {
-
-            if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
-                updateUserArguments.setUserID(userID);
-                userService.updateUser(updateUserArguments);
-            }
-            return "redirect:/users/" + updateUserArguments.getUserID();
         }
+*/
+        if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+            updateUserArguments.setUserID(userID);
+            userService.updateUser(updateUserArguments);
+        }
+        return "redirect:/users/" + updateUserArguments.getUserID();
+
+    }
+
+    @PreAuthorize("hasAnyAuthority('CLIENT', 'ADMIN', 'OWNER')")
+    @PostMapping("/update")
+    public String updateCurrentUser(Model model, UpdateUserArguments updateUserArguments,
+                             @PathVariable Integer userID) {
+
+        if (userService.getUserRoleByLogin() == UserRole.CLIENT) {
+            updateUserArguments.setUserID(userService.getCurrentUser().getUserID());
+        }
+
+        userService.updateUser(updateUserArguments);
+
+        model.addAttribute("userInformation",
+                userService.getUserByID(userService.getCurrentUser().getUserID()));
+        model.addAttribute("allRequestsByUser",
+                requestService.getAllRequestsByUserID(userService.getCurrentUser().getUserID()));
+        model.addAttribute("updateUserArguments", new UpdateUserArguments());
+
+        return "redirect:/users/myAccount";
+
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
