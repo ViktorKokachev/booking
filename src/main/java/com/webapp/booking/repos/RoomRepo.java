@@ -20,7 +20,7 @@ public class RoomRepo {
 
     public List<RoomEntity> getDiscountRooms(int amount) {
         String sql = "SELECT room_id, number, guest_amount, room_type, price, room.description, discount, "
-                + "room.hotel_id, name, address, rating, hotel.description, owner_id, is_approved "
+                + "room.hotel_id, name, address, rating, hotel.description, owner_id "
                 + "FROM room JOIN hotel ON room.hotel_id = hotel.hotel_id "
                 + "WHERE discount IS NOT NULL ORDER BY rand() LIMIT " + amount;
         return jdbcTemplate.query(sql, rowMapper);
@@ -28,7 +28,7 @@ public class RoomRepo {
 
     public List<RoomEntity> getAllRooms() {
         String sql = "select room_id, number, guest_amount, room_type, price, room.description, discount, "
-                + "room.hotel_id, name, address, rating, hotel.description, owner_id, is_approved "
+                + "room.hotel_id, name, address, rating, hotel.description, owner_id "
                 + "FROM room JOIN hotel ON room.hotel_id = hotel.hotel_id";
         return jdbcTemplate.query(sql, rowMapper);
     }
@@ -36,7 +36,7 @@ public class RoomRepo {
     public List<RoomEntity> getAllRoomsWithFilters(Date checkInDate, Date checkOutDate, Integer guestAmount, Integer hotelRating, Double minPrice, Double maxPrice, RoomType roomType) {
 
         String sql = "select room.room_id, room.number, room.guest_amount, room.room_type, room.price, room.description, room.hotel_id, room.discount, "
-                + "name, address, rating, hotel.description, owner_id, is_approved "
+                + "name, address, rating, hotel.description, owner_id "
                 + "from room join hotel on room.hotel_id = hotel.hotel_id "
                 + "where room.room_id not in "
                 + "(select room_id from "
@@ -74,7 +74,7 @@ public class RoomRepo {
 
     public List<RoomEntity> getAllRoomsWithFiltersWithoutDates(Integer guestAmount, Integer hotelRating, Double minPrice, Double maxPrice, RoomType roomType) {
         String sql = "SELECT room_id, number, guest_amount, room_type, price, room.description, room.hotel_id, discount, "
-                + "name, address, rating, hotel.description, owner_id, is_approved "
+                + "name, address, rating, hotel.description, owner_id "
                 + "FROM room "
                 + "JOIN hotel on (room.hotel_id = hotel.hotel_id) "
                 + "WHERE";
@@ -104,7 +104,7 @@ public class RoomRepo {
 
     public List<RoomEntity> getRoomByID(Integer roomID) {
         String sql = "select room_id, number, guest_amount, room_type, price, room.description, discount, "
-                + "room.hotel_id, name, address, rating, hotel.description, owner_id, is_approved "
+                + "room.hotel_id, name, address, rating, hotel.description, owner_id, "
                 + "FROM room JOIN hotel ON room.hotel_id = hotel.hotel_id "
                 + "where room_id = " + roomID;
         return jdbcTemplate.query(sql, rowMapper);
