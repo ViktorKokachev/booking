@@ -104,8 +104,7 @@ public class UserController {
 
     @PreAuthorize("hasAnyAuthority('CLIENT', 'ADMIN', 'OWNER')")
     @PostMapping("/update")
-    public String updateCurrentUser(Model model, UpdateUserArguments updateUserArguments,
-                             @PathVariable Integer userID) {
+    public String updateCurrentUser(Model model, UpdateUserArguments updateUserArguments) {
 
         if (userService.getUserRoleByLogin() == UserRole.CLIENT) {
             updateUserArguments.setUserID(userService.getCurrentUser().getUserID());
