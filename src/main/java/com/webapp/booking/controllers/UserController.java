@@ -61,7 +61,7 @@ public class UserController {
     @GetMapping("/create")
     public String createUserPage(Model model, @ModelAttribute CreateUserArguments createUserArguments) {
         model.addAttribute("createUserArguments", new CreateUserArguments());
-        return "admin/createUser";
+        return "admin/adminCreateUser";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -75,7 +75,8 @@ public class UserController {
     @PostMapping("/update")
     public String updateUser(Model model, UpdateUserArguments updateUserArguments) {
 
-        if (userService.getUserRoleByLogin() == UserRole.CLIENT) {
+        if (userService.getUserRoleByLogin() == UserRole.CLIENT
+            || userService.getUserRoleByLogin() == UserRole.OWNER) {
             updateUserArguments.setUserID(userService.getCurrentUser().getUserID());
         }
 
