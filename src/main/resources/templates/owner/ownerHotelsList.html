@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>All requests</title>
+    <title>Hotels</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/owner/owner.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/owner/ownerLists.css}"/>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
 
 <div id="buttons-container">
     <div class="buttons">
-        <form action="#" th:action="@{/owner/ownerID}">
+        <form action="#" th:action="@{/hotels/owner}">
             <input type="submit" value="Hotels">
         </form>
     </div>
@@ -33,15 +33,14 @@
     </form>
 </div>
 
-
-<div id="content-hotel">
-    <table class="table-hotel">
+<div class="content-hotel">
+    <table>
         <tr>
             <th class="table-header">Hotel:</th>
         </tr>
-        <tr th:each="hotel : ${allHotelsByOwnerID}" class="bottom-line" >
+        <tr th:each="hotel : ${allHotelsByOwnerID}">
             <td>
-                <a th:href="@{'/owners/ownerID/hotels/' + ${hotel.getHotelID()}}">
+                <a th:href="@{|'/hotels/owner/' + ${hotel.getOwnerID()} + '/' + ${hotel.getHotelID()}|}">
                     <p th:text="${hotel.getName()} + ' | '
                      + ${hotel.getAddress()} + ' | Rating: '
                      + ${hotel.getRating()}">
@@ -52,7 +51,5 @@
         <br/>
     </table>
 </div>
-
-
 </body>
 </html>
