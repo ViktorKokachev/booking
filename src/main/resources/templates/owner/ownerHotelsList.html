@@ -26,6 +26,7 @@
     </div>
 </div>
 
+
 <div class="create-hotel">
     <form action="#" th:action="@{/create}" method="get">
         <input type="submit" value="Create hotel">
@@ -38,7 +39,7 @@
         <tr>
             <th class="table-header">Hotel:</th>
         </tr>
-        <tr th:each="hotel : ${allHotelsByOwnerID}" class="bottom-line">
+        <tr th:each="hotel : ${allHotelsByOwnerID}" class="bottom-line" >
             <td>
                 <a th:href="@{'/owners/ownerID/hotels/' + ${hotel.getHotelID()}}">
                     <p th:text="${hotel.getName()} + ' | '
