@@ -61,7 +61,7 @@ public class UserController {
     @GetMapping("/create")
     public String createUserPage(Model model, @ModelAttribute CreateUserArguments createUserArguments) {
         model.addAttribute("createUserArguments", new CreateUserArguments());
-        return "admin/createUser";
+        return "admin/adminCreateUser";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
