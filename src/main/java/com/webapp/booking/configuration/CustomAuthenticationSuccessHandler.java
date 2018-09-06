@@ -45,7 +45,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         } else if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
             httpServletResponse.sendRedirect("/requests");
         } else if (userService.getUserRoleByLogin() == UserRole.OWNER) {
-            httpServletResponse.sendRedirect("/hotels");
+            Integer userID = userService.getCurrentUser().getUserID();
+            httpServletResponse.sendRedirect("/hotels/owner/" + userID);
         } else {
             throw new RuntimeException("DEFAULT REDIRECT ERROR!");
         }
