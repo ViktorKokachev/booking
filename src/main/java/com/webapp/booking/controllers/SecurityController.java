@@ -1,5 +1,7 @@
 package com.webapp.booking.controllers;
 
+import com.webapp.booking.entities.UserEntity;
+import com.webapp.booking.enums.UserRole;
 import com.webapp.booking.requests.other.LoginArguments;
 import com.webapp.booking.requests.other.SignUpArguments;
 import com.webapp.booking.services.UserService;
@@ -17,27 +19,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SecurityController {
 
-    UserService userService;
+    private UserService userService;
 
     @PreAuthorize("permitAll()")
     @GetMapping({"/", "/index"})
     public String getIndexPage(Model model) {
-        model.addAttribute("loginArguments", new LoginArguments());
-        return "index";
+
+        UserEntity currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            model.addAttribute("loginArguments", new LoginArguments());
+            return "index";
+        }
+
+        if (currentUser.getUserRole() == UserRole.CLIENT) {
+            return "redirect:/rooms";
+        }
+
+        if (currentUser.getUserRole() == UserRole.ADMIN) {
+            return "redirect:/requests";
+        }
+
+        if (currentUser.getUserRole() == UserRole.OWNER) {
+            return "redirect:/hotels";
+        }
+
+        throw new RuntimeException("Something went wrong with authorization");
+
     }
 
     @PreAuthorize("permitAll()")
     @PostMapping("/login")
     public String signIn(LoginArguments loginArguments) {
-
-
-        System.err.println(loginArguments.toString());
-
-        // fix
-
-        if (!loginArguments.getPassword().equals("123")) {
-            return "redirect:/loginError";
-        }
 
         return "redirect:/rooms";
     }
@@ -45,8 +58,27 @@ public class SecurityController {
     @PreAuthorize("permitAll()")
     @GetMapping("/signUp")
     public String getSignUpPage(Model model) {
-        model.addAttribute("signUpArguments", new SignUpArguments());
-        return "security/signUp";
+
+        UserEntity currentUser = userService.getCurrentUser();
+
+        if (currentUser == null) {
+            model.addAttribute("signUpArguments", new SignUpArguments());
+            return "security/signUp";
+        }
+
+        if (currentUser.getUserRole() == UserRole.CLIENT) {
+            return "redirect:/rooms";
+        }
+
+        if (currentUser.getUserRole() == UserRole.ADMIN) {
+            return "redirect:/requests";
+        }
+
+        if (currentUser.getUserRole() == UserRole.OWNER) {
+            return "redirect:/hotels";
+        }
+
+        throw new RuntimeException("Something went wrong with authorization");
     }
 
     @PreAuthorize("permitAll()")
@@ -59,7 +91,7 @@ public class SecurityController {
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/signOut")
     public String signOut() {
-        return null;
+        return "index";
     }
 
 }
