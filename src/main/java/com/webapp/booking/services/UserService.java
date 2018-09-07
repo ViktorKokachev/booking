@@ -110,7 +110,9 @@ public class UserService implements UserDetailsService {
 
         UserEntity userEntity = new UserEntity();
 
-        if (userRepo.getUserByLogin(signUpArguments.getLogin()) != null) {
+        List<UserEntity> userByLogin = userRepo.getUserByLogin(signUpArguments.getLogin());
+        if (userRepo.getUserByLogin(signUpArguments.getLogin()).size() != 0 &&
+                userRepo.getUserByLogin(signUpArguments.getLogin()).get(0) != null) {
             throw new RuntimeException("We already have user with this login!");
         }
 
@@ -121,7 +123,8 @@ public class UserService implements UserDetailsService {
         if (!signUpArguments.getPassword().equals(signUpArguments.getRepeatedPassword()))
             throw new RuntimeException("Passwords are not the same!");
 
-        userEntity.setPassword(signUpArguments.getPassword());
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        userEntity.setPassword(bCryptPasswordEncoder.encode(signUpArguments.getPassword()));
         userEntity.setUserRole(UserRole.CLIENT);
 
         userRepo.createUser(userEntity);
