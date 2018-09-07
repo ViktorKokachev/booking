@@ -1,13 +1,68 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>My account</title>
+    <title>Hotel</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/client/clientAccount.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/adminSpecificItem.css}"/>
 </head>
 <body>
-<div id="header">Hello,</div>
 
+<div id="header">
+    <div class="img">
+        <a th:href="@{/requests}">
+            <img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/>
+        </a>
+    </div>
+
+    <div class="buttons-header">
+        <form action="#" th:action="@{/myAccount}" method="get">
+            <input type="submit" value="My account">
+        </form>
+    </div>
+    <div class="buttons-header">
+        <form action="#" th:action="@{/index}" method="get">
+            <input type="submit" value="Log out">
+        </form>
+    </div>
+</div>
+
+
+<div id="content-user">
+    <form action="#" th:action="@{/update}" th:object="${updateAdminArguments}" method="post">
+        <table class="table-user">
+            <tr>
+                <td class="table-user-1">Login:</td>
+                <td class="table-user-2">
+                    <input name="login" type="text" th:value="${userByID.getLogin()}" th:required="required"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-user-1">Name:</td>
+                <td class="table-user-2">
+                    <input name="name" type="text" th:value="${userByID.getName()}" th:required="required"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-user-1">Reset password:</td>
+                <td class="table-user-2">
+                    <input name="password" type="password" th:field="*{password}"/>
+                </td>
+            </tr>
+        </table>
+</div>
+
+
+<div class="tp">
+    <div class="buttons">
+        <input type="submit" value="Save">
+        </form>
+    </div>
+    <div class="buttons">
+        <form action="#" th:action="@{/requests}">
+            <input type="submit" value="Back">
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
