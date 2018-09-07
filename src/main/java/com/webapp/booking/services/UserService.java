@@ -9,6 +9,7 @@ import com.webapp.booking.requests.user.GetAllUsersWithFilterArguments;
 import com.webapp.booking.requests.user.UpdateUserArguments;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -110,7 +111,7 @@ public class UserService implements UserDetailsService {
         UserEntity userEntity = new UserEntity();
 
         if (userRepo.getUserByLogin(signUpArguments.getLogin()) != null) {
-            throw new RuntimeException("We already have user with such login!");
+            throw new RuntimeException("We already have user with this login!");
         }
 
         userEntity.setLogin(signUpArguments.getLogin());
@@ -136,7 +137,13 @@ public class UserService implements UserDetailsService {
         return userByLogin;
     }
 
-
+    public Boolean isCurrentUserAuthenticated() {
+        return  SecurityContextHolder.getContext().getAuthentication() != null &&
+                SecurityContextHolder.getContext().getAuthentication().isAuthenticated() &&
+                //when Anonymous Authentication is enabled
+                !(SecurityContextHolder.getContext().getAuthentication()
+                        instanceof AnonymousAuthenticationToken);
+    }
 
     public UserRole getUserRoleByLogin() {
 

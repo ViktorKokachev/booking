@@ -25,22 +25,20 @@ public class SecurityController {
     @GetMapping({"/", "/index"})
     public String getIndexPage(Model model) {
 
-        UserEntity currentUser = userService.getCurrentUser();
-
-        if (currentUser == null) {
+        if (!userService.isCurrentUserAuthenticated()) {
             model.addAttribute("loginArguments", new LoginArguments());
             return "index";
         }
 
-        if (currentUser.getUserRole() == UserRole.CLIENT) {
+        if (userService.getCurrentUser().getUserRole() == UserRole.CLIENT) {
             return "redirect:/rooms";
         }
 
-        if (currentUser.getUserRole() == UserRole.ADMIN) {
+        if (userService.getCurrentUser().getUserRole() == UserRole.ADMIN) {
             return "redirect:/requests";
         }
 
-        if (currentUser.getUserRole() == UserRole.OWNER) {
+        if (userService.getCurrentUser().getUserRole() == UserRole.OWNER) {
             return "redirect:/hotels";
         }
 
@@ -59,22 +57,20 @@ public class SecurityController {
     @GetMapping("/signUp")
     public String getSignUpPage(Model model) {
 
-        UserEntity currentUser = userService.getCurrentUser();
-
-        if (currentUser == null) {
+        if (!userService.isCurrentUserAuthenticated()) {
             model.addAttribute("signUpArguments", new SignUpArguments());
             return "security/signUp";
         }
 
-        if (currentUser.getUserRole() == UserRole.CLIENT) {
+        if (userService.getCurrentUser().getUserRole() == UserRole.CLIENT) {
             return "redirect:/rooms";
         }
 
-        if (currentUser.getUserRole() == UserRole.ADMIN) {
+        if (userService.getCurrentUser().getUserRole() == UserRole.ADMIN) {
             return "redirect:/requests";
         }
 
-        if (currentUser.getUserRole() == UserRole.OWNER) {
+        if (userService.getCurrentUser().getUserRole() == UserRole.OWNER) {
             return "redirect:/hotels";
         }
 
