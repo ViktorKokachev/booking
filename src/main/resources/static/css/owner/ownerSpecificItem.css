@@ -30,8 +30,9 @@ h2 {
 }
 
 #content-hotel {
-    margin: 10px 200px 20px 25%; /* Значения отступов */
-    padding: 0px 20px 15px 20px;/* Поля вокруг текста */
+    align: center;
+    margin: 10px 300px 5px 300px; /* Значения отступов */
+    padding: 5px; /* Поля вокруг текста */
     border: 1px solid #333; /* Параметры рамки */
 }
 .table-header {
@@ -45,7 +46,41 @@ h2 {
 
 }
 
-.room-list {
+.all-rooms-button {
     margin: 10px 130px 20px 0px;
     float: right;
+}
+
+
+#content-hotel {
+    align: center;
+    margin: 10px 300px 5px 300px; /* Значения отступов */
+    padding: 5px; /* Поля вокруг текста */
+    border: 1px solid #333; /* Параметры рамки */
+}
+.table-hotel {
+    border-collapse: collapse;
+    border: 1px solid #333;
+}
+.table-hotel-1 {
+    width:200px;
+    padding: 5px;
+}
+.table-hotel-2 {
+    padding: 5px;
+}
+.input-hotel {
+    width: 600px;
+}
+
+
+.buttons-container-bottom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttons-bottom {
+    align: center;
+    display: inline-block;
+    padding: 0px 5px;
 }

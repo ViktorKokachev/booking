@@ -1,10 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create hotel</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/owner/ownerSpecificItem.css}"/>
 </head>
 <body>
+
+<div id="header">
+    <div class="img">
+        <a th:href="@{/hotels}">
+            <img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/>
+        </a>
+    </div>
+
+    <div class="buttons-header">
+        <form action="#" th:action="@{/hotels}" method="get">
+            <input type="submit" value="Main page">
+        </form>
+    </div>
+    <div class="buttons-header">
+        <form action="#" th:action="@{/myAccount}" method="get">
+            <input type="submit" value="My account">
+        </form>
+    </div>
+    <div class="buttons-header">
+        <form action="#" th:action="@{/index}" method="get">
+            <input type="submit" value="Log out">
+        </form>
+    </div>
+</div>
+
+
+<div id="content-hotel">
+    <form action="#" th:action="@{/hotels/create}" th:object="${createHotelArguments}" method="post">
+        <table class="table-hotel">
+            <tr>
+                <td class="table-hotel-1">Name:</td>
+                <td  class="table-hotel-2">
+                    <input name="name" type="text" th:field="*{name}" th:required="required" class="input-hotel"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-hotel-1">Address:</td>
+                <td class="table-hotel-2">
+                    <input name="address" type="text" th:field="*{address}" th:required="required"  class="input-hotel"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-hotel-1">Rating:</td>
+                <td class="table-hotel-2">
+                    <select name="hotelRating" type="text" th:field="*{rating}">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-hotel-1">Description:</td>
+                <td class="table-hotel-2">
+                    <input name="description" type="text" th:field="*{description}" th:required="required" class="input-hotel"/>
+                </td>
+            </tr>
+        </table>
+</div>
+
+
+<div class="buttons-container-bottom">
+    <div class="buttons-bottom">
+        <input type="submit" value="Create">
+        </form>
+    </div>
+    <div class="buttons-bottom">
+        <form action="#" th:action="@{/hotels}">
+            <input type="submit" value="Back">
+        </form>
+    </div>
+</div>
+
 
 </body>
 </html>
