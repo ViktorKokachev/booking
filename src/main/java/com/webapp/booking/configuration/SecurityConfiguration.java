@@ -28,7 +28,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        // todo: remove request url from antmatchers, add failure handler
         http
                 .authorizeRequests()
                 .antMatchers("/", "/index", "/signUp", "/login", "/**/index.html", "/resources/**").permitAll()

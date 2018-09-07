@@ -75,10 +75,11 @@ public class RequestController {
     @PreAuthorize("hasAuthority('CLIENT')")
     @PostMapping("/create")
     public String createRequest(Model model, @ModelAttribute CreateRequestArguments createRequestArguments) {
+
         requestService.createRequest(createRequestArguments);
 
-        // TODO: add condition which checks for succesful request creation
-        // TODO: hardcoded userID
+        // TODO: add condition which checks for successful request creation
+
 
         return "redirect:/users/myAccount";
     }
@@ -95,7 +96,6 @@ public class RequestController {
     public String payRequest(Model model, @ModelAttribute PayRequestArguments payRequestArguments,
                              @PathVariable Integer requestID) {
         requestService.payRequest(requestID, payRequestArguments);
-        //todo: fix hardcoded number
         return "redirect:/users/myAccount";
     }
 

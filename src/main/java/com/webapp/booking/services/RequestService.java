@@ -53,7 +53,6 @@ public class RequestService {
         // check dates for availability, return price by whole period
         RequestEntity requestEntity = new RequestEntity();
 
-
         UserEntity currentUser = userService.getCurrentUser();
 
         requestEntity.setUser(new UserEntity());

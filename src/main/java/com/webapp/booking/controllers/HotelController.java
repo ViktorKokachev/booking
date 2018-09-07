@@ -130,6 +130,7 @@ public class HotelController {
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
     @GetMapping("/{hotelID}/rooms")
     public String getHotelRooms(@PathVariable Integer hotelID, Model model) {
+        model.addAttribute("hotelID", hotelID);
         model.addAttribute("allRoomsByHotelID", roomService.getRoomsByHotelID(hotelID));
         if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
             return "admin/adminHotelRooms";

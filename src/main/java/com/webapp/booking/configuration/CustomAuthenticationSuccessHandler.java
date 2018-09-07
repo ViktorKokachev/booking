@@ -40,7 +40,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         //we will redirect the user after successfully login
 
         if (userService.getUserRoleByLogin() == UserRole.CLIENT) {
-            //todo: redirect to proper pages
             httpServletResponse.sendRedirect("/rooms");
         } else if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
             httpServletResponse.sendRedirect("/requests");
