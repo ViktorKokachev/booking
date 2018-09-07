@@ -39,8 +39,8 @@ body {
 }
 
 .content-hotel {
-    margin: 0px 270px 20px 270px; /* Значения отступов */
-    padding: 10px 20px 5px 30px; /* Поля вокруг текста */
+    margin: 10px 270px 20px 270px; /* Значения отступов */
+    padding: 0px 20px 5px 30px; /* Поля вокруг текста */
     border: 1px solid #333;
 }
 .table-header {

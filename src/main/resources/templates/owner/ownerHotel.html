@@ -9,13 +9,13 @@
 
 <div id="header">
     <div class="img">
-        <a th:href="@{/rooms}">
+        <a th:href="@{/hotels}">
             <img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/>
         </a>
     </div>
 
     <div class="buttons-header">
-        <form action="#" th:action="@{/users/myAccount}" method="get">
+        <form action="#" th:action="@{/myAccount}" method="get">
             <input type="submit" value="My account">
         </form>
     </div>
@@ -28,7 +28,7 @@
 
 
 <div class="all-rooms">
-    <form action="#" th:action="@{/}" method="get">
+    <form action="#" th:action="@{|/hotels/${hotelByID.getHotelID()}/rooms|}" method="get">
         <input type="submit" value="Rooms">
     </form>
 </div>

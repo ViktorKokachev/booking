@@ -9,13 +9,13 @@
 
 <div id="header">
     <div class="img">
-        <a th:href="@{/rooms}">
+        <a th:href="@{/hotels}">
             <img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/>
         </a>
     </div>
 
     <div class="buttons-header">
-        <form action="#" th:action="@{/users/myAccount}" method="get">
+        <form action="#" th:action="@{/myAccount}" method="get">
             <input type="submit" value="My account">
         </form>
     </div>
@@ -27,18 +27,18 @@
 </div>
 
 
-<div id="buttons-container">
-    <div class="buttons">
-        <form action="#" th:action="@{/hotels}">
-            <input type="submit" value="Hotels">
-        </form>
-    </div>
-    <div class="buttons">
-        <form action="#" th:action="@{/specialOffers}">
-            <input type="submit" value="Special offers">
-        </form>
-    </div>
-</div>
+<!--<div id="buttons-container">-->
+    <!--<div class="buttons">-->
+        <!--<form action="#" th:action="@{/hotels}">-->
+            <!--<input type="submit" value="Hotels">-->
+        <!--</form>-->
+    <!--</div>-->
+    <!--<div class="buttons">-->
+        <!--<form action="#" th:action="@{/specialOffers}">-->
+            <!--<input type="submit" value="Special offers">-->
+        <!--</form>-->
+    <!--</div>-->
+<!--</div>-->
 
 
 <div class="create-hotel">
