@@ -24,34 +24,26 @@ public class HotelController {
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
     @GetMapping()
     public String getAllHotels(Model model) {
-
-        model.addAttribute("getAllHotelsWithFilterArguments", new GetAllHotelsWithFilterArguments());
-
         if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+            model.addAttribute("getAllHotelsWithFilterArguments", new GetAllHotelsWithFilterArguments());
             model.addAttribute("allHotels", hotelService.getAllHotels());
             return "admin/hotelsList";
         } else {
-            Integer ownerID = userService.getCurrentUser().getUserID();
-            model.addAttribute("allHotels", hotelService.getAllHotelsByOwnerID(ownerID));
+            model.addAttribute("allHotels", hotelService.getAllHotelsForCurrentOwner());
             return "owner/ownerHotelsList";
         }
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping()
     public String getAllHotelsWithFilter(Model model,
                                          @ModelAttribute GetAllHotelsWithFilterArguments getAllHotelsWithFilterArguments) {
+        model.addAttribute("allHotels", hotelService.getAllHotelsWithFilter(getAllHotelsWithFilterArguments));
 
-        if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
-            model.addAttribute("allHotels", hotelService.getAllHotelsWithFilter(getAllHotelsWithFilterArguments));
-            return "admin/hotelsList";
-        } else {
-            model.addAttribute("allHotels", hotelService.getAllHotelsWithFilterForOwner(getAllHotelsWithFilterArguments));
-            return "owner/ownerHotelsList";
-        }
+        return "admin/hotelsList";
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/owner/{ownerID}")
     public String getAllHotelsByOwnerID(@PathVariable Integer ownerID, Model model) {
         model.addAttribute("allHotelsByOwnerID", hotelService.getAllHotelsByOwnerID(ownerID));
@@ -75,16 +67,37 @@ public class HotelController {
     }
 
     @PreAuthorize("hasAuthority('OWNER')")
+    @GetMapping("/create")
+    public String createHotelPage(Model model) {
+        model.addAttribute("createHotelArguments", new CreateHotelArguments());
+        return "/owner/createHotel";
+    }
+
+    @PreAuthorize("hasAuthority('OWNER')")
     @PostMapping("/create")
     public String createHotel(CreateHotelArguments createHotelArguments, Model model) {
         hotelService.createHotel(createHotelArguments);
-        return "/owner/ownerHotelsList";
+        return "redirect:/hotels";
     }
 
-    //add arguments
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
-    @PostMapping("/{hotelID}/update")
-    public String updateHotel(UpdateHotelArguments updateHotelArguments, Model model, @PathVariable Integer hotelID) {
+    @GetMapping("{hotelID}/update")
+    public String updateHotelPage
+            (UpdateHotelArguments updateHotelArguments, Model model, @PathVariable Integer hotelID) {
+
+        model.addAttribute("updateHotelArguments", new UpdateHotelArguments());
+
+        if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
+            return "admin/updateHotel";
+        } else {
+            return "owner/updateHotel";
+        }
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
+    @PostMapping("{hotelID}/update")
+    public String updateHotel
+    (UpdateHotelArguments updateHotelArguments, Model model, @PathVariable Integer hotelID) {
 
         updateHotelArguments.setHotelID(hotelID);
 
@@ -92,17 +105,16 @@ public class HotelController {
 
         model.addAttribute("hotelByID", hotelService.getHotelByID(updateHotelArguments.getHotelID()));
 
-        return "redirect:/hotels/" + hotelID;
-
+        return "redirect:/hotels" + hotelID;
         /*if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
             return "admin/adminHotel";
         } else {
-            return "redirect:/hotels/" + hotelID;
+            return "owner/ownerHotel";
         }*/
     }
 
     @PreAuthorize("hasAuthority('OWNER')")
-    @DeleteMapping("/{hotelID}")
+    @PostMapping("/{hotelID}/delete")
     public String deleteHotel(@PathVariable int hotelID, Model model) {
         hotelService.deleteHotel(hotelID);
         return "redirect:/hotels";

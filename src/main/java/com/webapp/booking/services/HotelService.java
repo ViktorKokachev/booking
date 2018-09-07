@@ -1,7 +1,6 @@
 package com.webapp.booking.services;
 
 import com.webapp.booking.entities.HotelEntity;
-import com.webapp.booking.entities.UserEntity;
 import com.webapp.booking.repos.HotelRepo;
 import com.webapp.booking.repos.RoomRepo;
 import com.webapp.booking.requests.hotel.CreateHotelArguments;
@@ -18,9 +17,8 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class HotelService {
 
-    private UserService userService;
-
     private HotelRepo hotelRepo;
+    private UserService userService;
 
     public List<HotelEntity> getAllHotels() {
         return hotelRepo.getAllHotels();
@@ -89,8 +87,9 @@ public class HotelService {
         return getAllHotels();
     }
 
-    public List<HotelEntity> getAllHotelsWithFilterForOwner(GetAllHotelsWithFilterArguments getAllHotelsWithFilterArguments) {
-        UserEntity currentUser = userService.getCurrentUser();
-        return getAllHotels();
+    public List<HotelEntity> getAllHotelsForCurrentOwner() {
+
+        Integer ownerID = userService.getCurrentUser().getUserID();
+        return hotelRepo.getAllHotelsByOwnerID(ownerID);
     }
 }
