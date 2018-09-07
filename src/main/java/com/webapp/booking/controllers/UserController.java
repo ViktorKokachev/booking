@@ -49,12 +49,29 @@ public class UserController {
     @GetMapping("/myAccount")
     public String getMyAccount(Model model) {
 
-        model.addAttribute("userInformation",
-                userService.getUserByID(userService.getCurrentUser().getUserID()));
-        model.addAttribute("allRequestsByUser",
-                requestService.getAllRequestsByUserID(userService.getCurrentUser().getUserID()));
-        model.addAttribute("updateUserArguments", new UpdateUserArguments());
-        return "client/clientAccount";
+        UserRole userRole = userService.getUserRoleByLogin();
+
+        if (userRole == UserRole.CLIENT) {
+            model.addAttribute("userInformation",
+                    userService.getUserByID(userService.getCurrentUser().getUserID()));
+            model.addAttribute("allRequestsByUser",
+                    requestService.getAllRequestsByUserID(userService.getCurrentUser().getUserID()));
+            model.addAttribute("updateUserArguments", new UpdateUserArguments());
+
+            return "client/clientAccount";
+        } else if (userRole == UserRole.ADMIN) {
+            model.addAttribute("userByID",
+                    userService.getUserByID(userService.getCurrentUser().getUserID()));
+            model.addAttribute("updateUserArguments", new UpdateUserArguments());
+
+            return "admin/adminAccount";
+        } else {
+            model.addAttribute("userByID",
+                    userService.getUserByID(userService.getCurrentUser().getUserID()));
+            model.addAttribute("updateUserArguments", new UpdateUserArguments());
+
+            return "admin/adminAccount";
+        }
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
