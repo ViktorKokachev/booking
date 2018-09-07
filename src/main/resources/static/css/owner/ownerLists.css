@@ -34,6 +34,10 @@ body {
 }
 
 .create-hotel {
+    margin: 10px 70px 20px 0px;
+    float: right;
+}
+.create-room {
     margin: 10px 90px 20px 0px;
     float: right;
 }
@@ -45,4 +49,13 @@ body {
 }
 .table-header {
     text-align: left;
+}
+.bottom-line {
+    border-bottom: 1px solid #333;
+}
+
+.content-rooms {
+    margin: 10px 300px 20px 300px; /* Значения отступов */
+    padding: 0px 20px 5px 30px; /* Поля вокруг текста */
+    border: 1px solid #333;
 }

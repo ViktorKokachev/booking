@@ -117,8 +117,8 @@ public class RoomRepo {
                 + roomEntity.getRoomType() + "', '"
                 + roomEntity.getPrice() + "', '"
                 + roomEntity.getDescription() + "', '"
-                + roomEntity.getHotel().getHotelID() + "', '"
-                + roomEntity.getDiscount() + "')";
+                + roomEntity.getHotel().getHotelID() + "', "
+                + roomEntity.getDiscount() + ")";
         jdbcTemplate.execute(sql);
     }
 

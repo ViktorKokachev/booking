@@ -20,7 +20,7 @@
         </form>
     </div>
     <div class="buttons-header">
-        <form action="#" th:action="@{/myAccount}" method="get">
+        <form action="#" th:action="@{/users/myAccount}" method="get">
             <input type="submit" value="My account">
         </form>
     </div>
@@ -41,7 +41,7 @@
 <div class="content-hotel">
     <table>
         <tr>
-            <th class="table-header">Hotel:</th>
+            <th class="table-header">Hotels:</th>
         </tr>
         <tr th:each="hotel : ${allHotels}">
             <td>

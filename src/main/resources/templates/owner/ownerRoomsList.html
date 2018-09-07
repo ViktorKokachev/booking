@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>All users</title>
+    <title>Rooms</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/owner/ownerSpecificItem.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/owner/ownerLists.css}"/>
 </head>
 <body>
 
@@ -20,7 +20,7 @@
         </form>
     </div>
     <div class="buttons-header">
-        <form action="#" th:action="@{/myAccount}" method="get">
+        <form action="#" th:action="@{/users/myAccount}" method="get">
             <input type="submit" value="My account">
         </form>
     </div>
@@ -32,55 +32,30 @@
 </div>
 
 
-<div class="room-list">
-    <form action="#" th:action="@{/create}" method="get">
-        <input type="submit" value="Rooms">
+<div class="create-room">
+    <form action="#" th:action="@{|/hotels/${hotelID}/rooms/create|}">
+        <input type="submit" value="Create room">
     </form>
 </div>
 
-
-<div id="content-hotel">
-    <form action="#" th:action="@{|/hotels/${hotelByID.getHotelID()}/update|}" th:object="${updateHotelArguments}" method="post">
-        <table class="table-hotel">
-            <tr>
-                <td class="table-hotel-1">Name:</td>
-                <td>
-                    <input name="name" type="text" th:value="${hotelByID.getName()}" th:required="required" class="input-hotel"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="table-hotel-1">Address:</td>
-                <td>
-                    <input name="address" type="text" th:value="${hotelByID.getAddress()}" th:required="required" class="input-hotel" height="100px"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="table-hotel-1">Rating:</td>
-                <td>
-                    <input name="rating" type="text" th:value="${hotelByID.getRating()}" th:required="required" class="input-hotel"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="table-hotel-1">Description:</td>
-                <td>
-                    <input name="description" type="text" th:value="${hotelByID.getDescription()}" th:required="required" class="input-hotel"/>
-                </td>
-            </tr>
-        </table>
+<div class="content-rooms">
+    <table>
+        <tr>
+            <th class="table-header">Rooms:</th>
+        </tr>
+        <tr th:each="room : ${allRoomsByHotelID}" class="bottom-line">
+            <td>
+                <a th:href="@{'/hotels/' + ${hotelID} + '/rooms/' + ${room.getRoomID()}}">
+                    <p th:text="'Room number: ' + ${room.getNumber()} + ' | Guests: '
+                     + ${room.getGuestAmount()} + ' | '
+                     + ${room.getRoomType()}">
+                    </p>
+                </a>
+            </td>
+        </tr>
+        <br/>
+    </table>
 </div>
-
-
-<div class="tp">
-    <div class="buttons">
-        <input type="submit" value="Update">
-        </form>
-        <div class="buttons">
-            <form action="#" th:action="@{/hotels}">
-                <input type="submit" value="Back">
-            </form>
-        </div>
-    </div>
-
 
 </body>
 </html>

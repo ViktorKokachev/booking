@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create hotel</title>
+    <title>All users</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/owner/ownerSpecificItem.css}"/>
 </head>
@@ -33,36 +33,46 @@
 
 
 <div id="content-hotel">
-    <form action="#" th:action="@{/hotels/create}" th:object="${createHotelArguments}" method="post">
+    <form action="#" th:action="@{|/hotels/${hotelID}/rooms/create|}" th:object="${createRoomArguments}" method="post">
         <table class="table-hotel">
             <tr>
-                <td class="table-hotel-1">Name:</td>
+                <td class="table-hotel-1">Number:</td>
                 <td class="table-hotel-2">
-                    <input name="name" type="text" th:field="*{name}" th:required="required" class="input-hotel"/>
+                    <input name="number" type="text" th:field="*{number}" th:required="required" class="input-hotel" maxlength="30"/>
                 </td>
             </tr>
             <tr>
-                <td class="table-hotel-1">Address:</td>
+                <td class="table-hotel-1">Guest amount:</td>
                 <td class="table-hotel-2">
-                    <input name="address" type="text" th:field="*{address}" th:required="required"  class="input-hotel"/>
+                    <input name="guestAmount" type="text" th:field="*{guestAmount}" th:required="required"  class="input-hotel" maxlength="30"/>
                 </td>
             </tr>
             <tr>
-                <td class="table-hotel-1">Rating:</td>
+                <td class="table-hotel-1">Room type:</td>
                 <td class="table-hotel-2">
-                    <select name="rating" type="text" th:field="*{rating}">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                    <select name="roomType" type="text" th:field="*{roomType}">
+                        <option value="STANDARD">standart</option>
+                        <option value="LUXURY">luxury</option>
+                        <option value="FAMILY">family</option>
                     </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-hotel-1">Price:</td>
+                <td class="table-hotel-2">
+                    <input name="price" type="text" th:field="*{price}" th:required="required"  class="input-hotel" maxlength="30"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-hotel-1" title="Discounted price;&#xA;If there is no discount leave empty.">Discount:</td>
+                <td class="table-hotel-2">
+                    <input name="discount" type="text" th:field="*{discount}" class="input-hotel" maxlength="30"/>
                 </td>
             </tr>
             <tr>
                 <td class="table-hotel-1">Description:</td>
                 <td class="table-hotel-2">
-                    <input name="description" type="text" th:field="*{description}" th:required="required" class="input-hotel"/>
+                    <input name="description" type="text" th:field="*{description}" th:required="required" class="input-hotel" maxlength="500"/>
                 </td>
             </tr>
         </table>
@@ -75,7 +85,7 @@
         </form>
     </div>
     <div class="buttons-bottom">
-        <form action="#" th:action="@{/hotels}">
+        <form action="#" th:action="@{|/hotels/${hotelID}/rooms|}">
             <input type="submit" value="Back">
         </form>
     </div>

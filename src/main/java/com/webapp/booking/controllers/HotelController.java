@@ -156,6 +156,7 @@ public class HotelController {
     public String createRoomInHotelPage(@PathVariable Integer hotelID,
                                         Model model) {
         model.addAttribute("createRoomArguments", new CreateRoomArguments());
+        model.addAttribute("hotelID", hotelID);
         if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
             return "admin/createRoom";
         } else {
