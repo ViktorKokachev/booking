@@ -104,7 +104,7 @@ public class RoomRepo {
 
     public List<RoomEntity> getRoomByID(Integer roomID) {
         String sql = "select room_id, number, guest_amount, room_type, price, room.description, discount, "
-                + "room.hotel_id, name, address, rating, hotel.description, owner_id, "
+                + "room.hotel_id, name, address, rating, hotel.description, owner_id "
                 + "FROM room JOIN hotel ON room.hotel_id = hotel.hotel_id "
                 + "where room_id = " + roomID;
         return jdbcTemplate.query(sql, rowMapper);

@@ -8,8 +8,22 @@
 <body>
 
 <div id="header">
-    <div class="txt">Hello, </div>
-    <div class="img"><img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/></div>
+    <div class="img">
+        <a th:href="@{/requests}">
+            <img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/>
+        </a>
+    </div>
+
+    <div class="buttons-header">
+        <form action="#" th:action="@{/myAccount}" method="get">
+            <input type="submit" value="My account">
+        </form>
+    </div>
+    <div class="buttons-header">
+        <form action="#" th:action="@{/index}" method="get">
+            <input type="submit" value="Log out">
+        </form>
+    </div>
 </div>
 
 

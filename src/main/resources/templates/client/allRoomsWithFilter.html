@@ -9,8 +9,22 @@
 <body>
 
 <div id="header">
-    <div class="txt">Hello, </div>
-    <div class="img"><img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/></div>
+    <div class="img">
+        <a th:href="@{/rooms}">
+            <img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/>
+        </a>
+    </div>
+
+    <div class="buttons-header">
+        <form action="#" th:action="@{/users/myAccount}" method="get">
+            <input type="submit" value="My account">
+        </form>
+    </div>
+    <div class="buttons-header">
+        <form action="#" th:action="@{/index}" method="get">
+            <input type="submit" value="Log out">
+        </form>
+    </div>
 </div>
 
 <div id="sidebar">
@@ -99,7 +113,7 @@
                 <td>Price for one night: </td>
                 <td th:text="${room.getPrice()}"></td>
             </tr>
-            <tr th:if="${room.getDiscount() != null}">
+            <tr th:if="${room.getDiscount() != 0}">
                 <td>Discounted price: </td>
                 <td th:text="${room.getDiscount()}"></td>
             </tr>

@@ -19,16 +19,16 @@ h2 {
     font-size: 18px;
     height: 60px;
 }
-.txt {
-    margin-top: 18px;
-    float:left;
-}
 .img {
     float:right;
     vertical-align: middle;
     margin-right: 25px;
 }
-
+.buttons-header {
+    /*float:right;*/
+    margin: 18px 5px 0px 5px;
+    float:left;
+}
 
 #content { /* Левая колонка */
     border: 1px solid #333; /* Параметры рамки вокруг */

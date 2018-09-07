@@ -9,9 +9,22 @@
 <body>
 
 <div id="header">
-    <div class="txt">Hello, </div>
+    <div class="img">
+        <a th:href="@{/rooms}">
+            <img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/>
+        </a>
+    </div>
 
-    <div class="img"><img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/></div>
+    <div class="buttons-header">
+        <form action="#" th:action="@{/users/myAccount}" method="get">
+            <input type="submit" value="My account">
+        </form>
+    </div>
+    <div class="buttons-header">
+        <form action="#" th:action="@{/index}" method="get">
+            <input type="submit" value="Log out">
+        </form>
+    </div>
 </div>
 
 <div id="sidebar">
@@ -50,12 +63,13 @@
         </div>
         <br/>
 
-        <div>Check in:<br/><input type="date" th:field="*{checkInDate}"/></div>  <br/>
+        <div>Check in:<br/><input type="date" th:field="*{checkInDate}"/></div>
+        <br/>
         <div>Check out: <br/><input type="date" th:field="*{checkOutDate}"/></div>
         <br/>
 
         <div>
-            Minimum price:<input name="minPrice"  type="text" th:field="*{minPrice}"/>
+            Minimum price:<input name="minPrice" type="text" th:field="*{minPrice}"/>
         </div>
         <br/>
 
@@ -73,39 +87,39 @@
     <div th:each="room : ${discountRooms}">
         <table>
             <tr>
-                <td>Hotel: </td>
+                <td>Hotel:</td>
                 <td th:text="${room.getHotel().getName()}">Hotel name</td>
             </tr>
             <tr>
-                <td>Address: </td>
+                <td>Address:</td>
                 <td th:text="${room.getHotel().getAddress()}">Hotel address</td>
             </tr>
             <tr>
-                <td>Rating: </td>
+                <td>Rating:</td>
                 <td th:text="${room.getHotel().getRating()}">Hotel rating</td>
             </tr>
             <tr>
-                <td>Description: </td>
+                <td>Description:</td>
                 <td th:text="${room.getHotel().getDescription()}">Hotel description</td>
             </tr>
             <tr>
-                <td>Guests: </td>
+                <td>Guests:</td>
                 <td th:text="${room.getGuestAmount()}"></td>
             </tr>
             <tr>
-                <td>Room type: </td>
+                <td>Room type:</td>
                 <td th:text="${room.getRoomType()}"></td>
             </tr>
             <tr>
-                <td>Price for one night: </td>
+                <td>Price for one night:</td>
                 <td th:text="${room.getPrice()}"></td>
             </tr>
             <tr th:if="${room.getDiscount() != null}">
-                <td>Discounted price: </td>
+                <td>Discounted price:</td>
                 <td th:text="${room.getDiscount()}"></td>
             </tr>
             <tr>
-                <td>Room description: </td>
+                <td>Room description:</td>
                 <td th:text="${room.getDescription()}"></td>
             </tr>
             <tr>
