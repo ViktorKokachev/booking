@@ -112,7 +112,7 @@ public class HotelController {
 
         model.addAttribute("hotelByID", hotelService.getHotelByID(updateHotelArguments.getHotelID()));
 
-        return "redirect:/hotels" + hotelID;
+        return "redirect:/hotels/" + hotelID;
         /*if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
             return "admin/adminHotel";
         } else {
@@ -132,9 +132,9 @@ public class HotelController {
     public String getHotelRooms(@PathVariable Integer hotelID, Model model) {
         model.addAttribute("allRoomsByHotelID", roomService.getRoomsByHotelID(hotelID));
         if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
-            return "admin/adminHotelRooms";
+            return "admin/adminRoomsList";
         } else {
-            return "owner/ownerHotelRooms";
+            return "owner/ownerRoomsList";
         }
     }
 
