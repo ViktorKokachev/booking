@@ -149,4 +149,12 @@ public class RoomRepo {
         String sql = "UPDATE discount = " +  discount + " WHERE room_id = " + roomID;
         jdbcTemplate.execute(sql);
     }
+
+    public List<RoomEntity> getRoomsByHotelID(Integer hotelID) {
+        String sql = "select room_id, number, guest_amount, room_type, price, room.description, discount, "
+                + "room.hotel_id, name, address, rating, hotel.description, owner_id "
+                + "FROM room JOIN hotel ON room.hotel_id = hotel.hotel_id "
+                + "where room.hotel_id = " + hotelID;
+        return jdbcTemplate.query(sql, rowMapper);
+    }
 }

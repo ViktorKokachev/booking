@@ -30,7 +30,6 @@ public class RoomController {
         System.err.println(currentPrincipalName);
         System.err.println(authentication.getAuthorities());
 
-
         model.addAttribute("discountRooms", roomService.getDiscountRooms());
         model.addAttribute("getAllRoomsWithFilterArguments", new GetAllRoomsWithFilterArguments());
         model.addAttribute("extendedRequestArguments", new ExtendedRequestArguments());

@@ -94,8 +94,12 @@ public class RoomService {
 
     public List<RoomEntity> getDiscountRooms() {
         //todo: fix magic number
-        int amount = 5;
+        int amount = 20;
         return roomRepo.getDiscountRooms(amount);
+    }
+
+    public List<RoomEntity> getRoomsByHotelID(Integer hotelID) {
+        return roomRepo.getRoomsByHotelID(hotelID);
     }
 
     private void mergeWhenUpdate(RoomEntity toUpdate, UpdateRoomArguments updateRoomArguments) {
