@@ -34,7 +34,7 @@
 
 <div class="all-rooms-button">
     <form action="#" th:action="@{|/hotels/${hotelByID.getHotelID()}/rooms|}" method="get">
-        <input type="submit" value="Rooms">
+        <input type="submit" value="All rooms">
     </form>
 </div>
 
@@ -44,25 +44,31 @@
         <table class="table-hotel">
             <tr>
                 <td class="table-hotel-1">Name:</td>
-                <td>
+                <td class="table-hotel-2">
                     <input name="name" type="text" th:value="${hotelByID.getName()}" th:required="required" class="input-hotel"/>
                 </td>
             </tr>
             <tr>
                 <td class="table-hotel-1">Address:</td>
-                <td>
+                <td class="table-hotel-2">
                     <input name="address" type="text" th:value="${hotelByID.getAddress()}" th:required="required" class="input-hotel" height="100px"/>
                 </td>
             </tr>
             <tr>
                 <td class="table-hotel-1">Rating:</td>
-                <td>
-                    <input name="rating" type="text" th:value="${hotelByID.getRating()}" th:required="required" class="input-hotel"/>
+                <td class="table-hotel-2">
+                    <select name="rating" type="text" th:value="*{rating}">
+                        <option value="1" th:selected="${hotelByID.getRating().toString() == '1'}">1</option>
+                        <option value="2" th:selected="${hotelByID.getRating().toString() == '2'}">2</option>
+                        <option value="3" th:selected="${hotelByID.getRating().toString() == '3'}">3</option>
+                        <option value="4" th:selected="${hotelByID.getRating().toString() == '4'}">4</option>
+                        <option value="5" th:selected="${hotelByID.getRating().toString() == '5'}">5</option>
+                    </select>
                 </td>
             </tr>
             <tr>
                 <td class="table-hotel-1">Description:</td>
-                <td>
+                <td class="table-hotel-2">
                     <input name="description" type="text" th:value="${hotelByID.getDescription()}" th:required="required" class="input-hotel"/>
                 </td>
             </tr>
@@ -70,17 +76,22 @@
 </div>
 
 
-<div class="tp">
-    <div class="buttons">
+<div class="buttons-container-bottom">
+    <div class="buttons-bottom">
         <input type="submit" value="Update">
         </form>
-        <div class="buttons">
-            <form action="#" th:action="@{/hotels}">
-                <input type="submit" value="Back">
-            </form>
-        </div>
     </div>
-
+    <div class="buttons-bottom">
+        <form action="#" th:action="@{|/hotels/${hotelByID.getHotelID()}/delete|}" method="post">
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+    <div class="buttons-bottom">
+        <form action="#" th:action="@{/hotels}">
+            <input type="submit" value="Back">
+        </form>
+    </div>
+</div>
 
 </body>
 </html>

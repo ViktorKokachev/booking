@@ -37,7 +37,7 @@ public class HotelRepo {
                 + hotelEntity.getAddress() + "', '"
                 + hotelEntity.getRating() + "', '"
                 + hotelEntity.getDescription() + "', '"
-                + hotelEntity.getOwnerID() + "', '";
+                + hotelEntity.getOwnerID() + "')";
         jdbcTemplate.execute(sql);
     }
 
