@@ -15,6 +15,11 @@
     </div>
 
     <div class="buttons-header">
+        <form action="#" th:action="@{/requests}" method="get">
+            <input type="submit" value="Main page">
+        </form>
+    </div>
+    <div class="buttons-header">
         <form action="#" th:action="@{/myAccount}" method="get">
             <input type="submit" value="My account">
         </form>
@@ -90,7 +95,7 @@
                 </a>
             </td>
             <td class="empty"></td>
-            <td th:text="${request.getRequestStatus()}" title="BOOKED, PAYED, APPROVED, REJECTED" class="status"></td>
+            <td th:text="${request.getRequestStatus()}" title="BOOKED - client made a request;&#xA;PAYED - request waits to be approved;&#xA;APPROVED - client payed within 3 days from request date;&#xA;REJECTED - client hasn't payed for his room or payed after the deadline." class="status"></td>
         </tr>
     </table>
     <br/>

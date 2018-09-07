@@ -15,6 +15,11 @@
     </div>
 
     <div class="buttons-header">
+        <form action="#" th:action="@{/rooms}" method="get">
+            <input type="submit" value="Main page">
+        </form>
+    </div>
+    <div class="buttons-header">
         <form action="#" th:action="@{/users/myAccount}" method="get">
             <input type="submit" value="My account">
         </form>
@@ -31,6 +36,10 @@
         <tr>
             <td class="tpk1">Request number:</td>
             <td th:text="${requestByID.getRequestID()}" class="tpk2" colspan="2">Hotel name</td>
+        </tr>
+        <tr>
+            <td class="tpk1">Request date:</td>
+            <td th:text="${requestByID.getRequestDate()}" class="tpk2" colspan="2">Hotel name</td>
         </tr>
         <tr>
             <td class="tpk1">Hotel:</td>

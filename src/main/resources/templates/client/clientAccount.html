@@ -15,6 +15,11 @@
     </div>
 
     <div class="buttons-header">
+        <form action="#" th:action="@{/rooms}" method="get">
+            <input type="submit" value="Main page">
+        </form>
+    </div>
+    <div class="buttons-header">
         <form action="#" th:action="@{/users/myAccount}" method="get">
             <input type="submit" value="My account">
         </form>
@@ -38,16 +43,18 @@
         <tr>
             <td>
                 <a th:href="@{'/requests/' + ${request.getRequestID()}}">
-                <p th:text="'Request number: ' + ${request.getRequestID()} + ' | '
+                    <p th:text="'Request number: ' + ${request.getRequestID()} + ' | '
                      + ${request.getRoom().getHotel().getName()} + ' | '
                      + ${request.getRoom().getGuestAmount()} + ' guests | from '
                      + ${request.getCheckInDate()} + ' to '
                      + ${request.getCheckOutDate()}" class="request">
-                </p>
-            </a>
+                    </p>
+                </a>
             </td>
             <td class="empty"></td>
-            <td th:text="${request.getRequestStatus()}" title="BOOKED, PAYED, APPROVED, REJECTED" class="status"></td>
+            <td th:text="${request.getRequestStatus()}"
+                title="BOOKED - you need do pay for the request within 3 days from request date;&#xA;PAYED - your request is waiting for confirmation;&#xA;APPROVED - your request has been approved&#xA;REJECTED - your request have been rejected, you can create a new request on the main page."
+                class="status"></td>
         </tr>
     </table>
     <br/>
