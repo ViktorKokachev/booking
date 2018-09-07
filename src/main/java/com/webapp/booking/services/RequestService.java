@@ -139,8 +139,8 @@ public class RequestService {
 
     public List<RequestEntity> getAllRequestsWithFilter(GetAllRequestsWithFilterArguments getAllRequestsWithFilterArguments) {
 
-        // todo: return real filtered requests
-        return getAllRequests();
+        return requestRepo.getAllRequestsWithFilter(getAllRequestsWithFilterArguments.getName(),
+                getAllRequestsWithFilterArguments.getRequestStatus());
     }
 
     private static Long getDifferenceDays(Date d1, Date d2) {

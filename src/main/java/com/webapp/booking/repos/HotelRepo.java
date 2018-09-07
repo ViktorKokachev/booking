@@ -56,4 +56,28 @@ public class HotelRepo {
         String sql = "DELETE FROM hotel WHERE hotel_id = " + hotelID;
         jdbcTemplate.execute(sql);
     }
+
+    public List<HotelEntity> getAllHotelsWithFilter(String name, Integer rating) {
+        String sql = "SELECT hotel_id, name, address, rating, description, owner_id FROM hotel ";
+
+        if (name == null && rating == null) {
+            return jdbcTemplate.query(sql, rowMapper);
+
+        }
+
+        sql += "WHERE";
+
+        if (name != null) {
+            sql += " name = '" + name + "' AND";
+        }
+        if (rating != null) {
+            sql += " rating = '" + rating + "'";
+        }
+
+        if (sql.endsWith("WHERE") || sql.endsWith("AND")) {
+            sql = sql.substring(0, sql.lastIndexOf(" "));
+        }
+
+        return jdbcTemplate.query(sql, rowMapper);
+    }
 }

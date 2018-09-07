@@ -83,8 +83,8 @@ public class HotelService {
     }
 
     public List<HotelEntity> getAllHotelsWithFilter(GetAllHotelsWithFilterArguments getAllHotelsWithFilterArguments) {
-        // todo: return real filtered hotels
-        return getAllHotels();
+        return hotelRepo.getAllHotelsWithFilter(getAllHotelsWithFilterArguments.getName(),
+                getAllHotelsWithFilterArguments.getRating());
     }
 
     public List<HotelEntity> getAllHotelsForCurrentOwner() {
