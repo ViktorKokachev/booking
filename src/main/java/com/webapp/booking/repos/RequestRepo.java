@@ -1,6 +1,7 @@
 package com.webapp.booking.repos;
 
 import com.webapp.booking.entities.RequestEntity;
+import com.webapp.booking.enums.RequestStatus;
 import com.webapp.booking.repos.util.RequestEntityRowMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,5 +93,36 @@ public class RequestRepo {
     public void approveRequest(Integer requestID) {
         String sql = "UPDATE request SET status = 'APPROVED' WHERE request_id = " + requestID;
         jdbcTemplate.execute(sql);
+    }
+
+    public List<RequestEntity> getAllRequestsWithFilter(String name, RequestStatus requestStatus) {
+        String sql = "select hotel.hotel_id, hotel.name, hotel.address, hotel.rating, hotel.description, hotel.owner_id,\n" +
+                "       room.room_id, room.number, room.guest_amount, room.room_type, room.price, room.description, room.discount,\n" +
+                "       request.request_id, request.check_in, request.check_out, request.status, request.request_date,\n" +
+                "       user.user_id, user.login, user.password, user.name, user.role\n" +
+                "from hotel\n" +
+                "join room on room.hotel_id = hotel.hotel_id\n" +
+                "join request on room.room_id = request.room_id\n" +
+                "join user on user.user_id = request.user_id ";
+
+        if (name == null && requestStatus == null) {
+            return jdbcTemplate.query(sql, requestEntityRowMapper);
+        }
+
+        sql += "WHERE";
+
+        if (name != null) {
+            sql += " user.name = '" + name + "' AND";
+        }
+        if (requestStatus != null) {
+            sql += " request.status = '" + requestStatus + "'";
+        }
+
+        if (sql.endsWith("WHERE") || sql.endsWith("AND")) {
+            sql = sql.substring(0, sql.lastIndexOf(" "));
+        }
+
+        return jdbcTemplate.query(sql, requestEntityRowMapper);
+
     }
 }

@@ -8,5 +8,4 @@ import lombok.Setter;
 public class GetAllHotelsWithFilterArguments {
     String name;
     Integer rating;
-    String ownerName;
 }

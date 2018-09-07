@@ -149,7 +149,9 @@ public class UserService implements UserDetailsService {
     }
 
     public List<UserEntity> getAllUsersWithFilter(GetAllUsersWithFilterArguments getAllUsersWithFilterArguments) {
-        // todo: return real filtered lists
-        return getAllUsers();
+
+        return userRepo.getAllUsersWithFilter(getAllUsersWithFilterArguments.getLogin(),
+                getAllUsersWithFilterArguments.getName(),
+                getAllUsersWithFilterArguments.getUserRole());
     }
 }
