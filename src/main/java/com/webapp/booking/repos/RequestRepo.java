@@ -125,4 +125,17 @@ public class RequestRepo {
         return jdbcTemplate.query(sql, requestEntityRowMapper);
 
     }
+
+    public List<RequestEntity> getAllRequestsByRoomID(Integer roomID) {
+        String sql = "select hotel.hotel_id, hotel.name, hotel.address, hotel.rating, hotel.description, hotel.owner_id,\n" +
+                "       room.room_id, room.number, room.guest_amount, room.room_type, room.price, room.description, room.discount,\n" +
+                "       request.request_id, request.check_in, request.check_out, request.status, request.request_date,\n" +
+                "       user.user_id, user.login, user.password, user.name, user.role\n" +
+                "from hotel\n" +
+                "join room on room.hotel_id = hotel.hotel_id\n" +
+                "join request on room.room_id = request.room_id\n" +
+                "join user on user.user_id = request.user_id "
+                + "WHERE room.room_id = " + roomID;
+        return jdbcTemplate.query(sql, requestEntityRowMapper);
+    }
 }

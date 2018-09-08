@@ -62,6 +62,19 @@ public class RequestService {
             throw new RuntimeException("You can't book on past dates");
         }
 
+        List<RequestEntity> allRequestsByRoomID =
+                requestRepo.getAllRequestsByRoomID(createRequestArguments.getRoomID());
+
+        boolean isDatesAvailiable = allRequestsByRoomID.stream().allMatch(requestEntity ->
+                createRequestArguments.getCheckInDate().compareTo(requestEntity.getCheckInDate()) < 0
+                && createRequestArguments.getCheckOutDate().compareTo(requestEntity.getCheckInDate()) < 0
+                || createRequestArguments.getCheckInDate().compareTo(requestEntity.getCheckOutDate()) > 0
+                && createRequestArguments.getCheckOutDate().compareTo(requestEntity.getCheckOutDate()) > 0);
+
+        if (!isDatesAvailiable) {
+            throw new RuntimeException("Your dates are not available! Try another!");
+        }
+
         RequestEntity requestEntity = new RequestEntity();
 
         UserEntity currentUser = userService.getCurrentUser();
