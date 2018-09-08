@@ -42,7 +42,7 @@
                     Card number:
                 </td>
                 <td>
-                    <input type="text" name="cardNumber" th:field="*{cardNumber}" th:required="required"/>
+                    <input type="text" name="cardNumber" th:field="*{cardNumber}" th:required="required"  maxlength="19"/>
                 </td>
             </tr>
             <tr>
@@ -50,8 +50,7 @@
                     Expiration date:
                 </td>
                 <td>
-                    <input type="text" name="cardExpirationDate" th:field="*{cardExpirationDate}"
-                           th:required="required"/>
+                    <input type="text" name="cardExpirationDate" th:field="*{cardExpirationDate}" th:required="required" maxlength="19"/>
                 </td>
             </tr>
             <tr>
@@ -59,7 +58,7 @@
                     Security code:
                 </td>
                 <td>
-                    <input type="password" name="cardCVV" th:field="*{cardCVV}" th:required="required"/>
+                    <input type="password" name="cardCVV" th:field="*{cardCVV}" th:required="required" maxlength="3"/>
                 </td>
             </tr>
             <tr>
@@ -67,7 +66,7 @@
                     Name and surname:
                 </td>
                 <td>
-                    <input type="text" name="cardHolderName" th:field="*{cardHolderName}" th:required="required"/>
+                    <input type="text" name="cardHolderName" th:field="*{cardHolderName}" th:required="required" maxlength="30"/>
                 </td>
             </tr>
             <tr>
