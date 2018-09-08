@@ -69,22 +69,22 @@
             <tr>
                 <td>Name:</td>
                 <td>
-                    <input name="name" type="text" th:value="${userInformation.getName()}"/>
+                    <input name="name" type="text" th:value="${userInformation.getName()}" maxlength="30" th:required="required"/>
                 </td>
             </tr>
             <tr>
                 <td>Login:</td>
                 <td>
-                    <input name="login" type="text" th:value="${userInformation.getLogin()}"/>
+                    <input name="login" type="text" th:value="${userInformation.getLogin()}" maxlength="30" th:required="required"/>
                 </td>
             </tr>
             <tr>
                 <td>Old password:</td>
-                <td><input name="oldPassword" type="password" th:field="*{oldPassword}"/></td>
+                <td><input name="oldPassword" type="password" th:field="*{oldPassword}" maxlength="30"/></td>
             </tr>
             <tr>
                 <td>New password:</td>
-                <td><input name="password" type="password" th:field="*{password}"/></td>
+                <td><input name="password" type="password" th:field="*{password}" maxlength="30"/></td>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="Save"></td>
             </tr>

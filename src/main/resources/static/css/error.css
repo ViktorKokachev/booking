@@ -1,0 +1,27 @@
+#header { /* Верхний блок */
+    background: rgb(184, 231, 247); /* Цвет фона */
+    padding: 10px; /* Поля вокруг текста */
+    font-size: 18px;
+    height: 60px;
+}
+.img {
+    float:right;
+    vertical-align: middle;
+    margin-right: 25px;
+}
+.buttons-header {
+    /*float:right;*/
+    margin: 18px 5px 0px 5px;
+    float:left;
+}
+
+.error-message {
+    /*border: 1px solid #333;*/
+    padding: 5px;
+    margin: 150px auto 0px auto;
+    text-align: center;
+}
+
+p {
+    font-size: 20px;
+}

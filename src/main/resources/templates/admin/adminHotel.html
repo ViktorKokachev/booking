@@ -46,13 +46,13 @@
             <tr>
                 <td class="table-hotel-1">Name:</td>
                 <td>
-                    <input name="name" type="text" th:value="${hotelByID.getName()}" th:required="required" class="input-hotel"/>
+                    <input name="name" type="text" th:value="${hotelByID.getName()}" th:required="required" class="input-hotel" maxlength="30"/>
                 </td>
             </tr>
             <tr>
                 <td class="table-hotel-1">Address:</td>
                 <td>
-                    <input name="address" type="text" th:value="${hotelByID.getAddress()}" th:required="required" class="input-hotel" height="100px"/>
+                    <input name="address" type="text" th:value="${hotelByID.getAddress()}" th:required="required" class="input-hotel" height="100px" maxlength="30"/>
                 </td>
             </tr>
             <tr>
@@ -70,7 +70,7 @@
             <tr>
                 <td class="table-hotel-1">Description:</td>
                 <td>
-                    <input name="description" type="text" th:value="${hotelByID.getDescription()}" th:required="required" class="input-hotel"/>
+                    <input name="description" type="text" th:value="${hotelByID.getDescription()}" th:required="required" class="input-hotel" maxlength="500"/>
                 </td>
             </tr>
         </table>
