@@ -16,6 +16,6 @@ public class ErrorController {
     public String exception(final Throwable throwable, final Model model) {
         String errorMessage = (throwable != null ? throwable.getMessage() : "Unknown error");
         model.addAttribute("errorMessage", errorMessage);
-        return "error";
+        return "security/error";
     }
 }
