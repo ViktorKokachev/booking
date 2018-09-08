@@ -60,15 +60,15 @@ public class UserRepo {
     public List<UserEntity> getAllUsersWithFilter(String login, String name, UserRole userRole) {
         String sql = "SELECT user_id, login, password, name, role FROM user ";
 
-        if (login == null && name == null && userRole == null)
+        if (login.isEmpty() && name.isEmpty() && userRole == null)
             return jdbcTemplate.query(sql, userEntityRowMapper);
 
         sql += "WHERE";
 
-        if (login != null) {
+        if (!login.isEmpty()) {
             sql += " login = '" + login + "' AND";
         }
-        if (name != null) {
+        if (!name.isEmpty()) {
             sql += " name = '" + name + "' AND";
         }
         if (userRole != null) {
