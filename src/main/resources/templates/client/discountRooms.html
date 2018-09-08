@@ -74,16 +74,15 @@
         <br/>
 
         <div>
-            Minimum price:<input name="minPrice" type="text" th:field="*{minPrice}"/>
+            Minimum price:<input name="minPrice" type="text" th:field="*{minPrice}" maxlength="30"/>
         </div>
         <br/>
 
         <div>
-            Maximum price:<input name="maxPrice" type="text" th:field="*{maxPrice}"/>
+            Maximum price:<input name="maxPrice" type="text" th:field="*{maxPrice}" maxlength="30"/>
         </div>
         <br/>
         <input type="submit" value="Search">
-        <input type="reset" value="Reset">
     </form>
 </div>
 

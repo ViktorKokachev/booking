@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Hotel</title>
+    <title>My account</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/owner/ownerSpecificItem.css}"/>
 </head>
@@ -39,25 +39,25 @@
             <tr>
                 <td class="table-account-1">Login:</td>
                 <td class="table-account-2">
-                    <input name="login" type="text" th:value="${userByID.getLogin()}" th:required="required"/>
+                    <input name="login" type="text" th:value="${userByID.getLogin()}" th:required="required" maxlength="30"/>
                 </td>
             </tr>
             <tr>
                 <td class="table-account-1">Name:</td>
                 <td class="table-account-2">
-                    <input name="name" type="text" th:value="${userByID.getName()}" th:required="required"/>
+                    <input name="name" type="text" th:value="${userByID.getName()}" th:required="required" maxlength="30"/>
                 </td>
             </tr>
             <tr>
                 <td class="table-account-1">Old password:</td>
                 <td class="table-account-2">
-                    <input name="oldPassword" type="password" th:field="*{oldPassword}"/>
+                    <input name="oldPassword" type="password" th:field="*{oldPassword}" maxlength="30"/>
                 </td>
             </tr>
             <tr>
                 <td class="table-account-1">New password:</td>
                 <td class="table-account-2">
-                    <input name="password" type="password" th:field="*{password}"/>
+                    <input name="password" type="password" th:field="*{password}" maxlength="30"/>
                 </td>
             </tr>
         </table>

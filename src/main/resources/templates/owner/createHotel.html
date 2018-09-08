@@ -38,13 +38,13 @@
             <tr>
                 <td class="table-hotel-1">Name:</td>
                 <td class="table-hotel-2">
-                    <input name="name" type="text" th:field="*{name}" th:required="required" class="input-hotel"/>
+                    <input name="name" type="text" th:field="*{name}" th:required="required" class="input-hotel" maxlength="30"/>
                 </td>
             </tr>
             <tr>
                 <td class="table-hotel-1">Address:</td>
                 <td class="table-hotel-2">
-                    <input name="address" type="text" th:field="*{address}" th:required="required"  class="input-hotel"/>
+                    <input name="address" type="text" th:field="*{address}" th:required="required"  class="input-hotel" maxlength="30"/>
                 </td>
             </tr>
             <tr>
@@ -62,7 +62,7 @@
             <tr>
                 <td class="table-hotel-1">Description:</td>
                 <td class="table-hotel-2">
-                    <input name="description" type="text" th:field="*{description}" th:required="required" class="input-hotel"/>
+                    <input name="description" type="text" th:field="*{description}" th:required="required" class="input-hotel" maxlength="500"/>
                 </td>
             </tr>
         </table>

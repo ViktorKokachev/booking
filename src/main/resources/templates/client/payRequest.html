@@ -35,47 +35,55 @@
     Please fill in card data:
 </div>
 <div id="content">
-<form action="#" th:action="@{|/requests/${requestID}/pay|}" th:object="${payRequestArguments}" method="post">
-    <table>
-        <tr>
-            <td>
-                Card number:
-            </td>
-            <td>
-                <input type="text" name="cardNumber" th:field="*{cardNumber}" th:required="required"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Expiration date:
-            </td>
-            <td>
-                <input type="text" name="cardExpirationDate" th:field="*{cardExpirationDate}" th:required="required"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Security code:
-            </td>
-            <td>
-                <input type="password" name="cardCVV" th:field="*{cardCVV}" th:required="required"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Name and surname:
-            </td>
-            <td>
-                <input type="text" name="cardHolderName" th:field="*{cardHolderName}" th:required="required"/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <input type="submit" value="Pay"/>
-            </td>
-        </tr>
+    <form action="#" th:action="@{|/requests/${requestID}/pay|}" th:object="${payRequestArguments}" method="post">
+        <table>
+            <tr>
+                <td>
+                    Card number:
+                </td>
+                <td>
+                    <input type="text" name="cardNumber" th:field="*{cardNumber}" th:required="required"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Expiration date:
+                </td>
+                <td>
+                    <input type="text" name="cardExpirationDate" th:field="*{cardExpirationDate}"
+                           th:required="required"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Security code:
+                </td>
+                <td>
+                    <input type="password" name="cardCVV" th:field="*{cardCVV}" th:required="required"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Name and surname:
+                </td>
+                <td>
+                    <input type="text" name="cardHolderName" th:field="*{cardHolderName}" th:required="required"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="Pay"/>
+    </form>
+</td>
+    <td align="left">
+    <form action="#" th:action="@{|/requests/${requestID}|}">
+        <input type="submit" value="Back">
+    </form>
+                </td>
+
+    </tr>
     </table>
-</form>
+
 </div>
 </body>
 </html>
