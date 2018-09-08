@@ -70,7 +70,7 @@ public class UserController {
                     userService.getUserByID(userService.getCurrentUser().getUserID()));
             model.addAttribute("updateUserArguments", new UpdateUserArguments());
 
-            return "admin/adminAccount";
+            return "owner/ownerAccount";
         }
     }
 
