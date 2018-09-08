@@ -31,6 +31,9 @@ public class RoomService {
         RoomType roomType = getAllRoomsWithFilterArguments.getRoomType();
 
         if (checkInDate != null && checkOutDate != null) {
+            if (checkInDate.compareTo(checkOutDate) >= 0) {
+                throw new RuntimeException("Invalid date range!");
+            }
             return roomRepo.getAllRoomsWithFilters(checkInDate, checkOutDate, guestAmount, hotelRating, minPrice, maxPrice, roomType);
         } else if (checkInDate == null && checkOutDate == null) {
             return roomRepo.getAllRoomsWithFiltersWithoutDates(guestAmount, hotelRating, minPrice, maxPrice, roomType);
