@@ -51,6 +51,17 @@ public class RequestService {
 
     public void createRequest(CreateRequestArguments createRequestArguments) {
         // check dates for availability, return price by whole period
+
+        if (createRequestArguments.getCheckInDate().compareTo(createRequestArguments.getCheckOutDate()) >= 0) {
+            throw new RuntimeException("Invalid date range!");
+        }
+
+        Date currentDate = new Date();
+        if (createRequestArguments.getCheckInDate().compareTo(currentDate) <=0
+                || createRequestArguments.getCheckOutDate().compareTo(currentDate) <=0) {
+            throw new RuntimeException("You can't book on past dates");
+        }
+
         RequestEntity requestEntity = new RequestEntity();
 
         UserEntity currentUser = userService.getCurrentUser();

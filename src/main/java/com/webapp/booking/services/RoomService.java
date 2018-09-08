@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +35,12 @@ public class RoomService {
             if (checkInDate.compareTo(checkOutDate) >= 0) {
                 throw new RuntimeException("Invalid date range!");
             }
+
+            Date currentDate = new Date();
+            if (checkInDate.compareTo(currentDate) <=0 || checkOutDate.compareTo(currentDate) <=0) {
+                throw new RuntimeException("You can't book on past dates");
+            }
+
             return roomRepo.getAllRoomsWithFilters(checkInDate, checkOutDate, guestAmount, hotelRating, minPrice, maxPrice, roomType);
         } else if (checkInDate == null && checkOutDate == null) {
             return roomRepo.getAllRoomsWithFiltersWithoutDates(guestAmount, hotelRating, minPrice, maxPrice, roomType);
