@@ -139,7 +139,7 @@ public class RequestService {
 
         Double nightPrice;
 
-        if (requestByID.getRoom().getDiscount() == null) {
+        if (requestByID.getRoom().getPrice() == null) {
               if (requestByID.getRoom().getDiscount() == null) {
                   throw new RuntimeException("Invalid prices for the room!");
               } else {
