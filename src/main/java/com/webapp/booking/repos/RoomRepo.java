@@ -66,8 +66,6 @@ public class RoomRepo {
             sql += "and ((price >= " + minPrice + " and discount is null) or (discount is not null and discount >= " + minPrice + ")) ";
         }
 
-        System.err.println(sql);
-
         return jdbcTemplate.query(sql, rowMapper);
     }
 
