@@ -105,13 +105,13 @@ public class RequestRepo {
                 "join request on room.room_id = request.room_id\n" +
                 "join user on user.user_id = request.user_id ";
 
-        if (name == null && requestStatus == null) {
+        if (name.isEmpty() && requestStatus == null) {
             return jdbcTemplate.query(sql, requestEntityRowMapper);
         }
 
         sql += "WHERE";
 
-        if (name != null) {
+        if (!name.isEmpty()) {
             sql += " user.name = '" + name + "' AND";
         }
         if (requestStatus != null) {
