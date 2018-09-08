@@ -31,6 +31,15 @@
     </div>
 </div>
 
+
+<div class="all-rooms-button">
+    <form action="#" th:action="@{|/hotels/${hotelByID.getHotelID()}/rooms|}" method="get">
+        <input type="submit" value="All rooms">
+    </form>
+</div>
+
+
+
 <div id="content-hotel">
     <form action="#" th:action="@{|/hotels/${hotelByID.getHotelID()}/update|}" th:object="${updateHotelArguments}" method="post">
         <table class="table-hotel">

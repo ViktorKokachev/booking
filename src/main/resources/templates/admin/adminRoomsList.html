@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rooms</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/admin.css}"/>
+</head>
+<body>
+
+<div id="header">
+    <div class="img">
+        <a th:href="@{/requests}">
+            <img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/>
+        </a>
+    </div>
+
+    <div class="buttons-header">
+        <form action="#" th:action="@{/requests}" method="get">
+            <input type="submit" value="Main page">
+        </form>
+    </div>
+    <div class="buttons-header">
+        <form action="#" th:action="@{/users/myAccount}" method="get">
+            <input type="submit" value="My account">
+        </form>
+    </div>
+    <div class="buttons-header">
+        <form action="#" th:action="@{/index}" method="get">
+            <input type="submit" value="Log out">
+        </form>
+    </div>
+</div>
+
+
+<div class="content-rooms">
+    <table class="adminroomslist">
+        <tr>
+            <th class="table-header">Rooms:</th>
+        </tr>
+        <tr th:each="room : ${allRoomsByHotelID}" class="bottom-line">
+            <td>
+                <a th:href="@{'/hotels/' + ${hotelID} + '/rooms/' + ${room.getRoomID()}}">
+                    <p th:text="'Room number: ' + ${room.getNumber()} + ' | Guests: '
+                     + ${room.getGuestAmount()} + ' | '
+                     + ${room.getRoomType()}">
+                    </p>
+                </a>
+            </td>
+        </tr>
+        <br/>
+    </table>
+</div>
+
+</body>
+</html>

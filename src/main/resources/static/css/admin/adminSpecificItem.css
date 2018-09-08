@@ -144,3 +144,40 @@ h2 {
     padding: 5px;
 
 }
+
+.all-rooms-button {
+    margin: 10px 110px 20px 0px;
+    float: right;
+}
+
+#content-room {
+    align: center;
+    margin: 10px 300px 5px 300px; /* Значения отступов */
+    padding: 5px; /* Поля вокруг текста */
+    border: 1px solid #333; /* Параметры рамки */
+}
+.table-room {
+    border-collapse: collapse;
+    border: 1px solid #333;
+}
+.table-room-1 {
+    width:200px;
+    padding: 5px;
+}
+.table-room-2 {
+    padding: 5px;
+}
+.input-hotel {
+    width: 600px;
+}
+
+.buttons-container-bottom{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buttons-bottom {
+    align: center;
+    display: inline-block;
+    padding: 0px 5px;
+}

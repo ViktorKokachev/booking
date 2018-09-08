@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rooms</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/adminSpecificItem.css}"/>
+</head>
+<body>
+
+<div id="header">
+    <div class="img">
+        <a th:href="@{/requests}">
+            <img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/>
+        </a>
+    </div>
+
+    <div class="buttons-header">
+        <form action="#" th:action="@{/requests}" method="get">
+            <input type="submit" value="Main page">
+        </form>
+    </div>
+    <div class="buttons-header">
+        <form action="#" th:action="@{/users/myAccount}" method="get">
+            <input type="submit" value="My account">
+        </form>
+    </div>
+    <div class="buttons-header">
+        <form action="#" th:action="@{/index}" method="get">
+            <input type="submit" value="Log out">
+        </form>
+    </div>
+</div>
+
+
+
+<div id="content-room">
+    <form action="#" th:action="@{|/hotels/${hotelID}/rooms/${roomByID.getRoomID()}/update|}" th:object="${createRoomArguments}" method="post">
+        <table class="table-room">
+            <tr>
+                <td class="table-room-1">Number:</td>
+                <td class="table-room-2">
+                    <input name="number" type="text" th:value="${roomByID.getNumber()}" th:required="required" class="input-hotel" maxlength="30"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-room-1">Guest amount:</td>
+                <td class="table-room-2">
+                    <input name="guestAmount" type="text" th:value="${roomByID.getGuestAmount()}" th:required="required" class="input-hotel" maxlength="30"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-room-1">Room type:</td>
+                <td class="table-room-2">
+                    <select name="roomType" type="text" th:value="${roomType}">
+                        <option value="STANDARD" th:selected="${roomByID.getRoomType().toString() == 'STANDARD'}">standard</option>
+                        <option value="LUXURY" th:selected="${roomByID.getRoomType().toString() == 'LUXURY'}">luxury</option>
+                        <option value="FAMILY" th:selected="${roomByID.getRoomType().toString() == 'FAMILY'}">family</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-room-1">Price:</td>
+                <td class="table-room-2">
+                    <input name="price" type="text" th:value="${roomByID.getPrice()}" th:required="required"  class="input-hotel" maxlength="30"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-room-1" title="Discounted price;&#xA;If there is no discount leave empty.">Discount:</td>
+                <td class="table-room-2">
+                    <input name="discount" type="text" th:value="${roomByID.getDiscount()}" class="input-hotel" maxlength="30"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-room-1">Description:</td>
+                <td class="table-room-2">
+                    <input name="description" type="text" th:value="${roomByID.getDescription()}" th:required="required" class="input-hotel" maxlength="500"/>
+                </td>
+            </tr>
+        </table>
+</div>
+
+
+<div class="buttons-container-bottom">
+    <div class="buttons-bottom">
+        <input type="submit" value="Update">
+        </form>
+    </div>
+    <div class="buttons-bottom">
+        <form action="#" th:action="@{|/hotels/${hotelID}/rooms|}">
+            <input type="submit" value="Back">
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>
