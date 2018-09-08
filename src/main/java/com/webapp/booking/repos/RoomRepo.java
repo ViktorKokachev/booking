@@ -63,7 +63,7 @@ public class RoomRepo {
             sql += "and (price <= " + maxPrice + " or discount <= " + maxPrice + " ) ";
         }
         if (minPrice != null) {
-            sql += "and ((price >= " + minPrice + " and discount is null) or (discount is not null and discount >= " + minPrice + ")) ";
+            sql += "((price >= " + minPrice + " AND (discount is null OR discount = 0.0)) OR ((discount is not null && discount != 0.0) AND discount >= " + minPrice + "))";
         }
 
         System.err.println(sql);
@@ -91,7 +91,7 @@ public class RoomRepo {
             sql += " (price <= " + maxPrice + " or discount <= " + maxPrice + " AND)";
         }
         if (minPrice != null) {
-            sql += " ((price >= " + minPrice + " AND discount is null) OR (discount is not null AND discount >= " + minPrice + "))";
+            sql += " ((price >= " + minPrice + " AND (discount is null OR discount = 0.0)) OR ((discount is not null && discount != 0.0) AND discount >= " + minPrice + "))";
         }
 
         if (sql.endsWith("WHERE") || sql.endsWith("AND")) {
