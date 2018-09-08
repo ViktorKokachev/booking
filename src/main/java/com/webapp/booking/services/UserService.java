@@ -54,6 +54,13 @@ public class UserService implements UserDetailsService {
 
     private void mergeWhenUpdate(UserEntity toUpdate, UpdateUserArguments updateUserArguments) {
         if (updateUserArguments.getLogin() != null) {
+
+            List<UserEntity> userByLogin = userRepo.getUserByLogin(updateUserArguments.getLogin());
+
+            if (!userByLogin.isEmpty()) {
+                throw new RuntimeException("There is another user with this login");
+            }
+
             toUpdate.setLogin(updateUserArguments.getLogin());
         }
         if (updateUserArguments.getName() != null) {
@@ -70,6 +77,12 @@ public class UserService implements UserDetailsService {
     }
 
     public void createUser(CreateUserArguments createUserArguments) {
+
+        List<UserEntity> userByLogin = userRepo.getUserByLogin(createUserArguments.getLogin());
+
+        if (!userByLogin.isEmpty()) {
+            throw new RuntimeException("There is another user with this login");
+        }
 
         UserEntity userEntity = new UserEntity();
 
