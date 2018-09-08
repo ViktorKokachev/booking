@@ -39,7 +39,7 @@ public class HotelController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping()
+    @PostMapping("/withFilter")
     public String getAllHotelsWithFilter(Model model,
                                          @ModelAttribute GetAllHotelsWithFilterArguments getAllHotelsWithFilterArguments) {
         model.addAttribute("allHotels", hotelService.getAllHotelsWithFilter(getAllHotelsWithFilterArguments));
