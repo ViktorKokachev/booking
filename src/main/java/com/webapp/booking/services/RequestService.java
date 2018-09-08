@@ -139,14 +139,14 @@ public class RequestService {
 
         Double nightPrice;
 
-        if (requestByID.getRoom().getPrice() == null) {
-              if (requestByID.getRoom().getDiscount() == null) {
+        if (requestByID.getRoom().getPrice() == null || requestByID.getRoom().getPrice() == 0) {
+              if (requestByID.getRoom().getDiscount() == null || requestByID.getRoom().getDiscount() == 0) {
                   throw new RuntimeException("Invalid prices for the room!");
               } else {
                   nightPrice = requestByID.getRoom().getDiscount();
               }
         } else {
-            if (requestByID.getRoom().getDiscount() == null) {
+            if (requestByID.getRoom().getDiscount() == null || requestByID.getRoom().getDiscount() == 0) {
                 nightPrice = requestByID.getRoom().getPrice();
             } else {
                 if (requestByID.getRoom().getDiscount() < requestByID.getRoom().getPrice()) {
