@@ -120,19 +120,23 @@ public class UserController {
     }
 
     @PreAuthorize("hasAnyAuthority('CLIENT', 'ADMIN', 'OWNER')")
-    @PostMapping("/update")
+    @PostMapping("/myAccount/update")
     public String updateCurrentUser(Model model, UpdateUserArguments updateUserArguments) {
 
-        if (userService.getUserRoleByLogin() == UserRole.CLIENT) {
-            updateUserArguments.setUserID(userService.getCurrentUser().getUserID());
-        }
+        Integer userID = userService.getCurrentUser().getUserID();
+        updateUserArguments.setUserID(userID);
 
         userService.updateUser(updateUserArguments);
 
-        model.addAttribute("userInformation",
+        if (userService.getUserRoleByLogin() == UserRole.CLIENT) {
+            model.addAttribute("userInformation",
+                    userService.getUserByID(userID));
+            model.addAttribute("allRequestsByUser",
+                    requestService.getAllRequestsByUserID(userID));
+        }
+
+        model.addAttribute("userByID",
                 userService.getUserByID(userService.getCurrentUser().getUserID()));
-        model.addAttribute("allRequestsByUser",
-                requestService.getAllRequestsByUserID(userService.getCurrentUser().getUserID()));
         model.addAttribute("updateUserArguments", new UpdateUserArguments());
 
         return "redirect:/users/myAccount";

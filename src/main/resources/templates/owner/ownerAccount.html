@@ -3,19 +3,19 @@
 <head>
     <title>Hotel</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/adminSpecificItem.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin/ownerSpecificItem.css}"/>
 </head>
 <body>
 
 <div id="header">
     <div class="img">
-        <a th:href="@{/requests}">
+        <a th:href="@{/hotels}">
             <img th:src="@{/images/hotel.jpg}" width="60px" height="60px"/>
         </a>
     </div>
 
     <div class="buttons-header">
-        <form action="#" th:action="@{/requests}" method="get">
+        <form action="#" th:action="@{/hotels}" method="get">
             <input type="submit" value="Main page">
         </form>
     </div>
@@ -30,6 +30,7 @@
         </form>
     </div>
 </div>
+
 
 
 <div id="account">
@@ -69,7 +70,7 @@
         </form>
     </div>
     <div class="buttons">
-        <form action="#" th:action="@{/requests}">
+        <form action="#" th:action="@{/hotels}">
             <input type="submit" value="Back">
         </form>
     </div>

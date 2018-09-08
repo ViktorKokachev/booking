@@ -144,10 +144,12 @@ public class HotelController {
     public String getRoomFromHotelRooms(@PathVariable Integer hotelID, @PathVariable Integer roomID,
                                         Model model) {
         model.addAttribute("roomByID", roomService.getRoomByID(roomID));
+        model.addAttribute("updateRoomArguments", new UpdateRoomArguments());
+        model.addAttribute("hotelID", hotelID);
         if (userService.getUserRoleByLogin() == UserRole.ADMIN) {
-            return "admin/adminRoomByID";
+            return "admin/adminRoom";
         } else {
-            return "owner/ownerRoomByID";
+            return "owner/ownerRoom";
         }
     }
 
@@ -180,7 +182,7 @@ public class HotelController {
         }*/
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
+/*    @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
     @GetMapping("/{hotelID}/rooms/{roomID}/update")
     public String updateRoomFromHotelRoomsPage(@PathVariable Integer hotelID, @PathVariable Integer roomID,
                                         Model model) {
@@ -190,7 +192,7 @@ public class HotelController {
         } else {
             return "owner/updateRoom";
         }
-    }
+    }*/
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'OWNER')")
     @PostMapping("/{hotelID}/rooms/{roomID}/update")
